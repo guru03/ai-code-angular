@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { getQuestions } from './state/angular.selector';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { loadQuestions } from './state/angular.action';
 
 @Component({
   selector: 'aic-angular',
@@ -15,13 +16,15 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class Angular implements OnInit {
   activeCategory = signal('All');
-  getQuestionList$: Observable<Question[]> = new Observable<Question[]>();
+  getQuestionList$!: Observable<Question[]>;
   private sanitizer = inject(DomSanitizer);
+  private store = inject(Store<AppState>);
 
   constructor(private store1: Store<AppState>) { }
 
   ngOnInit() {
-    this.getQuestionList$ = this.store1.select(getQuestions);
+    this.getQuestionList$ = this.store.select(getQuestions);
+    this.store.dispatch(loadQuestions());
   }
 
   filterByCategory(category: string): void {

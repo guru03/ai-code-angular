@@ -6,7 +6,7 @@ export const initialState: QuestionsState = {
         [
             {
                 id:             1,
-                category:       "NgRx",
+                category:       "NgRxNgRxNgRxNgRxNgRxNgRxNgRx",
                 topic:          "State Management",
                 contentStatus:  "updated",
                 visible:        true,

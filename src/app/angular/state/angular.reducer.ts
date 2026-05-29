@@ -1,9 +1,35 @@
-import { createReducer } from "@ngrx/store";
-import { initialState } from "./angular.state";
+import { createReducer, on } from '@ngrx/store';
+import { loadQuestions, loadQuestionsSuccess, loadQuestionsFailure } from './angular.action';
+import { Question, QuestionsState } from '../../models/question.model';
 
+export const initialState: QuestionsState = {
+  questions: [],
+  loading: false,
+  error: null,
+};
 
-const _angularReducer = createReducer(initialState);
+export const angularReducer = createReducer(
+  initialState,
 
-export function angularReducer(state: any, action: any) {
-    return _angularReducer(state, action);
-}
+  // When loadQuestions is dispatched, set loading true and clear errors
+  on(loadQuestions, (state) => ({
+    ...state,
+    loading: true,
+    error: null,
+  })),
+
+  // On success, update questions and stop loading
+  on(loadQuestionsSuccess, (state, { questions }) => ({
+    ...state,
+    questions,
+    loading: false,
+    error: null,
+  })),
+
+  // On failure, capture error and stop loading
+  on(loadQuestionsFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  }))
+);
