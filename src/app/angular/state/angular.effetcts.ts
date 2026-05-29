@@ -8,7 +8,8 @@ import { environment } from "../../environments/environment";
 
 @Injectable()
 export class QuestionEffects {
-    private apiUrl = environment.apiUrl2;
+    // private readonly baseurl = environment.baseurl.replace(/\/+$/, '');
+    private readonly rooturl = `${environment.baseurl}/angular/`;
     private actions$ = inject(Actions);
     private http = inject(HttpClient);
 
@@ -16,7 +17,7 @@ export class QuestionEffects {
         this.actions$.pipe(
             ofType(loadQuestions),
             mergeMap(() =>
-                this.http.get<Question[]>(`${this.apiUrl}/angular/`).pipe(
+                this.http.get<Question[]>(this.rooturl).pipe(
                     map((questions) => loadQuestionsSuccess({ questions })),
                     catchError((error) =>
                         of(loadQuestionsFailure({ error: error?.message ?? 'Unknown error' }))

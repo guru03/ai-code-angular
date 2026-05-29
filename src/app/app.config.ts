@@ -8,6 +8,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { appReducer } from './store/app.reducer';
+import { QuestionEffects } from './angular/state/angular.effetcts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideStore(appReducer),
-    provideEffects(),
+    provideEffects([QuestionEffects]),
     provideStoreDevtools({ logOnly: !isDevMode() }),
   ]
 };
