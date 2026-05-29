@@ -20,4 +20,8 @@
 
 * --inline-template=true → Put templates directly inside component files.
 
-## 2.  
+## 2.  To open 
+
+``` bash
+    ng serve --o --watch
+```

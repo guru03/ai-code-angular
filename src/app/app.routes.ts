@@ -18,11 +18,11 @@ export const routes: Routes = [
         path: 'home',
         component: Home
     },
-    // {
-    //     path: '',
-    //     loadChildren: () =>
-    //         import('./auth/auth.routes').then(m => m.AUTH_ROUTES)
-    // },
+    {
+        path: '',
+        loadChildren: () =>
+            import('./auth/auth.routes').then(m => m.AUTH_ROUTES)
+    },
     {
         path: 'angular',
         component: Angular,
