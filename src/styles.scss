@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+// New Styles for the application
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+$fontColor: #002050;
+// @use 'tailwindcss';
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: $fontColor;
+}
