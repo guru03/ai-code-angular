@@ -25,21 +25,14 @@ export const routes: Routes = [
         loadChildren: () =>
             import('./auth/auth.routes').then(m => m.AUTH_ROUTES)
     },
+
     {
         path: 'angular',
-        component: Angular,
-    },
-
-    {
-        path: 'angular/:id',
-        component: AngularQuestionDetails,
-    },
-
-    {
-        path: '',
         loadChildren: () =>
-            import('./angular/angular.routes').then(m => m.angularRoutes)
+            import('./angular/angular.routes').then(m => m.ANGULAR_ROUTES)
     },
+
+    
     // {
     //     path: 'blogs',
     //     loadChildren: () =>
