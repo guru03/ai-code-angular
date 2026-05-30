@@ -1,0 +1,13 @@
+<p>angular-question-details works!</p>
+
+@if(selectedQuestion$ | async; as question) {
+<h2>{{ question.question }}</h2>
+<p>{{ question.answer }}</p>
+}
+
+@if (selectedQuestion$ | async; as question) {
+<h2>{{ question.title }}</h2>
+<p>{{ question.content }}</p>
+} @else {
+<p>Loading question...</p>
+}

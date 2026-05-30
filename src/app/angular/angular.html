@@ -23,6 +23,9 @@
             </div>
         </div>
         <div class="col-md-6">
+            <router-outlet></router-outlet>
+
+
             <h3 class="mb-4 text-xl">NgRx Concepts</h3>
             @for (item of getQuestionList$ | async; track $index) {
             @if (item.visible === true && (activeCategory() === 'All' || item.category === activeCategory())) {
@@ -31,6 +34,12 @@
                     <div class="number">
                         <h3 class="me-2 text-xl"><span>{{ $index + 1 }}:</span></h3>
                     </div>
+
+
+                <div class="">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]='["/angular/", item.id]'>Angular Details</a>
+                </div>
+
                     <div class="question-text">
                         <h3 class="text-xl">
                             <span>{{ item.question }}</span>

@@ -17,3 +17,20 @@ export const loadQuestionsFailure = createAction(
     '[Angular] Load Questions Failure',
     props<{ error: string }>()
 );
+
+// Load Question Details Component
+
+export const loadQuestionById = createAction(
+  '[Angular] Load Question By Id',
+  props<{ id: number }>()
+);
+
+export const loadQuestionByIdSuccess = createAction(
+  '[Angular] Load Question By Id Success',
+  props<{ question: Question }>()
+);
+
+export const loadQuestionByIdFailure = createAction(
+  '[Angular] Load Question By Id Failure',
+  props<{ error: string }>()
+);

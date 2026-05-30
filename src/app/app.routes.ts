@@ -4,6 +4,8 @@ import { Home } from './home/home';
 import { About } from './about/about';
 import { Contact } from './contact/contact';
 import { Signal } from './signal/signal';
+import { QuestionDetails } from './angular/question-details/question-details';
+import { AngularQuestionDetails } from './angular/angular-question-details/angular-question-details';
 
 export const routes: Routes = [
     {
@@ -26,6 +28,17 @@ export const routes: Routes = [
     {
         path: 'angular',
         component: Angular,
+    },
+
+    {
+        path: 'angular/:id',
+        component: AngularQuestionDetails,
+    },
+
+    {
+        path: '',
+        loadChildren: () =>
+            import('./angular/angular.routes').then(m => m.angularRoutes)
     },
     // {
     //     path: 'blogs',

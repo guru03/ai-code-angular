@@ -1,11 +1,19 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { QuestionsState } from "../../models/question.model";
+import { AppState } from "../../store/app.state";
 
-const getAngularState = createFeatureSelector<QuestionsState>('questions');
+const selectAngularState = createFeatureSelector<QuestionsState>('questions');
 
 export const getQuestions = createSelector(
-    getAngularState,
+    selectAngularState,
     (state: QuestionsState) => {
         return state.questions;
     }
+);
+
+// Load Question Details Component
+
+export const getSelectedQuestion = createSelector(
+    selectAngularState,
+    (state: QuestionsState) => state.selectedQuestion ?? null
 );

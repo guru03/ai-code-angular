@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadQuestions, loadQuestionsSuccess, loadQuestionsFailure } from './angular.action';
+import { loadQuestions, loadQuestionsSuccess, loadQuestionsFailure, loadQuestionByIdSuccess, loadQuestionByIdFailure } from './angular.action';
 import { Question, QuestionsState } from '../../models/question.model';
 
 export const initialState: QuestionsState = {
@@ -31,5 +31,18 @@ export const angularReducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+
+
+  // Load Question Details Component
+
+  on(loadQuestionByIdSuccess, (state, { question }) => ({
+    ...state,
+    selectedQuestion: question,
+    error: null
+  })),
+  on(loadQuestionByIdFailure, (state, { error }) => ({
+    ...state,
+    error
   }))
 );

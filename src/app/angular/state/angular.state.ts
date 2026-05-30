@@ -1,7 +1,13 @@
 import { QuestionsState } from "../../models/question.model";
 
-
 export const initialState: QuestionsState = {
+    questions:[],
+    selectedQuestion: null,
+    loading: false,
+    error: null
+}
+
+export const initialState1: QuestionsState = {
     questions:
         [
             {
