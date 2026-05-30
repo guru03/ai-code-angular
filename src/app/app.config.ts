@@ -9,6 +9,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { appReducer } from './store/app.reducer';
 import { QuestionEffects } from './angular/state/angular.effetcts';
+import { provideRouterStore } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,5 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideStore(appReducer),
     provideEffects([QuestionEffects]),
     provideStoreDevtools({ logOnly: !isDevMode() }),
-  ]
+    provideRouterStore()
+]
 };

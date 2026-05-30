@@ -21,6 +21,5 @@ export class AngularQuestionDetails implements OnInit {
     if (id) {
       this.store.dispatch(loadQuestionById({ id: +id }));
     }
-
   }
 }
