@@ -1,29 +1,7 @@
-$codeColor: #ebebeb;
 
 
-.question {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    padding: 20px;
-    margin-top: 20px;
 
-    h3 {
-        font-size: 20px;
-    }
 
-    p {
-        font-size: 18px;
-    }
-
-    .font-medium {
-        font-weight: 500;
-    }
-}
-
-.width-35 {
-    width: 35px;
-}
 
 .list-items {
     list-style-type: disc;
@@ -51,22 +29,7 @@ $codeColor: #ebebeb;
     }
 }
 
-.code-block {
-    font-family: 'Consolas', Monaco, monospace;
-    color: inherit;
-    border: 1px solid $codeColor;
-    padding: 3px 8px;
-    margin: 0 1px;
-    font-size: 16px;
-    display: inline-block;
-    background-color: $codeColor;
-    border-radius: 3px;
 
-    pre {
-        margin: 0;
-        font-size: 16px;
-    }
-}
 
 .scrollToTop {
     position: fixed;

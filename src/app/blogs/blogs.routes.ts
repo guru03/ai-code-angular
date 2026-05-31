@@ -1,14 +1,16 @@
 import { Routes } from "@angular/router";
 import { BlogDetail } from "./blog-detail/blog-detail";
 import { BlogList } from "./blog-list/blog-list";
+import { AddBlog } from "./add-blog/add-blog";
 
 export const BLOGS_ROUTES: Routes = [
     {
         path: '',
         component: BlogList,
         children: [
-            { path: 'angular-list', component: BlogList },
-            { path: 'angular/:id', component: BlogDetail },
+            { path: 'blogs', component: BlogList },
+            { path: 'add-blog', component: AddBlog },
+            { path: 'blogs/:id', component: BlogDetail },
         ]
     },
 ];

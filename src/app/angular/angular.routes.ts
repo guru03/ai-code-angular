@@ -9,8 +9,8 @@ export const ANGULAR_ROUTES: Routes = [
         path: '',
         component: Angular,
         children: [
-            { path: 'angular-list', component: AngularQuestionList },
-            { path: 'angular/:id', component: AngularQuestionDetails },
+            { path: 'questions', component: AngularQuestionList },
+            { path: 'questions/:id', component: AngularQuestionDetails },
         ]
     },
 ];
