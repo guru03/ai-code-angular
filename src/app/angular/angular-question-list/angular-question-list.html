@@ -5,15 +5,9 @@
     <div class="question shadow-sm">
         <div class="flex">
             <div class="number">
-                <h3 class="me-2 text-xl"><span>{{ $index + 1 }}:</span></h3>
+                <h3 class="me-2 text-xl"><a class="p-0" routerLinkActive="active"
+                        [routerLink]='["/angular/questions", item.id]'>{{ $index + 1 }}:</a></h3>
             </div>
-
-
-            <div class="">
-                <a class="nav-link" routerLinkActive="active" [routerLink]='["/angular/questions", item.id]'>Angular
-                    Details</a>
-            </div>
-
             <div class="question-text">
                 <h3 class="text-xl">
                     <span>{{ item.question }}</span>
