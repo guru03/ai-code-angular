@@ -1,12 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { loadQuestions, loadQuestionsSuccess, loadQuestionsFailure, loadQuestionByIdSuccess, loadQuestionByIdFailure } from './angular.action';
-import { Question, QuestionsState } from '../../models/question.model';
+import { initialState } from './angular.state';
 
-export const initialState: QuestionsState = {
-  questions: [],
-  loading: false,
-  error: null,
-};
 
 export const angularReducer = createReducer(
   initialState,

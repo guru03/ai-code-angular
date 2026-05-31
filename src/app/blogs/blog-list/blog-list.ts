@@ -1,0 +1,29 @@
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BlogState } from '../../models/blog.model';
+import { Store } from '@ngrx/store';
+import { selectAllBlogs, selectError, selectLoading } from '../state/blog.selector';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+
+@Component({
+  selector: 'aic-blog-list',
+  imports: [RouterLink, RouterOutlet, CommonModule],
+  templateUrl: './blog-list.html',
+  styleUrl: './blog-list.scss',
+})
+export class BlogList {
+
+  private store = inject(Store);
+  private sanitizer = inject(DomSanitizer);
+
+  blogs$ = this.store.select(selectAllBlogs);
+  loading$ = this.store.select(selectLoading);
+  error$ = this.store.select(selectError);
+
+  setHtml(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
+  }
+
+}

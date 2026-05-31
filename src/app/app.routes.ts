@@ -32,12 +32,12 @@ export const routes: Routes = [
             import('./angular/angular.routes').then(m => m.ANGULAR_ROUTES)
     },
 
-    
-    // {
-    //     path: 'blogs',
-    //     loadChildren: () =>
-    //         import('./blogs/blogs-routes').then(m => m.routes)
-    // },
+
+    {
+        path: 'blogs',
+        loadChildren: () =>
+            import('./blogs/blogs.routes').then(m => m.BLOGS_ROUTES)
+    },
     // {
     //     path: 'counter',
     //     loadComponent: () =>

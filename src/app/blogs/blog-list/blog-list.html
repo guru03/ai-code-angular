@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-7">
+        <a class="btn btn-primary btn-sm" [routerLink]='["add-blog"]'>Add Blog</a>
+        <h3>Blog List</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (blog of blogs$ | async; track $index) {
+                <tr>
+                    <th scope="row"><span>{{ $index + 1 }}:</span></th>
+                    <td>{{blog.title}}</td>
+                    <td>
+                        <div class="font-18" [innerHTML]="setHtml(blog.content)"></div>
+                    </td>
+                    <td>
+                        <!-- <button class="btn btn-warning btn-sm" (click)="onEditBlog(blog)">Update</button> -->
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" [routerLink]="['edit', blog.id]">Edit</a>
+                    </td>
+                    <td>
+                        <!-- <button class="btn btn-danger btn-sm" (click)="onDeleteBlog(blog.id)">Delete</button> -->
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5">
+        <router-outlet></router-outlet>
+    </div>
+</div>

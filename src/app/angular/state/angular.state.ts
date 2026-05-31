@@ -360,5 +360,8 @@ export const initialState1: QuestionsState = {
                 question:       "What is MCP in AI?",
                 answer:         "MCP, or Model Context Protocol, is an open standard that lets AI models securely connect to external systems like files, databases, and APIs. It's essentially the USB-C of AI — a universal interface that reduces integration complexity, improves security, and enables richer, enterprise-grade AI applications."
             },
-        ]
+        ],
+    selectedQuestion: null,
+    loading: true,
+    error: null
 }

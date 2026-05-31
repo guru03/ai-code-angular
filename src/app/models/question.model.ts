@@ -14,7 +14,7 @@ export interface Question {
 
 export interface QuestionsState {
     questions: Question[];
-    selectedQuestion?: Question | null;
-    loading?: boolean;
-    error?: string | null;
+    selectedQuestion: Question | null;
+    loading: boolean;
+    error: string | null;
 }

@@ -1,3 +1,5 @@
+ॐॐॐॐॐ
+
 1.  What is of operater in rxjs?
     In RxJS, the of function is a creation operator that turns given values into an observable sequence. It’s one of the simplest ways to create an observable.
 
@@ -57,3 +59,6 @@
 ##  Utility Operators:
     tap(): Performs side effects for each emission on the source observable without modifying the emitted values.
     delay(): Delays the emissions from the source observable by a specified duration.
+
+#   📊 Visual Sequence
+##  Component → Dispatch Action → Effect (optional async) → Reducer → Store → Selector → Component (UI update)
