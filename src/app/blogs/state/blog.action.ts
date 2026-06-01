@@ -1,6 +1,8 @@
 import { createAction, props } from "@ngrx/store";
 import { Blog } from "../../models/blog.model";
 
+
+//* Load all blogs
 export const loadBlogs = createAction('[Blog List] Load Blogs');
 
 export const loadBlogsSuccess = createAction(
@@ -12,7 +14,7 @@ export const loadBlogsFailure = createAction(
     props<{ error: any }>()
 );
 
-
+//* Blog Detail
 export const selectBlog = createAction(
     '[Blog List] Select Blog',
     props<{ blogId: string }>()
@@ -28,7 +30,7 @@ export const selectBlogFailure = createAction(
     props<{ error: any }>()
 );
 
-// CREATE
+//* CREATE
 export const createBlog = createAction(
     '[Blog] Create Blog',
     props<{ blog: Blog }>()
@@ -42,7 +44,7 @@ export const createBlogFailure = createAction(
     props<{ error: any }>()
 );
 
-// UPDATE
+//* UPDATE
 export const updateBlog = createAction(
     '[Blog] Update Blog',
     props<{ blog: Blog }>()
@@ -56,7 +58,7 @@ export const updateBlogFailure = createAction(
     props<{ error: any }>()
 );
 
-// DELETE
+//* DELETE
 export const deleteBlog = createAction(
     '[Blog] Delete Blog',
     props<{ id: string }>()

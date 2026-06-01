@@ -6,7 +6,6 @@ import { selectAllBlogs, selectError, selectLoading } from '../state/blog.select
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { App } from '../../app';
 import { AppState } from '../../store/app.state';
 
 @Component({

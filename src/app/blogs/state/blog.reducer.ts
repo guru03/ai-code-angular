@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./blog.state";
-import { loadBlogs, loadBlogsFailure, loadBlogsSuccess } from "./blog.action";
+import { createBlog, loadBlogs, loadBlogsFailure, loadBlogsSuccess } from "./blog.action";
 
 export const blogReducer = createReducer(
     initialState,
@@ -21,7 +21,13 @@ export const blogReducer = createReducer(
         ...state,
         loading: false,
         error
-    }))
+    })),
+
+    // CREATE
+    on(createBlog, (state, { blog }) => ({
+        ...state,
+        blogs: [...state.blogs, blog],
+    })),
 
     //TODO blog detail will be written here
 )
