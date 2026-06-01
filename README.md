@@ -1,4 +1,4 @@
-## 1. To generate a new Angular project with a custom prefix like abc
+# 1. To generate a new Angular project with a custom prefix like abc
 
 ``` bash
     ng new aic-angular-app --prefix=aic
@@ -20,7 +20,7 @@
 
 * --inline-template=true → Put templates directly inside component files.
 
-## 2.  To open 
+## 2.  To open
 
 ``` bash
     ng serve --o --watch

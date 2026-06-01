@@ -24,6 +24,11 @@ export class BlogList {
   loading$ = this.store.select(selectLoading);
   error$ = this.store.select(selectError);
 
+  onDeleteBlog(id:number){
+    let idblod:number = id;
+    console.log(idblod);
+  }
+
   setHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }

@@ -1,0 +1,253 @@
+
+
+<div class="min-h-screen bg-slate-50 font-sans antialiased text-slate-900">
+  
+  <!-- Subtle Header Header Segment -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+      <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Latest Engineering Notebooks</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+      AI WEB <span class="text-orange-500">HACK</span> Journal
+    </h1>
+  </div>
+
+  <!-- Primary Content Grid Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 space-y-12">
+    
+    <!-- 1. FULL WIDTH FEATURED POST PANEL -->
+    <section class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300">
+      <div class="grid grid-cols-1 lg:grid-cols-12">
+        
+        <!-- Cover Art Layer -->
+        <div class="relative lg:col-span-7 aspect-video lg:aspect-auto min-h-[300px] bg-slate-100 overflow-hidden">
+          <img 
+            [src]="featuredPost.imageUrl" 
+            [alt]="featuredPost.title"
+            class="w-full h-full object-cover transform group-hover:scale-102 transition-transform duration-500 ease-out"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent lg:hidden"></div>
+        </div>
+
+        <!-- Featured Description Text Block -->
+        <div class="p-8 sm:p-10 lg:col-span-5 flex flex-col justify-between bg-white">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-orange-500 text-white tracking-wide uppercase">
+                Featured
+              </span>
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                {{ featuredPost.category }}
+              </span>
+            </div>
+            
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight group-hover:text-orange-500 transition-colors duration-200">
+              <a [routerLink]="['/blog', featuredPost.id]">{{ featuredPost.title }}</a>
+            </h2>
+            
+            <p class="text-slate-500 text-base leading-relaxed">
+              {{ featuredPost.excerpt }}
+            </p>
+          </div>
+
+          <!-- Featured Author Meta block -->
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img [src]="featuredPost.author.avatar" [alt]="featuredPost.author.name" class="w-10 h-10 rounded-full object-cover ring-2 ring-slate-100" />
+              <div>
+                <p class="text-sm font-bold text-slate-900">{{ featuredPost.author.name }}</p>
+                <p class="text-xs text-slate-400">{{ featuredPost.publishDate }}</p>
+              </div>
+            </div>
+            <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+              {{ featuredPost.readTime }}
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. TWO-COLUMN REGULAR POSTS LAYOUT ENGINE -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <article 
+        *ngFor="let post of regularPosts" 
+        class="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 flex flex-col sm:flex-row h-full"
+      >
+        <!-- Post Preview Thumbnail Area -->
+        <div class="relative w-full sm:w-2/5 aspect-video sm:aspect-auto min-h-[200px] sm:min-h-full bg-slate-100 overflow-hidden shrink-0">
+          <img 
+            [src]="post.imageUrl" 
+            [alt]="post.title"
+            class="w-full h-full object-cover transform group-hover:scale-103 transition-transform duration-500 ease-out"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Post Content Details Structure -->
+        <div class="p-6 flex flex-col justify-between flex-grow bg-white">
+          <div class="space-y-2">
+            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider">
+              {{ post.category }}
+            </span>
+            <h3 class="text-lg font-bold text-slate-900 tracking-tight leading-snug group-hover:text-orange-500 transition-colors duration-200 line-clamp-2">
+              <a [routerLink]="['/blog', post.id]">{{ post.title }}</a>
+            </h3>
+            <p class="text-slate-500 text-xs sm:text-sm leading-relaxed line-clamp-3">
+              {{ post.excerpt }}
+            </p>
+          </div>
+
+          <!-- Card Author Signature Row -->
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <img [src]="post.author.avatar" [alt]="post.author.name" class="w-8 h-8 rounded-full object-cover" />
+              <div class="text-[11px]">
+                <p class="font-bold text-slate-900 leading-none mb-0.5">{{ post.author.name }}</p>
+                <p class="text-slate-400 leading-none">{{ post.publishDate }}</p>
+              </div>
+            </div>
+            <span class="text-[11px] font-medium text-slate-400">
+              {{ post.readTime }}
+            </span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Bottom Interface Controls Pagination row -->
+    <nav class="flex items-center justify-between border-t border-slate-200 pt-6" aria-label="Pagination">
+      <div class="text-sm text-slate-500">
+        Showing <span class="font-semibold text-slate-900">1</span> to <span class="font-semibold text-slate-900">5</span> of <span class="font-semibold text-slate-900">24</span> articles
+      </div>
+      <div class="flex gap-2">
+        <button class="px-4 py-2 border border-slate-200 text-sm font-semibold rounded-lg bg-white text-slate-700 hover:bg-slate-50 transition-colors">
+          Previous
+        </button>
+        <button class="px-4 py-2 text-sm font-semibold rounded-lg bg-orange-500 hover:bg-orange-600 text-white shadow-sm shadow-orange-500/10 transition-colors">
+          Next Page &rarr;
+        </button>
+      </div>
+    </nav>
+
+  </main>
+</div>
+
+
+<!--! This is optional design for the blog page. -->
+<div class="min-h-screen bg-slate-50 font-sans antialiased text-slate-900 hidden">
+  
+  <!-- Blog Header Hero Section -->
+  <header class="bg-white border-b border-slate-100 py-16 px-6 sm:px-12 text-center relative overflow-hidden">
+    <!-- Clean Abstract Glow Ring -->
+    <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-3xl mx-auto relative z-10 space-y-4">
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-orange-500/10 text-orange-600 tracking-wide">
+        Insights & Guides
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+        The <span class="text-orange-500">AI WEB HACK</span> Journal
+      </h1>
+      <p class="text-slate-500 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+        Deep dives into performant web architecture ecosystems, reactive micro-patterns, and the future of front-end engineering.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Feed Engine Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Category Filter Controls Navbar Bar -->
+    <div class="flex items-center overflow-x-auto pb-4 mb-10 scrollbar-none gap-2 border-b border-slate-200/60">
+      <button 
+        *ngFor="let cat of categories"
+        (click)="selectCategory(cat)"
+        [ngClass]="{
+          'bg-slate-900 text-white shadow-sm': selectedCategory === cat,
+          'bg-white text-slate-600 hover:bg-slate-100 hover:text-slate-900 border border-slate-200': selectedCategory !== cat
+        }"
+        class="px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all duration-200 focus:outline-none"
+      >
+        {{ cat }}
+      </button>
+    </div>
+
+    <!-- Responsive Post Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <article 
+        *ngFor="let post of blogPosts" 
+        class="group bg-white rounded-2xl border border-slate-200/70 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300/90 transition-all duration-300 flex flex-col"
+      >
+        <!-- Preview Cover Image Layer -->
+        <div class="relative aspect-video w-full bg-slate-100 overflow-hidden">
+          <img 
+            [src]="post.imageUrl" 
+            [alt]="post.title"
+            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Content Core Framework Block -->
+        <div class="p-6 flex flex-col flex-grow justify-between">
+          <div class="space-y-3">
+            <!-- Taxonomy Category Indicator Tag -->
+            <span class="text-xs font-bold text-orange-500 uppercase tracking-wider">
+              {{ post.category }}
+            </span>
+
+            <!-- Title Header link -->
+            <h2 class="text-xl font-bold text-slate-900 tracking-tight leading-snug group-hover:text-orange-500 transition-colors duration-200">
+              <a [routerLink]="['/blog', post.id]">{{ post.title }}</a>
+            </h2>
+
+            <!-- Excerpt Description block -->
+            <p class="text-slate-500 text-sm leading-relaxed line-clamp-3">
+              {{ post.excerpt }}
+            </p>
+          </div>
+
+          <!-- Footer Metadata / Author Profile block -->
+          <div class="mt-6 pt-5 border-t border-slate-100 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img 
+                [src]="post.author.avatar" 
+                [alt]="post.author.name"
+                class="w-9 h-9 rounded-full object-cover ring-2 ring-slate-100"
+              />
+              <div class="text-xs">
+                <p class="font-semibold text-slate-900">{{ post.author.name }}</p>
+                <p class="text-slate-400">{{ post.publishDate }}</p>
+              </div>
+            </div>
+
+            <!-- Estimated Duration Text -->
+            <span class="text-xs font-medium text-slate-400 bg-slate-50 px-2.5 py-1 rounded-md">
+              {{ post.readTime }}
+            </span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Pagination Footer Navigation UI -->
+    <nav class="mt-16 flex items-center justify-center border-t border-slate-200 pt-8" aria-label="Pagination">
+      <div class="flex items-center gap-1">
+        <button class="p-2 text-slate-400 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors">
+          <span class="sr-only">Previous</span>
+          &larr;
+        </button>
+        <button class="px-3.5 py-1.5 text-sm font-semibold bg-orange-500 text-white rounded-lg shadow-sm shadow-orange-500/10">1</button>
+        <button class="px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors">2</button>
+        <button class="px-3.5 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors">3</button>
+        <button class="p-2 text-slate-400 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors">
+          <span class="sr-only">Next</span>
+          &rarr;
+        </button>
+      </div>
+    </nav>
+
+  </main>
+</div>

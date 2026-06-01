@@ -29,7 +29,7 @@
                         <a class="btn btn-primary btn-sm" [routerLink]="['edit', blog.id]">Edit</a>
                     </td>
                     <td>
-                        <!-- <button class="btn btn-danger btn-sm" (click)="onDeleteBlog(blog.id)">Delete</button> -->
+                        <button class="btn btn-danger btn-sm" (click)="onDeleteBlog(blog.id)">Delete</button>
                     </td>
                 </tr>
                 }
@@ -40,3 +40,5 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+
+<router-outlet></router-outlet>
