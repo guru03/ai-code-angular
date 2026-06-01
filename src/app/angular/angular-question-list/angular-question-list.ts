@@ -24,7 +24,7 @@ export class AngularQuestionList implements OnInit {
 
   ngOnInit() {
     this.getQuestionList$ = this.store.select(getQuestions);
-    this.selectedQuestion$ = this.store.select(getSelectedQuestion);
+    // this.selectedQuestion$ = this.store.select(getSelectedQuestion);
     this.store.dispatch(loadQuestions());
   }
 
