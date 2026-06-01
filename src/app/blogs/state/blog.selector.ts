@@ -18,3 +18,6 @@ export const selectError = createSelector(
     selectBlogState,
     (state: BlogState) => state.error
 )
+
+export const selectBlogById = (id: number) =>
+    createSelector(selectAllBlogs, blogs => blogs.find(b => b.id === id));
