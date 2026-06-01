@@ -1,5 +1,141 @@
-<p>home works!</p>
+<!-- Main Home Container -->
+<div class="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-orange-500 selection:text-white">
 
-<div class="p-6 bg-blue-500 text-white rounded-lg shadow-md">
-  Hello Tailwind + Angular 🚀
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-100 py-20 lg:py-32">
+    <!-- Decorative background glow -->
+    <div
+      class="absolute -top-40 left-1/2 -z-10 h-[600px] w-[1000px] -translate-x-1/2 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.15),transparent_50%)]">
+    </div>
+
+    <div class="mx-auto max-w-7xl px-6 text-center lg:px-8">
+      <!-- Badge -->
+      <span
+        class="inline-flex items-center rounded-full bg-orange-50 px-3 py-1 text-sm font-medium text-orange-600 ring-1 ring-inset ring-orange-600/10 mb-6 animate-fade-in">
+        Angular + Tailwind Powerhouse 🚀
+      </span>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-6xl max-w-4xl mx-auto leading-none">
+        Accelerate Your Web Workflows with <span
+          class="bg-gradient-to-r from-orange-500 to-amber-600 bg-clip-text text-transparent">AI Intelligence</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="mt-6 text-lg leading-8 text-slate-600 max-w-2xl mx-auto">
+        Welcome to AI WEB HECK. Explore cutting-edge reactive state patterns, harness the power of modern Angular
+        Signals, and build lightning-fast web applications.
+      </p>
+
+      <!-- CTAs -->
+      <div class="mt-10 flex items-center justify-center gap-x-6">
+        <a routerLink="/blog-list"
+          class="rounded-md bg-orange-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500 transition-all duration-200">
+          Read the Blog
+        </a>
+        <a routerLink="/signals"
+          class="text-sm font-semibold leading-6 text-slate-900 hover:text-orange-500 transition-colors duration-200 flex items-center gap-1">
+          Explore Signals <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE GRID SECTION -->
+  <section class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Built for Modern Web Engineering</h2>
+      <p class="mt-4 text-slate-600">Everything you need to master performant, scalable front-end ecosystems.</p>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+      <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+
+        <!-- Feature 1: Signals -->
+        <div
+          class="flex flex-col bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300">
+          <dt class="flex items-center gap-x-3 text-lg font-semibold leading-7 text-slate-900">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500 text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+              </svg>
+            </div>
+            Reactive Signals
+          </dt>
+          <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600">
+            <p class="flex-auto">Experience precise, fine-grained reactivity. Say goodbye to unnecessary change
+              detection cycles and build buttery-smooth user interfaces.</p>
+            <p class="mt-6"><a routerLink="/signals"
+                class="text-sm font-semibold leading-6 text-orange-500 hover:text-orange-600">Try interactive demo
+                &rarr;</a></p>
+          </dd>
+        </div>
+
+        <!-- Feature 2: Counter & State -->
+        <div
+          class="flex flex-col bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300">
+          <dt class="flex items-center gap-x-3 text-lg font-semibold leading-7 text-slate-900">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-900 text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
+              </svg>
+            </div>
+            State Micro-Apps
+          </dt>
+          <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600">
+            <p class="flex-auto">Explore isolated state machines and testbeds. Check out our real-time Counter tool to
+              see efficient, reactive components in action.</p>
+            <p class="mt-6"><a routerLink="/counter"
+                class="text-sm font-semibold leading-6 text-slate-900 hover:text-orange-500">View counter component
+                &rarr;</a></p>
+          </dd>
+        </div>
+
+        <!-- Feature 3: Architecture -->
+        <div
+          class="flex flex-col bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300">
+          <dt class="flex items-center gap-x-3 text-lg font-semibold leading-7 text-slate-900">
+            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+              </svg>
+            </div>
+            Clean Architecture
+          </dt>
+          <dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-slate-600">
+            <p class="flex-auto">Deep dives into scalable architecture patterns, accessible component strategies, and
+              best-in-class performance tuning rules.</p>
+            <p class="mt-6"><a routerLink="/blog-list"
+                class="text-sm font-semibold leading-6 text-orange-500 hover:text-orange-600">Read articles &rarr;</a>
+            </p>
+          </dd>
+        </div>
+
+      </dl>
+    </div>
+  </section>
+
+  <!-- QUICK CONTENT TEASER / CTA FOOTER BAR -->
+  <section class="bg-slate-900 text-white py-12">
+    <div class="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-6 lg:px-8">
+      <div>
+        <h3 class="text-xl font-bold tracking-tight">Ready to dive into the code?</h3>
+        <p class="text-slate-400 mt-1 text-sm">Explore live implementations of Signals, standalone architectures, and
+          state primitives.</p>
+      </div>
+      <div class="flex gap-4">
+        <a routerLink="/login" class="text-sm font-semibold py-2 px-4 hover:text-orange-400 transition-colors">Sign
+          In</a>
+        <a routerLink="/sign-up"
+          class="bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold py-2 px-4 rounded-md shadow transition-colors">Create
+          Account</a>
+      </div>
+    </div>
+  </section>
 </div>
