@@ -91,3 +91,130 @@
 
     </div>
 </main>
+
+
+<!-- this is another design -->
+
+<div class="min-h-screen w-full bg-[#f8fafc] font-sans text-slate-900">
+
+    <!-- Branding Header -->
+    <header class="w-full border-b bg-white px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <img src="logo.png" alt="AI WEB HACK" class="h-10"> <!-- Referencing logo style from image_8bf829.png -->
+        </div>
+        <nav class="hidden lg:flex gap-6 text-sm font-semibold text-slate-600">
+            <a href="#" class="hover:text-orange-500">Home</a>
+            <a href="#" class="hover:text-orange-500">Counter</a>
+            <a href="#" class="hover:text-orange-500 text-orange-600">Angular</a>
+            <a href="#" class="hover:text-orange-500">About</a>
+        </nav>
+    </header>
+
+    <!-- Main Grid Layout: 30% | 60% | 30% -->
+    <!-- Note: Totaling 120% would cause overflow, so we scale to a 25/50/25 or use a fluid 3-column container -->
+    <main class="grid grid-cols-1 lg:grid-cols-[30%_1fr_30%] min-h-[calc(100vh-73px)]">
+
+        <!-- Left Panel (30%) -->
+        <aside class="bg-white border-r border-slate-200 p-8">
+            <div class="sticky top-8">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Categories</h3>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#"
+                            class="block w-full rounded-lg bg-blue-600 px-4 py-3 text-sm font-bold text-white shadow-md">All
+                            Topics</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block w-full rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors border border-transparent hover:border-slate-200">Angular</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block w-full rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors border border-transparent hover:border-slate-200">NgRx</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                            class="block w-full rounded-lg px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-blue-600 transition-colors border border-transparent hover:border-slate-200">Signals</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Middle Section (60% / Fluid Center) -->
+        <section class="bg-slate-50 p-8 lg:p-12 border-r border-slate-200">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-3xl font-black text-slate-800 mb-8 pb-4 border-b-2 border-blue-500 inline-block">NgRx
+                    Concepts</h1>
+
+                <div class="space-y-8">
+                    <!-- Documentation Card -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="bg-slate-800 px-6 py-3">
+                            <span class="text-blue-400 font-mono text-xs font-bold uppercase">Concept 01</span>
+                        </div>
+                        <div class="p-8">
+                            <h2 class="text-xl font-bold text-slate-900 mb-4">What is NgRx and why do we use it?</h2>
+                            <div class="prose prose-slate max-w-none">
+                                <p class="text-slate-600 leading-relaxed">
+                                    NgRx is a state management library for Angular inspired by Redux. It provides a way
+                                    to maintain a <span class="font-semibold text-blue-600">single source of
+                                        truth</span> for your application state.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documentation Card 2 -->
+                    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                        <div class="bg-slate-800 px-6 py-3">
+                            <span class="text-blue-400 font-mono text-xs font-bold uppercase">Concept 02</span>
+                        </div>
+                        <div class="p-8">
+                            <h2 class="text-xl font-bold text-slate-900 mb-4">Key Concepts: Actions & Reducers</h2>
+                            <ul class="space-y-4 text-slate-600">
+                                <li class="flex gap-3">
+                                    <span class="font-bold text-blue-500">Actions:</span> Unique events that happen in
+                                    the app.
+                                </li>
+                                <li class="flex gap-3">
+                                    <span class="font-bold text-blue-500">Reducers:</span> Functions that handle state
+                                    transitions.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel (30%) -->
+        <aside class="bg-white p-8">
+            <div class="sticky top-8">
+                <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Quick Navigation</h3>
+                <div class="rounded-xl bg-blue-50 border border-blue-100 p-6">
+                    <h4 class="font-bold text-blue-900 mb-2">Getting Started</h4>
+                    <p class="text-sm text-blue-700 mb-4">New to NgRx? Start with our reactive state patterns guide.</p>
+                    <button
+                        class="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        View Roadmap
+                    </button>
+                </div>
+
+                <div class="mt-8">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase mb-4">Related Topics</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3 text-sm text-slate-600 hover:text-blue-600 cursor-pointer">
+                            <div class="h-2 w-2 rounded-full bg-orange-500"></div>
+                            Angular Signals API
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-600 hover:text-blue-600 cursor-pointer">
+                            <div class="h-2 w-2 rounded-full bg-orange-500"></div>
+                            RxJS Observables
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+</div>
