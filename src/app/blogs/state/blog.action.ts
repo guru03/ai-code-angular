@@ -17,7 +17,7 @@ export const loadBlogsFailure = createAction(
 //* Blog Detail
 export const selectBlog = createAction(
     '[Blog List] Select Blog',
-    props<{ blogId: string }>()
+    props<{ blogId: number }>()
 );
 
 export const selectBlogSuccess = createAction(
@@ -28,6 +28,7 @@ export const selectBlogSuccess = createAction(
 export const selectBlogFailure = createAction(
     '[Blog List] Select Blog Failure',
     props<{ error: any }>()
+
 );
 
 //* CREATE
@@ -61,11 +62,11 @@ export const updateBlogFailure = createAction(
 //* DELETE
 export const deleteBlog = createAction(
     '[Blog] Delete Blog',
-    props<{ id: string }>()
+    props<{ id: number }>()
 );
 export const deleteBlogSuccess = createAction(
     '[Blog] Delete Blog Success',
-    props<{ id: string }>()
+    props<{ id: number }>()
 );
 export const deleteBlogFailure = createAction(
     '[Blog] Delete Blog Failure',

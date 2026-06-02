@@ -3,10 +3,9 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
-import { createBlog } from '../state/blog.action';
+import { createBlog, updateBlog } from '../state/blog.action';
 import { selectAllBlogs, selectBlogById } from '../state/blog.selector';
-import { Observable } from 'rxjs';
-import { Blog } from '../../models/blog.model';
+import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -21,7 +20,6 @@ export class AddBlog implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   blogId: number | null = null;
-  blog$!: Observable<Blog | undefined>;
 
   addBlogForm: FormGroup = this.fb.group({
     title: new FormControl(null, [Validators.required, Validators.minLength(5)]),
@@ -30,35 +28,53 @@ export class AddBlog implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      this.blogId = Number(params.get('id'));
-      console.log(this.blogId);
-      this.blog$ = this.store.select(selectBlogById(this.blogId));
+      const id = params.get('id');
+      this.blogId = id ? Number(id) : null;
+
+      if (this.blogId) {
+        this.store.select(selectBlogById(this.blogId)).pipe(take(1)).subscribe(blog => {
+          if (blog) {
+            this.addBlogForm.patchValue({
+              title: blog.title,
+              content: blog.content
+            });
+          }
+        });
+      }
     });
   }
 
 
-  onAddPost(): void {
+  onSubmit(): void {
     if (this.addBlogForm.invalid) {
+      this.addBlogForm.markAllAsTouched();
       return;
     }
 
-    const blogData = {
-      id: 10,
-      title: this.addBlogForm.value.title,
-      content: this.addBlogForm.value.content
-    };
+    if (this.blogId) {
+      this.store.dispatch(updateBlog({
+        blog: {
+          id: this.blogId,
+          title: this.addBlogForm.value.title,
+          content: this.addBlogForm.value.content
+        }
+      }));
 
-    this.store.dispatch(createBlog({ blog: blogData }));
-    this.addBlogForm.reset();
+      this.router.navigate(['/blogs']);
+      return;
+    }
 
-    console.log(blogData);
+    this.store.select(selectAllBlogs).pipe(take(1)).subscribe(blogs => {
+      const blogData = {
+        id: Math.max(...blogs.map(blog => blog.id), 0) + 1,
+        title: this.addBlogForm.value.title,
+        content: this.addBlogForm.value.content
+      };
 
-    this.router.navigate(['/blogs']);
-  }
-
-  updateBlog() {
-    const blogId = this.activatedRoute.snapshot.params['id'];
-    console.log(blogId);
+      this.store.dispatch(createBlog({ blog: blogData }));
+      this.addBlogForm.reset();
+      this.router.navigate(['/blogs']);
+    });
   }
 
 

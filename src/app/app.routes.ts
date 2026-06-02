@@ -38,6 +38,12 @@ export const routes: Routes = [
         loadChildren: () =>
             import('./blogs/blogs.routes').then(m => m.BLOGS_ROUTES)
     },
+
+    {
+        path: 'design',
+        loadChildren: () =>
+            import('./design/design.routes').then(m => m.DESIGN_ROUTES)
+    },
     // {
     //     path: 'counter',
     //     loadComponent: () =>

@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { BlogState } from '../../models/blog.model';
 import { Store } from '@ngrx/store';
 import { selectAllBlogs, selectError, selectLoading } from '../state/blog.selector';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AppState } from '../../store/app.state';
+import { deleteBlog } from '../state/blog.action';
 
 @Component({
   selector: 'aic-blog-list',
@@ -23,9 +22,10 @@ export class BlogList {
   loading$ = this.store.select(selectLoading);
   error$ = this.store.select(selectError);
 
-  onDeleteBlog(id:number){
-    let idblod:number = id;
-    console.log(idblod);
+  onDeleteBlog(id: number) {
+    let blogId: number = id;
+    this.store.dispatch(deleteBlog({ id: blogId }));
+    console.log(blogId);
   }
 
   setHtml(content: string): SafeHtml {
