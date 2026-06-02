@@ -1,7 +1,7 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { getQuestions, selectQuestionsByCategory } from '../state/angular.selector';
@@ -21,17 +21,20 @@ export class AngularQuestionList implements OnInit {
   selectedQuestion$!: Observable<Question | null>;
   private sanitizer = inject(DomSanitizer);
   private store = inject(Store<AppState>);
+  private route = inject(ActivatedRoute);
 
   ngOnInit() {
-    this.getQuestionList$ = this.store.select(getQuestions);
-    // this.selectedQuestion$ = this.store.select(getSelectedQuestion);
     this.store.dispatch(loadQuestions());
-  }
 
-  // filterByCategory(category: string): void {
-  //   this.activeCategory.set(category);
-  //   this.getQuestionList$ = this.store.select(selectQuestionsByCategory(category));
-  // }
+    this.route.queryParamMap.subscribe(params => {
+      const category = params.get('category') ?? 'All';
+      this.activeCategory.set(category);
+      this.getQuestionList$ =
+        category === 'All'
+          ? this.store.select(getQuestions)
+          : this.store.select(selectQuestionsByCategory(category));
+    });
+  }
 
   onQuestionClick(id: number) {
     this.store.dispatch(loadQuestionById({ id }));
