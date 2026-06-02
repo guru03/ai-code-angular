@@ -1,1 +1,93 @@
-<p>angular-design works!</p>
+<!-- Page Layout -->
+<main class="mx-auto max-w-7xl px-4 py-12 lg:px-8">
+    <div class="flex flex-col gap-8 lg:flex-row">
+
+        <!-- Left Sidebar: Categories -->
+        <aside class="w-full lg:w-64 shrink-0">
+            <h3 class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Categories</h3>
+            <nav class="space-y-1">
+                <a href="#"
+                    class="flex items-center justify-between rounded-lg bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-orange-200">
+                    All Topics <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">12</span>
+                </a>
+                <a href="#"
+                    class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                    Angular <span class="text-xs text-slate-400 group-hover:text-orange-400">4</span>
+                </a>
+                <a href="#"
+                    class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                    NgRx <span class="text-xs text-slate-400 group-hover:text-orange-400">8</span>
+                </a>
+                <a href="#"
+                    class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                    Signals <span class="text-xs text-slate-400 group-hover:text-orange-400">3</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Center Content: Concepts -->
+        <section class="flex-1">
+            <div class="mb-8 border-b border-slate-200 pb-6">
+                <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">NgRx Concepts</h1>
+                <p class="mt-2 text-slate-500">Master state management with our comprehensive guide to Redux
+                    patterns in Angular.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Concept Card 1 -->
+                <article
+                    class="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-orange-200 hover:shadow-md transition-all">
+                    <span
+                        class="absolute -left-3 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white group-hover:bg-orange-500 transition-colors">01</span>
+                    <div class="pl-4">
+                        <h2 class="text-xl font-bold text-slate-800 group-hover:text-orange-600 transition-colors">
+                            What is NgRx and why use it?</h2>
+                        <div class="mt-4 space-y-3 text-sm leading-relaxed text-slate-600">
+                            <p>NgRx is a state management library based on <code
+                                    class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-orange-600">Redux principles</code>.
+                                It helps manage complex application state in a predictable way using a single,
+                                immutable store.</p>
+                            <p class="border-l-4 border-orange-500 pl-4 italic">"This makes debugging, scaling, and
+                                testing significantly easier compared to ad-hoc services."</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Concept Card 2 -->
+                <article
+                    class="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:border-orange-200 hover:shadow-md transition-all">
+                    <span
+                        class="absolute -left-3 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white group-hover:bg-orange-500 transition-colors">02</span>
+                    <div class="pl-4">
+                        <h2 class="text-xl font-bold text-slate-800">Key Concepts: Store, Actions, Reducers</h2>
+                        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                            <div class="rounded-xl bg-slate-50 p-4">
+                                <h4 class="font-bold text-orange-600">Store</h4>
+                                <p class="text-xs text-slate-500">The single source of truth for your app state.</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 p-4">
+                                <h4 class="font-bold text-orange-600">Actions</h4>
+                                <p class="text-xs text-slate-500">Unique events that describe state changes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Right Sidebar: Stats/Widgets -->
+        <aside class="hidden xl:block w-72 shrink-0">
+            <div class="rounded-2xl bg-slate-900 p-6 text-white shadow-xl shadow-slate-200">
+                <h3 class="text-lg font-bold">Progress</h3>
+                <p class="mt-2 text-sm text-slate-400">You've covered 40% of the NgRx module.</p>
+                <div class="mt-4 h-2 w-full rounded-full bg-slate-800">
+                    <div class="h-full w-2/5 rounded-full bg-orange-500"></div>
+                </div>
+                <button
+                    class="mt-6 w-full rounded-xl bg-orange-500 py-3 text-sm font-bold hover:bg-orange-400 transition-colors">Continue
+                    Learning</button>
+            </div>
+        </aside>
+
+    </div>
+</main>

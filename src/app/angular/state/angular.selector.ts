@@ -11,6 +11,18 @@ export const getQuestions = createSelector(
     }
 );
 
+export const selectQuestionsByCategory = (category: string) =>
+    createSelector(
+        selectAngularState,
+        (state: QuestionsState) => {
+            if (category === 'All') {
+                return state.questions;
+            } else {
+                return state.questions.filter(q => q.category === category);
+            }
+        }
+    );
+
 // Load Question Details Component
 
 export const getSelectedQuestion = createSelector(

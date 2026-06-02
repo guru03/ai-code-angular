@@ -4,7 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
-import { getQuestions, getSelectedQuestion } from '../state/angular.selector';
+import { getQuestions, selectQuestionsByCategory } from '../state/angular.selector';
 import { loadQuestionById, loadQuestions } from '../state/angular.action';
 import { Question } from '../../models/question.model';
 import { Observable } from 'rxjs';
@@ -27,6 +27,11 @@ export class AngularQuestionList implements OnInit {
     // this.selectedQuestion$ = this.store.select(getSelectedQuestion);
     this.store.dispatch(loadQuestions());
   }
+
+  // filterByCategory(category: string): void {
+  //   this.activeCategory.set(category);
+  //   this.getQuestionList$ = this.store.select(selectQuestionsByCategory(category));
+  // }
 
   onQuestionClick(id: number) {
     this.store.dispatch(loadQuestionById({ id }));

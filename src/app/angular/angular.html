@@ -1,4 +1,121 @@
-<div class="container-fluid my-5">
+<div class="w-full px-4 mx-auto my-12">
+    <div class="grid grid-cols-12 gap-6">
+
+        <!-- Left Sidebar -->
+        <div class="col-span-12 md:col-span-3">
+            <aside class="w-full shrink-0">
+                <h3 class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Categories</h3>
+                <ul class="space-y-1">
+                    <li (click)="filterByCategory('All')"
+                        class="flex items-center justify-between rounded-lg bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-orange-200">
+                        All Topics <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">12</span>
+                    </li>
+
+                    <li (click)="filterByCategory('Angular')"
+                        class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                        Angular <span class="text-xs text-slate-400 group-hover:text-orange-400">4</span>
+                    </li>
+                    <li (click)="filterByCategory('NgRx')"
+                        class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                        NgRx <span class="text-xs text-slate-400 group-hover:text-orange-400">8</span>
+                    </li>
+                    <li (click)="filterByCategory('Signals')"
+                        class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                        Signals <span class="text-xs text-slate-400 group-hover:text-orange-400">3</span>
+                    </li>
+                    <li (click)="filterByCategory('JavaScript')"
+                        class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                        JavaScript <span class="text-xs text-slate-400 group-hover:text-orange-400">5</span>
+                    </li>
+                    <li (click)="filterByCategory('HR')"
+                        class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                        HR <span class="text-xs text-slate-400 group-hover:text-orange-400">2</span>
+                    </li>
+                    <li (click)="filterByCategory('MCP')"
+                        class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
+                        MCP <span class="text-xs text-slate-400 group-hover:text-orange-400">1</span>
+                    </li>
+                </ul>
+            </aside>
+
+
+
+            <!--! This design is deprecated and will be removed in favor of a more modern. -->
+            <div class="hidden">
+                <h3 class="mb-4 text-xl font-semibold">Categories</h3>
+
+                <div class="bg-gray-100 rounded p-4 shadow">
+                    <!-- side-panel content -->
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
+                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'All'}"
+                            (click)="filterByCategory('All')">All</li>
+                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
+                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'Angular'}"
+                            (click)="filterByCategory('Angular')">Angular</li>
+                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
+                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'NgRx'}"
+                            (click)="filterByCategory('NgRx')">NgRx</li>
+                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
+                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'Signals'}"
+                            (click)="filterByCategory('Signals')">Signals</li>
+                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
+                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'JavaScript'}"
+                            (click)="filterByCategory('JavaScript')">JavaScript</li>
+                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
+                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'HR'}"
+                            (click)="filterByCategory('HR')">HR</li>
+                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
+                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'MCP'}"
+                            (click)="filterByCategory('MCP')">MCP</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Content -->
+        <div class="col-span-12 md:col-span-6">
+            <!-- question content -->
+            <router-outlet></router-outlet>
+        </div>
+
+        <!-- Right Sidebar -->
+        <!-- <div class="col-span-12 md:col-span-3">
+            <aside class="hidden xl:block w-72 shrink-0">
+                <div class="rounded-2xl bg-slate-900 p-6 text-white shadow-xl shadow-slate-200">
+                    <h3 class="text-lg font-bold">Progress</h3>
+                    <p class="mt-2 text-sm text-slate-400">You've covered 40% of the NgRx module.</p>
+                    <div class="mt-4 h-2 w-full rounded-full bg-slate-800">
+                        <div class="h-full w-2/5 rounded-full bg-orange-500"></div>
+                    </div>
+                    <button
+                        class="mt-6 w-full rounded-xl bg-orange-500 py-3 text-sm font-bold hover:bg-orange-400 transition-colors">Continue
+                        Learning</button>
+                </div>
+            </aside>
+        </div> -->
+
+        <!-- Right Sidebar: Stats/Widgets -->
+        <aside class="hidden xl:block w-72 shrink-0">
+            <div class="rounded-2xl bg-slate-900 p-6 text-white shadow-xl shadow-slate-200">
+                <h3 class="text-lg font-bold">Progress</h3>
+                <p class="mt-2 text-sm text-slate-400">You've covered 40% of the NgRx module.</p>
+                <div class="mt-4 h-2 w-full rounded-full bg-slate-800">
+                    <div class="h-full w-2/5 rounded-full bg-orange-500"></div>
+                </div>
+                <button
+                    class="mt-6 w-full rounded-xl bg-orange-500 py-3 text-sm font-bold hover:bg-orange-400 transition-colors">Continue
+                    Learning</button>
+            </div>
+        </aside>
+
+
+
+    </div>
+</div>
+
+<!--! Deprecated Old Layout -->
+<!-- <div class="container-fluid my-5 hidden">
 
     <div class="row">
         <div class="col-md-3">
@@ -24,9 +141,6 @@
         </div>
         <div class="col-md-6">
             <router-outlet></router-outlet>
-
-
-            
         </div>
         <div class="col-md-3">
             <h3 class="mb-4 text-xl">Categories</h3>
@@ -50,10 +164,20 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="scrollToTop">
+
+
+<!-- <div class="scrollToTop">
     <div class="cursor-pointer" (click)="scrollToTop()">
         <img src="scrollTop.png" alt="Back to Top">
     </div>
-</div>
+</div> -->
+
+<!-- Floating Action Button -->
+<button type="button" (click)="scrollToTop()"
+    class="fixed bottom-8 right-8 flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 text-white shadow-2xl hover:scale-110 transition-transform">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+</button>
