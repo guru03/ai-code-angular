@@ -11,6 +11,20 @@ export const getQuestions = createSelector(
     }
 );
 
+export const getCategoryCounts = createSelector(
+    selectAngularState,
+    (state: QuestionsState) => {
+        return state.questions.reduce<Record<string, number>>(
+            (counts, question) => ({
+                ...counts,
+                All: counts['All'] + 1,
+                [question.category]: (counts[question.category] ?? 0) + 1,
+            }),
+            { All: 0 }
+        );
+    }
+);
+
 export const selectQuestionsByCategory = (category: string) =>
     createSelector(
         selectAngularState,

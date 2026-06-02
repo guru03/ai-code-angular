@@ -5,37 +5,58 @@
         <div class="col-span-12 md:col-span-3">
             <aside class="w-full shrink-0">
                 <h3 class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Categories</h3>
+                @if (categoryCounts$ | async; as categoryCounts) {
                 <ul class="space-y-1">
                     <li (click)="filterByCategory('All')"
                         class="flex items-center justify-between rounded-lg bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-orange-200">
-                        All Topics <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">12</span>
+                        <span>All</span>
+                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">{{ categoryCounts['All']}}</span>
                     </li>
 
                     <li (click)="filterByCategory('Angular')"
                         class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        Angular <span class="text-xs text-slate-400 group-hover:text-orange-400">4</span>
+                        <span>Angular</span>
+                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
+                            {{ categoryCounts['Angular'] }}
+                        </span>
                     </li>
                     <li (click)="filterByCategory('NgRx')"
                         class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        NgRx <span class="text-xs text-slate-400 group-hover:text-orange-400">8</span>
+                        <span>NgRx</span>
+                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
+                            {{ categoryCounts['NgRx'] }}
+                        </span>
                     </li>
                     <li (click)="filterByCategory('Signals')"
                         class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        Signals <span class="text-xs text-slate-400 group-hover:text-orange-400">3</span>
+                        <span>Signals</span>
+                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
+                            {{ categoryCounts['Signals'] }}
+                        </span>
                     </li>
                     <li (click)="filterByCategory('JavaScript')"
                         class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        JavaScript <span class="text-xs text-slate-400 group-hover:text-orange-400">5</span>
+                        <span>JavaScript</span>
+                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
+                            {{ categoryCounts['JavaScript'] }}
+                        </span>
                     </li>
                     <li (click)="filterByCategory('HR')"
                         class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        HR <span class="text-xs text-slate-400 group-hover:text-orange-400">2</span>
+                        <span>HR</span>
+                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
+                            {{ categoryCounts['HR'] }}
+                        </span>
                     </li>
                     <li (click)="filterByCategory('MCP')"
                         class="group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        MCP <span class="text-xs text-slate-400 group-hover:text-orange-400">1</span>
+                        <span>MCP</span>
+                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
+                            {{ categoryCounts['MCP'] }}
+                        </span>
                     </li>
                 </ul>
+                }
             </aside>
 
 

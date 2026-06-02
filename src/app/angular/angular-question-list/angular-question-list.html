@@ -26,8 +26,6 @@
                     }
                 </div>
             </div>
-
-
         </article>
         }
     </div>
@@ -38,7 +36,6 @@
 
 
 <div class="middleContainer">
-    <!-- <h3 class="mb-4 text-xl">NgRx Concepts</h3> -->
     @for (item of getQuestionList$ | async; track $index) {
     @if (item.visible === true && (activeCategory() === 'All' || item.category === activeCategory())) {
     <div class="question shadow-sm">
