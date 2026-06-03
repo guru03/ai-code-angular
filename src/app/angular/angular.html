@@ -4,49 +4,49 @@
         <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 px-2">Categories</h2>
         @if (categoryCounts$ | async; as categoryCounts) {
         <ul class="space-y-1">
-            <li (click)="filterByCategory('All')" [ngClass]="{'active': activeCategory() == 'All'}"
-                class="flex items-center justify-between bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-2.5 rounded-xl font-medium shadow-md shadow-orange-500/20 transition duration-200">
+            <li (click)="filterByCategory('All')"
+                class="cursor-pointer flex items-center justify-between bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-2.5 rounded-xl font-medium shadow-md shadow-orange-500/20 transition duration-200">
                 <span>All</span>
                 <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{
                     categoryCounts['All']}}</span>
             </li>
             <li (click)="filterByCategory('Angular')"
-                class="flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
+                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
                 <span>{{ categoryCounts['Angular'] }}</span>
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
                     categoryCounts['Angular'] }}</span>
             </li>
             <li (click)="filterByCategory('NgRx')"
-                class="flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
+                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
                 <span>NgRx</span>
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
                     categoryCounts['NgRx'] }}</span>
             </li>
             <li (click)="filterByCategory('Signals')"
-                class="flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
+                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
                 <span>Signals</span>
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
                     categoryCounts['Signals'] }}</span>
             </li>
             <li (click)="filterByCategory('JavaScript')"
-                class="flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
+                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
                 <span>JavaScript</span>
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
                     categoryCounts['JavaScript'] }}</span>
             </li>
             <li (click)="filterByCategory('HR')"
-                class="flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
+                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
                 <span>HR</span>
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
                     categoryCounts['HR'] }}</span>
             </li>
             <li (click)="filterByCategory('MCP')"
-                class="flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
+                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
                 <span>MCP</span>
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
