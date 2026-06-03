@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { AppState } from '../../store/app.state';
@@ -11,9 +11,10 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLinkActive, RouterLink],
+  imports: [AsyncPipe, RouterLink],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class AngularQuestionList implements OnInit {
   activeCategory = signal('All');

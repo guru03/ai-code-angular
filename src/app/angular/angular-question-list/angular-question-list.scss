@@ -47,3 +47,21 @@ $codeColor: #ebebeb;
     list-style-type: disc;
     padding-left: 20px;
 }
+
+
+// telwind 
+
+
+
+// @tailwind base;
+@tailwind components;
+// @tailwind utilities;
+
+@layer components {
+  .italic-answer {
+    @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
+  }
+  .typesCategory {
+    @apply text-sm font-medium uppercase tracking-wide text-slate-400 mb-4;
+  }
+}
