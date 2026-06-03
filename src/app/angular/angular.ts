@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { getCategoryCounts } from './state/angular.selector';
 
 @Component({
   selector: 'aic-angular',
-  imports: [AsyncPipe, NgClass, RouterOutlet],
+  imports: [AsyncPipe, NgClass, RouterOutlet, CommonModule],
   templateUrl: './angular.html',
   styleUrl: './angular.scss',
 })
@@ -17,7 +17,9 @@ export class Angular implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private store = inject(Store<AppState>);
-  activeCategory = signal('All');
+  // activeCategory = signal('All');
+  categories = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
+  activeCategory: string = 'All'; // default active
   categoryCounts$!: Observable<Record<string, number>>;
 
   ngOnInit(): void {
@@ -25,12 +27,14 @@ export class Angular implements OnInit {
     this.store.dispatch(loadQuestions());
 
     this.route.queryParamMap.subscribe(params => {
-      this.activeCategory.set(params.get('category') ?? 'All');
+      this.activeCategory = params.get('category') ?? 'All';
+      this.filterByCategory(this.activeCategory);
     });
   }
 
   filterByCategory(category: string): void {
-    this.activeCategory.set(category);
+    this.activeCategory = category;
+
     this.router.navigate(['questions'], {
       relativeTo: this.route,
       queryParams: category === 'All' ? {} : { category },

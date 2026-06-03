@@ -4,7 +4,7 @@
         <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 px-2">Categories</h2>
         @if (categoryCounts$ | async; as categoryCounts) {
         <ul class="space-y-1">
-            <li (click)="filterByCategory('All')"
+            <!-- <li (click)="filterByCategory('All')"
                 class="cursor-pointer flex items-center justify-between bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-2.5 rounded-xl font-medium shadow-md shadow-orange-500/20 transition duration-200">
                 <span>All</span>
                 <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{
@@ -51,7 +51,22 @@
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
                     categoryCounts['MCP'] }}</span>
+            </li> -->
+
+            
+            <!--! I will the for loop here -->
+            <li *ngFor="let category of categories" (click)="filterByCategory(category)" [ngClass]="{
+                'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20': activeCategory === category,
+                'text-slate-600 hover:text-slate-900 hover:bg-slate-50': activeCategory !== category }"
+                class="cursor-pointer flex items-center justify-between px-4 py-2.5 rounded-xl font-medium transition duration-200">
+
+                <span>{{ category }}</span>
+                <span
+                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">
+                    {{ categoryCounts[category] }}
+                </span>
             </li>
+
         </ul>
         }
     </aside>
@@ -200,7 +215,7 @@
 
                 <div class="bg-gray-100 rounded p-4 shadow">
                     <!-- side-panel content -->
-                    <ul class="space-y-2">
+                    <!-- <ul class="space-y-2">
                         <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
                             [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'All'}"
                             (click)="filterByCategory('All')">All</li>
@@ -222,7 +237,7 @@
                         <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
                             [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'MCP'}"
                             (click)="filterByCategory('MCP')">MCP</li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
