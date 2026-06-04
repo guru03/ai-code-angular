@@ -58,10 +58,67 @@ $codeColor: #ebebeb;
 // @tailwind utilities;
 
 @layer components {
+    // .italic-answer {
+    //     @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
+    // }
+
+    // .typesCategory {
+    //     @apply text-sm font-medium uppercase tracking-wide text-slate-400 mb-4;
+    // }
+}
+
+@layer components {
+    .question-section {
+        @apply relative bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8 hover:shadow-md transition duration-200;
+    }
+
+    .serial-number {
+        @apply absolute -left-3 top-7 w-7 h-7 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md;
+    }
+
+    .category-label {
+        @apply inline-block text-xs font-bold text-orange-600 uppercase tracking-wider mb-2;
+    }
+
+    .question-text {
+        @apply text-lg sm:text-xl font-bold text-slate-900 mb-4;
+    }
+
+    .answer-section {
+        @apply text-slate-600 leading-relaxed space-y-3 text-sm sm:text-base;
+    }
+
+    .italic-answer {
+        @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
+    }
+
+}
+
+@layer components {
+  .question-section {
+    @apply relative bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8 transition duration-200;
+  }
+  .question-section:hover {
+    @apply shadow-md;
+  }
+
+  .serial-number {
+    @apply absolute -left-3 top-7 w-7 h-7 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md;
+  }
+
+  .category-label {
+    @apply inline-block text-xs font-bold text-orange-600 uppercase tracking-wider mb-2;
+  }
+
+  .question-text {
+    @apply text-lg sm:text-xl font-bold text-slate-900 mb-4;
+  }
+
+  .answer-section {
+    @apply text-slate-600 leading-relaxed space-y-3 text-sm sm:text-base;
+  }
+
   .italic-answer {
     @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
-  }
-  .typesCategory {
-    @apply text-sm font-medium uppercase tracking-wide text-slate-400 mb-4;
   }
 }

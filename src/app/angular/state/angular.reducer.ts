@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { loadQuestions, loadQuestionsSuccess, loadQuestionsFailure, loadQuestionByIdSuccess, loadQuestionByIdFailure } from './angular.action';
 import { initialState } from './angular.state';
+import { QuestionsState } from '../../models/question.model';
 
 
 export const angularReducer = createReducer(
@@ -14,7 +15,7 @@ export const angularReducer = createReducer(
   })),
 
   // On success, update questions and stop loading
-  on(loadQuestionsSuccess, (state, { questions }) => ({
+  on(loadQuestionsSuccess, (state: QuestionsState, { questions }) => ({
     ...state,
     questions,
     loading: false,
@@ -22,7 +23,7 @@ export const angularReducer = createReducer(
   })),
 
   // On failure, capture error and stop loading
-  on(loadQuestionsFailure, (state, { error }) => ({
+  on(loadQuestionsFailure, (state: QuestionsState, { error }) => ({
     ...state,
     loading: false,
     error,
@@ -31,12 +32,12 @@ export const angularReducer = createReducer(
 
   // Load Question Details Component
 
-  on(loadQuestionByIdSuccess, (state, { question }) => ({
+  on(loadQuestionByIdSuccess, (state: QuestionsState, { question }) => ({
     ...state,
     selectedQuestion: question,
     error: null
   })),
-  on(loadQuestionByIdFailure, (state, { error }) => ({
+  on(loadQuestionByIdFailure, (state: QuestionsState, { error }) => ({
     ...state,
     error
   }))
