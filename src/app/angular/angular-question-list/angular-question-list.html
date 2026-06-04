@@ -7,27 +7,31 @@
 
 <div class="space-y-6">
     @for (item of (getQuestionList$ | async)?.slice(0,51); track $index) {
-    <div
-        class="relative bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8 hover:shadow-md transition duration-200">
-        <div [routerLink]='["/angular/questions", item.id]'
-            class="absolute -left-3 top-7 w-7 h-7 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md">
-            <span>{{$index + 1 }}</span>
+    <div class="question-section">
+        <div [routerLink]='["/angular/questions", item.id]' class="serial-number">
+            <span>{{$index + 1 | number : '1.2-2'}}</span>
         </div>
 
         <div class="pl-2">
-            <span class="inline-block text-xs font-bold text-orange-600 uppercase tracking-wider mb-2">{{ item.category
-                }}</span>
-            <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-4">
+            <div class="metadata">
+                <span class="category-label">{{ item.category }}</span>
+                <!-- <span class="difficulty-label">{{ item.difficulty }}</span> -->
+                <!-- <span class="type-label">{{ item.type }}</span> -->
+                <!-- <span class="status-label">{{ item.status }}</span> -->
+                <span class="id-label">{{ item.id }}</span>
+                <!-- <span class="date-label">{{ item.date }}</span> -->
+            </div>
+            <h3 class="question-text">
                 {{ item.question }}
             </h3>
 
 
-            <div class="text-slate-600 leading-relaxed space-y-3 text-sm sm:text-base"
-                [innerHTML]="setHtml(item.answer)">
+            <div class="answer-section" [innerHTML]="setHtml(item.answer)">
             </div>
             @if (item.answer2) {
+            <hr class="border-slate-200 my-6" />
             <div class="mt-3"><span class="text-lg font-medium">Additional Explanation:</span></div>
-            <div class="text-lg" [innerHTML]="setHtml(item.answer2)"></div>
+            <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
             }
         </div>
     </div>

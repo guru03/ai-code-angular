@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink],
+  imports: [AsyncPipe, RouterLink,CommonModule],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
   encapsulation: ViewEncapsulation.None,
