@@ -26,12 +26,18 @@
                 <span class="text-slate-300">•</span>
 
                 <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded">{{ item.id | padZero:2 }}</span>
-                
+
                 <span class="text-slate-300">•</span>
                 <!-- ?This is for the content status, we can have different colors based on the status value. -->
-                <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 capitalize">
-                    {{ item.content_status }}
+
+                <span [ngClass]="{
+                        'bg-amber-50 text-amber-700 border-amber-200': item.content_status === 'pending',
+                        'bg-emerald-50 text-emerald-700 border-emerald-200': item.content_status === 'approved',
+                        'bg-rose-50 text-rose-700 border-rose-200': item.content_status === 'rejected',
+                        'bg-sky-50 text-sky-700 border-sky-200': item.content_status === 'updated',
+                        'bg-slate-100 text-slate-600 border-slate-300': item.content_status === 'archived'
+                    }" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border">
+                    {{ item.content_status | titlecase }}
                 </span>
 
                 <span class="text-slate-300">•</span>
