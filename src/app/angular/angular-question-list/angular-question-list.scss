@@ -24,22 +24,22 @@ $codeColor: #ebebeb;
     width: 35px;
 }
 
-.code-block {
-    font-family: 'Consolas', Monaco, monospace;
-    color: inherit;
-    border: 1px solid $codeColor;
-    padding: 3px 8px;
-    margin: 0 1px;
-    font-size: 16px;
-    display: inline-block;
-    background-color: $codeColor;
-    border-radius: 3px;
+// .code-block {
+//     font-family: 'Consolas', Monaco, monospace;
+//     color: inherit;
+//     border: 1px solid $codeColor;
+//     padding: 3px 8px;
+//     margin: 0 1px;
+//     font-size: 16px;
+//     display: inline-block;
+//     background-color: $codeColor;
+//     border-radius: 3px;
 
-    pre {
-        margin: 0;
-        font-size: 16px;
-    }
-}
+//     pre {
+//         margin: 0;
+//         font-size: 16px;
+//     }
+// }
 
 //*  html generated CSS
 
@@ -76,6 +76,7 @@ $codeColor: #ebebeb;
 
     .question-text {
         @apply text-lg sm:text-xl font-bold text-slate-900 mb-4;
+        color: #002050;
     }
 
     .answer-section {
@@ -99,5 +100,11 @@ $codeColor: #ebebeb;
 
     .answer-section li strong {
         @apply mr-2;
+        color: #002050;
+    }
+
+    code {
+        @apply bg-slate-100 text-slate-800 text-xs px-1.5 py-0.5 rounded font-mono border border-slate-200;
+        font-size: 14px;
     }
 }

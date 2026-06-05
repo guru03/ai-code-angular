@@ -3,7 +3,7 @@ export interface Question {
     category: string;
     topic: string;
     visible: boolean;
-    contentStatus: string;
+    content_status: string;
     question: string;
     answer: string;
     answer2?: string;

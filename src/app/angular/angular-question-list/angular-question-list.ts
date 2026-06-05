@@ -1,17 +1,18 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { getQuestions, selectQuestionsByCategory } from '../state/angular.selector';
 import { loadQuestionById, loadQuestions } from '../state/angular.action';
 import { Question } from '../../models/question.model';
 import { Observable } from 'rxjs';
+import { PadZeroPipe } from '../../pipes/pad-zero-pipe';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink,CommonModule],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
   encapsulation: ViewEncapsulation.None,
