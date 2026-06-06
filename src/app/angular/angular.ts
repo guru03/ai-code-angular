@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
 import { loadQuestions } from './state/angular.action';
 import { getCategoryCounts } from './state/angular.selector';
+import { CATEGORIES } from '../models/question.model';
 
 @Component({
   selector: 'aic-angular',
@@ -18,7 +19,8 @@ export class Angular implements OnInit {
   private router = inject(Router);
   private store = inject(Store<AppState>);
   // activeCategory = signal('All');
-  categories = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
+  // categories = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
+  categories = CATEGORIES;
   activeCategory: string = 'All'; // default active
   categoryCounts$!: Observable<Record<string, number>>;
 

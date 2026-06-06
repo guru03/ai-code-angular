@@ -55,15 +55,15 @@
 
             
             <!--! I will the for loop here -->
-            <li *ngFor="let category of categories" (click)="filterByCategory(category)" [ngClass]="{
-                'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20': activeCategory === category,
-                'text-slate-600 hover:text-slate-900 hover:bg-slate-50': activeCategory !== category }"
+            <li *ngFor="let category of categories" (click)="filterByCategory(category.name)" [ngClass]="{
+                'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20': activeCategory === category.name,
+                'text-slate-600 hover:text-slate-900 hover:bg-slate-50': activeCategory !== category.name }"
                 class="cursor-pointer flex items-center justify-between px-4 py-2.5 rounded-xl font-medium transition duration-200">
 
-                <span>{{ category }}</span>
+                <span>{{ category.name }}</span>
                 <span
                     class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">
-                    {{ categoryCounts[category] }}
+                    {{ categoryCounts[category.name] }}
                 </span>
             </li>
 
@@ -75,7 +75,7 @@
         <router-outlet></router-outlet>
     </section>
 
-    <aside class="lg:col-span-3 space-y-6">
+    <aside class="lg:col-span-3 space-y-6 sticky top-24 overflow-y-auto">
 
         <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
             <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Quick Navigation</h2>
