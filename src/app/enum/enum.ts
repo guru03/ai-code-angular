@@ -7,13 +7,15 @@ export enum Role {
 }
 
 export enum WorkStatus {
-  Draft = 'draft',
-  InReview = 'in_review',
-  Approved = 'approved',
-  Rejected = 'rejected',
-  Archived = 'archived',
-  Completed = 'completed',
-  InProgress = 'in_progress'
+  Pending = "pending",
+  Draft = "draft",
+  InReview = "in review",
+  Approved = "approved",
+  Rejected = "rejected",
+  Updated = "updated",
+  Archived = "archived",
+  Completed = "completed",
+  InProgress = "in progress"
 }
 
 export enum Status {

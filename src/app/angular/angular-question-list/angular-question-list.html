@@ -6,10 +6,9 @@
 
 
 <div class="space-y-6">
-    @for (item of (getQuestionList$ | async)?.slice(0,51); track $index) {
-    <div class="question-section">
-        <div [routerLink]='["/angular/questions", item.id]' class="serial-number">
-            <span>{{$index + 1 | padZero:2}}</span>
+    <div *ngFor="let item of (getQuestionList$ | async)?.slice(0,51); let i = index" class="question-section">
+        <div [routerLink]="['/angular/questions', item.id]" class="serial-number">
+            <span>{{ i + 1 | padZero:2 }}</span>
         </div>
 
         <div class="pl-2">
@@ -28,29 +27,40 @@
                 <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">{{ item.id | padZero:2 }}</span>
 
                 <span class="text-slate-300">•</span>
+
+                <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serial_number | padZero:2 }}</span>
+
+                <span class="text-slate-300">•</span>
                 <!-- ?This is for the content status, we can have different colors based on the status value. -->
 
-                <!-- <span [ngClass]="{
-                        'bg-amber-50 text-amber-700 border-amber-200': item.content_status === 'pending',
-                        'bg-emerald-50 text-emerald-700 border-emerald-200': item.content_status === 'approved',
-                        'bg-rose-50 text-rose-700 border-rose-200': item.content_status === 'rejected',
-                        'bg-sky-50 text-sky-700 border-sky-200': item.content_status === 'updated',
-                        'bg-slate-100 text-slate-600 border-slate-300': item.content_status === 'archived'
-                    }" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border">
-                    {{ item.content_status | titlecase }}
-                </span> -->
+                <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border capitalize"
+                    [ngClass]="{
+                        'bg-slate-100 text-slate-600 border-slate-200': item.content_status === WorkStatus.Draft,
+                        'bg-amber-50 text-amber-700 border-amber-200': item.content_status === WorkStatus.Pending,
+                        'bg-indigo-50 text-indigo-700 border-indigo-200': item.content_status === WorkStatus.InProgress,
+                        'bg-purple-50 text-purple-700 border-purple-200': item.content_status === WorkStatus.InReview,
+                        'bg-emerald-50 text-emerald-700 border-emerald-200': item.content_status === WorkStatus.Approved,
+                        'bg-teal-50 text-teal-700 border-teal-200': item.content_status === WorkStatus.Completed,
+                        'bg-rose-50 text-rose-700 border-rose-200': item.content_status === WorkStatus.Rejected,
+                        'bg-sky-50 text-sky-700 border-sky-200': item.content_status === WorkStatus.Updated,
+                        'bg-zinc-200 text-zinc-700 border-zinc-300': item.content_status === WorkStatus.Archived
+                        }">
 
+                    <!-- <span class="w-1.5 h-1.5 rounded-full" [ngClass]="{
+                                'bg-slate-400': item.content_status === WorkStatus.Draft,
+                                'bg-amber-500 animate-pulse': item.content_status === WorkStatus.Pending,
+                                'bg-indigo-500': item.content_status === WorkStatus.InProgress,
+                                'bg-purple-500': item.content_status === WorkStatus.InReview,
+                                'bg-emerald-500': item.content_status === WorkStatus.Approved,
+                                'bg-teal-500': item.content_status === WorkStatus.Completed,
+                                'bg-rose-500': item.content_status === WorkStatus.Rejected,
+                                'bg-sky-500': item.content_status === WorkStatus.Updated,
+                                'bg-zinc-500': item.content_status === WorkStatus.Archived
+                    }"></span> -->
 
-                <span [ngClass]="{
-                        'bg-amber-50 text-amber-700 border-amber-200': item.content_status ===item.content_status.Approved,
-                        'bg-emerald-50 text-emerald-700 border-emerald-200': item.content_status === 'approved',
-                        'bg-rose-50 text-rose-700 border-rose-200': item.content_status === 'rejected',
-                        'bg-sky-50 text-sky-700 border-sky-200': item.content_status === 'updated',
-                        'bg-slate-100 text-slate-600 border-slate-300': item.content_status === 'archived'
-                    }" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border">
                     {{ item.content_status | titlecase }}
                 </span>
-
                 <span class="text-slate-300">•</span>
 
                 <!-- Time to Read -->
@@ -74,5 +84,7 @@
             }
         </div>
     </div>
-    }
+
+    <!--? This is for the design purposes only, we can remove it later. -->
+
 </div>

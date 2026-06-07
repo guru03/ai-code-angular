@@ -2,6 +2,7 @@ import { WorkStatus } from "../enum/enum";
 
 export interface Question {
     id: number;
+    serial_number: number;
     category: string;
     topic: string;
     visible: boolean;
@@ -40,4 +41,5 @@ export const CATEGORIES: Category[] = [
   { id: 6, name: 'HR' },
   { id: 7, name: 'MCP' },
   { id: 8, name: 'AI' },
+  { id: 9, name: 'Question Design' },
 ];

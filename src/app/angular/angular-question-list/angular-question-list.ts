@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { getQuestions, selectQuestionsByCategory } from '../state/angular.selector';
 import { loadQuestionById, loadQuestions } from '../state/angular.action';
 import { Question } from '../../models/question.model';
+import { WorkStatus } from '../../enum/enum';
 import { Observable } from 'rxjs';
 import { PadZeroPipe } from '../../pipes/pad-zero-pipe';
 
@@ -19,6 +20,7 @@ import { PadZeroPipe } from '../../pipes/pad-zero-pipe';
 })
 export class AngularQuestionList implements OnInit {
   activeCategory = signal('All');
+  readonly WorkStatus = WorkStatus;
   getQuestionList$!: Observable<Question[]>;
   selectedQuestion$!: Observable<Question | null>;
   private sanitizer = inject(DomSanitizer);
