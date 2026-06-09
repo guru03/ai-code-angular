@@ -1,14 +1,15 @@
 <div class="border-b border-slate-200 pb-6">
-    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">NgRx Concepts</h1>
+    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{{activeCategory()}} Concepts</h1>
     <p class="mt-2 text-base text-slate-500">Master state management with our comprehensive guide to Redux
         patterns in Angular.</p>
 </div>
 
 
 <div class="space-y-6">
-    <div *ngFor="let item of (getQuestionList$ | async)?.slice(0,51); let i = index" class="question-section">
+    @for (item of getQuestionList$ | async; track $index) {
+    <div class="question-section">
         <div [routerLink]="['/angular/questions', item.id]" class="serial-number">
-            <span>{{ i + 1 | padZero:2 }}</span>
+            <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
 
         <div class="pl-2">
@@ -28,7 +29,8 @@
 
                 <span class="text-slate-300">•</span>
 
-                <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serial_number | padZero:2 }}</span>
+                <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serial_number | padZero:2
+                    }}</span>
 
                 <span class="text-slate-300">•</span>
                 <!-- ?This is for the content status, we can have different colors based on the status value. -->
@@ -84,6 +86,107 @@
             }
         </div>
     </div>
+    }
+
+
+
+    <!--? This is for the design purposes only, we can remove it later. -->
+
+</div>
+
+<!--! This? -->
+
+<div class="space-y-6 mt-7">
+    @for (item of getQuestionList$ | async; track $index) {
+    @if (item.id === 0) {
+    <div class="question-section">
+        <div [routerLink]="['/angular/questions', item.id]" class="serial-number">
+            <span>{{ $index + 1 | padZero:2 }}</span>
+        </div>
+
+        <div class="pl-2">
+            <!--? This is Final design -->
+
+            <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
+                <!-- Brand/Topic -->
+                <span class="text-orange-600 font-bold uppercase tracking-wider">{{ item.category }}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="text-slate-500">{{item.topic}}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">{{ item.id | padZero:2 }}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serial_number | padZero:2
+                    }}</span>
+
+                <span class="text-slate-300">•</span>
+                <!-- ?This is for the content status, we can have different colors based on the status value. -->
+
+                <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border capitalize"
+                    [ngClass]="{
+                        'bg-slate-100 text-slate-600 border-slate-200': item.content_status === WorkStatus.Draft,
+                        }">
+
+                    {{ item.content_status | titlecase }}
+                </span>
+                <span class="text-slate-300">•</span>
+            </div>
+            <!--? This is Final design ends -->
+
+            <h3 class="question-text">
+                How many types of compilation does Angular provide?
+            </h3>
+
+            <div class="answer-section">
+                <p>Angular provides two types of compilation:</p>
+                <ul class="list-disc list-inside space-y-2 mt-3">
+                    <li><strong>JIT (Just-in-Time) Compilation:</strong> Happens at runtime in the browser. Compiles the
+                        Angular application in the browser as it loads, offering faster development builds but slower
+                        performance in production.</li>
+                    <li><strong>AOT (Ahead-of-Time) Compilation:</strong> Happens during the build time. Compiles the
+                        Angular application into efficient JavaScript before it runs in the browser, resulting in
+                        faster rendering and better performance in production.</li>
+                </ul>
+                <div class="notes-italic">
+                    <p><strong>In JIT compilation,</strong> the application compiles inside the browser during runtime.
+                    </p>
+                    <p><strong>In AOT compilation,</strong> the application compiles during the build time.</p>
+                </div>
+            </div>
+
+            @if(false){
+            <div class="answer-section">
+                <p></p>
+                <ul class="list-disc list-inside mt-3">
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                    <li><strong></strong></li>
+                </ul>
+                <div class="notes-italic">
+                    <p><strong></strong> <span></span> </p>
+                    <p><strong></strong> <span></span> </p>
+                    <p><strong></strong> <span></span> </p>
+                </div>
+            </div>
+            }
+
+            @if (item.answer2) {
+            <hr class="border-slate-200 my-6" />
+            <div class="mt-3"><span class="text-lg font-medium">Additional Explanation:</span></div>
+            <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
+            }
+        </div>
+    </div>
+    }}
 
     <!--? This is for the design purposes only, we can remove it later. -->
 

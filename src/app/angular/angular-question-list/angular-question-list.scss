@@ -107,4 +107,12 @@ $codeColor: #ebebeb;
         @apply bg-slate-100 text-slate-800 text-xs px-1.5 py-0.5 rounded font-mono border border-slate-200;
         font-size: 14px;
     }
+
+    .notes-italic {
+        @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
+    }
+
+    .notes-italic strong {
+        @apply font-medium;
+    }
 }
