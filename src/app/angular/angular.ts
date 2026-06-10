@@ -19,7 +19,7 @@ export class Angular implements OnInit {
   private router = inject(Router);
   private store = inject(Store<AppState>);
   // activeCategory = signal('All');
-  // categories = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
+  testing = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
   categories = CATEGORIES;
   activeCategory: string = 'All'; // default active
   categoryCounts$!: Observable<Record<string, number>>;
@@ -32,6 +32,15 @@ export class Angular implements OnInit {
       this.activeCategory = params.get('category') ?? 'All';
       this.filterByCategory(this.activeCategory);
     });
+
+    this.sortingCategory();
+  }
+
+  sortingCategory() {
+    this.testing.sort((a, b) =>
+      a.localeCompare(b) ? 1 : -1
+    );
+    console.log(this.testing);
   }
 
   filterByCategory(category: string): void {

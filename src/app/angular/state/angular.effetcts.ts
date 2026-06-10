@@ -5,6 +5,7 @@ import { catchError, map, mergeMap, of } from "rxjs";
 import { loadQuestions, loadQuestionsSuccess, loadQuestionsFailure, loadQuestionByIdFailure, loadQuestionByIdSuccess, loadQuestionById } from "./angular.action";
 import { Question } from "../../models/question.model";
 import { environment } from "../../environments/environment";
+import { getQuestions } from "./angular.selector";
 
 @Injectable()
 export class QuestionEffects {
@@ -40,7 +41,6 @@ export class QuestionEffects {
     //         )
     //     )
     // )
-
 
     // Load Question Details Component
 

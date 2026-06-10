@@ -56,7 +56,8 @@
 
 
             <!--! I will the for loop here -->
-            <li *ngFor="let category of categories" (click)="filterByCategory(category.name)" [ngClass]="{
+            @for (category of categories; track $index) {
+            <li (click)="filterByCategory(category.name)" [ngClass]="{
                 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20': activeCategory === category.name,
                 'text-slate-600 hover:text-slate-900 hover:bg-slate-50': activeCategory !== category.name }"
                 class="cursor-pointer flex items-center justify-between px-4 py-2.5 rounded-xl font-medium transition duration-200">
@@ -67,7 +68,7 @@
                     {{ categoryCounts[category.name] }}
                 </span>
             </li>
-
+            }
         </ul>
         }
     </aside>

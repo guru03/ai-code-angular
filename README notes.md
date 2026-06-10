@@ -1,6 +1,6 @@
-ॐॐॐॐॐ
+# RxJs Operaters
 
-1.  What is of operater in rxjs?
+1. What is of operater in rxjs?
     In RxJS, the of function is a creation operator that turns given values into an observable sequence. It’s one of the simplest ways to create an observable.
 
 2.  What is of operater in concatMap?
@@ -29,11 +29,12 @@
 *   Used to filter the data on the basis of some function.
 *   Used to determine the time when the values will be emitted by the observables.
 
-# Common RxJS Operations in Angular
+## Common RxJS Operations in Angular
 
-##  Observable Creation:
+## Observable Creation
 
-##  of(): Creates an observable that emits a sequence of values.
+### of(): Creates an observable that emits a sequence of values
+
     from(): Converts an array, promise, or iterable into an observable.
     ajax(): Performs an XMLHttpRequest with the provided options and returns an observable.
 
