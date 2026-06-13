@@ -1,6 +1,6 @@
 $codeColor: #ebebeb;
 
-@import url(./code-block.scss);
+// @import url(./code-block.scss);
 
 .question {
     background-color: #f8f9fa;
@@ -142,8 +142,8 @@ $codeColor: #ebebeb;
         }
     }
 
-    code {
-        @apply bg-slate-100 text-slate-800 text-xs px-1.5 py-0.5 rounded font-mono border border-slate-200;
-        font-size: 14px;
-    }
+    // code {
+    //     @apply bg-slate-100 text-slate-800 text-xs px-1.5 py-0.5 rounded font-mono border border-slate-200;
+    //     font-size: 14px;
+    // }
 }

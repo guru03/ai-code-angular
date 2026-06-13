@@ -85,6 +85,14 @@
             <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
             }
 
+            <div class="code-container">
+                <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
+                    <!-- <code aicCodeSnippet language="typescript">{{ codeSnippet }}</code> -->
+                    <code aicCodeSnippet language="typescript" [innerHTML]="setHtml(item.code_block)"></code>
+                </pre>
+            </div>
+
+
 
         </div>
     </div>
@@ -238,7 +246,7 @@
 
 
 <div class="code-block-container">
-    <div class="code-header">
+    <!-- <div class="code-header">
         <div class="window-controls">
             <span class="dot red"></span>
             <span class="dot yellow"></span>
@@ -253,7 +261,7 @@
             </svg>
             Copy
         </button>
-    </div>
+    </div> -->
 
     <!-- <pre>
         <code class="language-typescript">
@@ -261,8 +269,15 @@
         </code>
     </pre> -->
 
-    <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
+    <!-- <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
         <code aicCodeSnippet language="typescript">{{ codeSnippet }}</code>
-    </pre>
+    </pre> -->
 
 </div>
+
+<!-- 
+<pre class="bg-gray-800 text-green-400 p-4 rounded shadow-md overflow-x-auto">
+  <code aicCodeSnippet  language="typescript">
+    console.log("Styled with Tailwind + Prism");
+  </code>
+</pre> -->

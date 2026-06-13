@@ -1,30 +1,31 @@
 import { WorkStatus } from "../enum/enum";
 
 export interface Question {
-    id: number;
-    serial_number: number;
-    category: string;
-    topic: string;
-    visible: boolean;
-    content_status: WorkStatus;
-    // status: WorkStatus;
-    question: string;
-    answer: string;
-    answer2?: string;
-    imageUrl?: string;
-    image2Url?: string;
-    image3Url?: string;
+  id: number;
+  serial_number: number;
+  category: string;
+  topic: string;
+  visible: boolean;
+  content_status: WorkStatus;
+  // status: WorkStatus;
+  question: string;
+  answer: string;
+  answer2?: string;
+  code_block: string;
+  imageUrl?: string;
+  image2Url?: string;
+  image3Url?: string;
 }
 
 export interface QuestionsState {
-    questions: Question[];
-    selectedQuestion: Question | null;
-    loading: boolean;
-    error: string | null;
+  questions: Question[];
+  selectedQuestion: Question | null;
+  loading: boolean;
+  error: string | null;
 }
 
 export interface QuestionCategory {
-    categories: [];
+  categories: [];
 }
 
 export interface Category {

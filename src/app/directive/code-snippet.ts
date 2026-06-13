@@ -1,10 +1,17 @@
 import { Directive, ElementRef, Input, AfterViewInit } from '@angular/core';
 import Prism from 'prismjs';
+// Load Prism language components used in this project
+import 'prismjs/components/prism-clike';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-css';
 
 @Directive({
-  selector: '[aicCodeSnippet]'
+  selector: '[aicCodeSnippet]',
+  standalone: true,
 })
-export class HighlightCodeDirective implements AfterViewInit {
+export class CodeSnippet implements AfterViewInit {
   @Input() language?: string;
   @Input() file?: string;
 

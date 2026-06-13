@@ -10,20 +10,17 @@ import { Question } from '../../models/question.model';
 import { WorkStatus } from '../../enum/enum';
 import { Observable } from 'rxjs';
 import { PadZeroPipe } from '../../pipes/pad-zero-pipe';
+import { CodeSnippet } from '../../directive/code-snippet';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippet],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class AngularQuestionList implements OnInit {
-  codeSnippet = `@Component({
-    selector: 'app-user-card',
-    template: \`<h2>{{ user.name }}</h2>\`,
-    changeDetection: ChangeDetectionStrategy.OnPush
-    })
+  codeSnippet = `
     export class UserCardComponent {
       @Input() user: User;
       
