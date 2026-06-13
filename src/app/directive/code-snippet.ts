@@ -1,4 +1,14 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  inject,
+  Input,
+  OnChanges,
+  PLATFORM_ID,
+  SimpleChanges,
+} from '@angular/core';
 import Prism from 'prismjs';
 import prettier from 'prettier/standalone';
 import * as parserEstree from 'prettier/plugins/estree';
@@ -8,6 +18,7 @@ import * as parserTypescript from 'prettier/plugins/typescript';
 
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-css';
@@ -19,8 +30,9 @@ import 'prismjs/components/prism-css';
 export class CodeSnippet implements OnChanges, AfterViewInit {
   @Input() language?: string;
   @Input() codeBlock = '';
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  constructor(private el: ElementRef<HTMLElement>) { }
+  constructor(private el: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit() {
     void this.highlight();
@@ -58,9 +70,18 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
       console.warn('Prettier formatting failed, using raw code:', err);
     }
 
-    codeElement.textContent = formatted;
+    this.setLanguageClass(codeElement, language);
     codeElement.classList.add('rounded-md', 'p-4', 'bg-gray-900', 'text-gray-100');
-    requestAnimationFrame(() => Prism.highlightElement(codeElement));
+
+    if (this.isBrowser) {
+      const grammar = Prism.languages[language] || Prism.languages['typescript'];
+
+      requestAnimationFrame(() => {
+        codeElement.innerHTML = Prism.highlight(formatted, grammar, language);
+      });
+    } else {
+      codeElement.textContent = formatted;
+    }
   }
 
   private normalizeLanguage(language: string) {
@@ -71,6 +92,16 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
     if (language === 'markup') return 'html';
     if (language === 'css') return 'css';
     return 'typescript';
+  }
+
+  private setLanguageClass(codeElement: HTMLElement, language: string) {
+    codeElement.classList.forEach(className => {
+      if (className.startsWith('language-')) {
+        codeElement.classList.remove(className);
+      }
+    });
+
+    codeElement.classList.add(`language-${language}`);
   }
 
   private detectLanguage(code: string): string {
