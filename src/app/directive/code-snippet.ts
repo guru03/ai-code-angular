@@ -1,9 +1,9 @@
 import { AfterViewInit, Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import Prism from 'prismjs';
 import prettier from "prettier/standalone";
-import parserTypescript from "prettier/parser-typescript";
-import parserHtml from "prettier/parser-html";
-import parserPostcss from "prettier/parser-postcss";
+import * as parserTypescript from "prettier/parser-typescript";
+import * as parserHtml from "prettier/parser-html";
+import * as parserPostcss from "prettier/parser-postcss";
 
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
@@ -38,10 +38,9 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
     let formatted = rawCode;
 
     try {
-      // Prettier v3: format() is async
       formatted = await prettier.format(rawCode, {
         parser: this.getParser(language),
-        plugins: this.getPlugins(language),
+        plugins: [parserTypescript, parserHtml, parserPostcss],
       });
     } catch (err) {
       console.warn('Prettier formatting failed, using raw code:', err);
@@ -60,12 +59,6 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
     if (language === 'markup') return 'html';
     if (language === 'css') return 'css';
     return 'typescript';
-  }
-
-  private getPlugins(language: string) {
-    if (language === 'markup') return [parserHtml];
-    if (language === 'css') return [parserPostcss];
-    return [parserTypescript];
   }
 
   private detectLanguage(code: string): string {
