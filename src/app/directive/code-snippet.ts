@@ -15,31 +15,31 @@ import 'prismjs/components/prism-css';
   selector: '[aicCodeSnippet]',
   standalone: true,
 })
-export class CodeSnippetDirective implements OnChanges, AfterViewInit {
-  // Language can come directly from DB metadata
+export class CodeSnippet implements OnChanges, AfterViewInit {
   @Input() language?: string;
   @Input() codeBlock = '';
 
-  constructor(private el: ElementRef<HTMLElement>) {}
+  constructor(private el: ElementRef<HTMLElement>) { }
 
   ngAfterViewInit() {
-    this.highlight();
+    void this.highlight();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['codeBlock'] || changes['language']) {
-      this.highlight();
+      void this.highlight();
     }
   }
 
-  private highlight() {
+  private async highlight() {
     const codeElement = this.el.nativeElement;
     const rawCode = this.codeBlock || codeElement.textContent || '';
     const language = this.normalizeLanguage(this.language || this.detectLanguage(rawCode));
     let formatted = rawCode;
 
     try {
-      formatted = prettier.format(rawCode, {
+      // Prettier v3: format() is async
+      formatted = await prettier.format(rawCode, {
         parser: this.getParser(language),
         plugins: this.getPlugins(language),
       });
@@ -68,11 +68,10 @@ export class CodeSnippetDirective implements OnChanges, AfterViewInit {
     return [parserTypescript];
   }
 
-  // Simple auto-detection fallback if DB doesn’t provide language
   private detectLanguage(code: string): string {
     if (code.trim().startsWith('<')) return 'markup';
     if (code.includes('{') && code.includes(';')) return 'typescript';
     if (code.includes('{') && code.includes(':')) return 'css';
-    return 'typescript'; // default fallback
+    return 'typescript';
   }
 }
