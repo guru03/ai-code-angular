@@ -86,9 +86,10 @@
             }
 
             <div class="code-container">
-                <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
+                <!-- <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
                     <code aicCodeSnippet [codeBlock]="item.code_block" ></code>
-                </pre>
+                </pre> -->
+                <pre aicCodeSnippet [language]="'typescript'" [codeBlock]="item.code_block"></pre>
             </div>
 
 

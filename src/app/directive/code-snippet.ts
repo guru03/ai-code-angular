@@ -1,9 +1,10 @@
 import { AfterViewInit, Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import Prism from 'prismjs';
-import prettier from "prettier/standalone";
-import * as parserTypescript from "prettier/parser-typescript";
-import * as parserHtml from "prettier/parser-html";
-import * as parserPostcss from "prettier/parser-postcss";
+import prettier from 'prettier/standalone';
+import * as parserEstree from 'prettier/plugins/estree';
+import * as parserHtml from 'prettier/plugins/html';
+import * as parserPostcss from 'prettier/plugins/postcss';
+import * as parserTypescript from 'prettier/plugins/typescript';
 
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
@@ -31,6 +32,17 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
     }
   }
 
+  private getPlugins(language: string) {
+    switch (language) {
+      case 'markup':
+        return [parserHtml];
+      case 'css':
+        return [parserPostcss];
+      default:
+        return [parserTypescript, parserEstree];
+    }
+  }
+
   private async highlight() {
     const codeElement = this.el.nativeElement;
     const rawCode = this.codeBlock || codeElement.textContent || '';
@@ -40,15 +52,15 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
     try {
       formatted = await prettier.format(rawCode, {
         parser: this.getParser(language),
-        plugins: [parserTypescript, parserHtml, parserPostcss],
+        plugins: this.getPlugins(language),
       });
     } catch (err) {
       console.warn('Prettier formatting failed, using raw code:', err);
     }
 
     codeElement.textContent = formatted;
-    codeElement.classList.add(`language-${language}`);
-    Prism.highlightElement(codeElement);
+    codeElement.classList.add('rounded-md', 'p-4', 'bg-gray-900', 'text-gray-100');
+    requestAnimationFrame(() => Prism.highlightElement(codeElement));
   }
 
   private normalizeLanguage(language: string) {
@@ -62,9 +74,11 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
   }
 
   private detectLanguage(code: string): string {
-    if (code.trim().startsWith('<')) return 'markup';
-    if (code.includes('{') && code.includes(';')) return 'typescript';
-    if (code.includes('{') && code.includes(':')) return 'css';
+    const trimmed = code.trim();
+    if (trimmed.startsWith('<')) return 'markup';
+    if (trimmed.startsWith('{') && trimmed.endsWith('}')) return 'json';
+    if (/function|const|let|=>/.test(trimmed)) return 'javascript';
+    if (trimmed.includes(':') && trimmed.includes('{')) return 'css';
     return 'typescript';
   }
 }
