@@ -1,2 +1,39 @@
-<p>This is design page for the Blogs</p>
-    
+<div class="code-block-container">
+  <div class="code-header">
+    <div class="window-controls">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="file-name">app-user-card.component.ts</span>
+    <button class="copy-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+      Copy
+    </button>
+  </div>
+
+  <pre><code><span class="keyword">@Component</span>({
+  selector: <span class="string">'app-user-card'</span>,
+  template: <span class="string">`&lt;h2&gt;&#123;&#123; user.name &#125;&#125;&lt;/h2&gt;`</span>,
+  changeDetection: ChangeDetectionStrategy.<span class="property">OnPush</span>
+})
+<span class="keyword">export class</span> <span class="class-name">UserCardComponent</span>  {{'{'}}
+  <span class="keyword">@Input</span>() user: User;
+  
+  <span class="keyword">constructor</span>(<span class="keyword">private</span> ngZone: NgZone) {}
+
+  <span class="function">ngOnInit</span>() {
+    <span class="keyword">this</span>.ngZone.<span class="function">runOutsideAngular</span>(() => {
+      <span class="function">setInterval</span>(() => {
+        <span class="keyword">this</span>.<span class="function">updateInternalCounter</span>(); <span class="comment">// does not trigger CD</span>
+      }, <span class="number">100</span>);
+    });
+  }
+
+  <span class="function">updateUI</span>() {
+    <span class="keyword">this</span>.ngZone.<span class="function">run</span>(() => {
+      <span class="keyword">this</span>.displayValue = <span class="keyword">this</span>.internalCounter; <span class="comment">// triggers CD</span>
+    });
+  }
+}</code></pre>
+</div>

@@ -1,5 +1,7 @@
 $codeColor: #ebebeb;
 
+@import url(./code-block.scss);
+
 .question {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
@@ -84,6 +86,7 @@ $codeColor: #ebebeb;
         @apply text-slate-600 space-y-3 leading-relaxed;
         font-size: 18px;
         color: #002050;
+
     }
 
     h3 {
@@ -92,6 +95,12 @@ $codeColor: #ebebeb;
 
     h4 {
         @apply text-slate-700 font-medium mb-4;
+    }
+
+    .answer-text {
+        strong {
+            @apply font-medium;
+        }
     }
 
     .answer-section ul.list-design-1 {
