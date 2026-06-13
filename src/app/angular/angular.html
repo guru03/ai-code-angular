@@ -1,76 +1,53 @@
 <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8
     items-start">
-    <aside
-        class="lg:col-span-3 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4 sticky top-24 overflow-y-auto">
-        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 px-2">Categories</h2>
-        @if (categoryCounts$ | async; as categoryCounts) {
-        <ul class="space-y-1">
-            <!-- <li (click)="filterByCategory('All')"
-                class="cursor-pointer flex items-center justify-between bg-gradient-to-r from-orange-500 to-amber-500 text-white px-4 py-2.5 rounded-xl font-medium shadow-md shadow-orange-500/20 transition duration-200">
-                <span>All</span>
-                <span class="bg-white/20 text-white text-xs font-bold px-2 py-0.5 rounded-full">{{
-                    categoryCounts['All']}}</span>
-            </li>
-            <li (click)="filterByCategory('Angular')"
-                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
-                <span>{{ categoryCounts['Angular'] }}</span>
-                <span
-                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
-                    categoryCounts['Angular'] }}</span>
-            </li>
-            <li (click)="filterByCategory('NgRx')"
-                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
-                <span>NgRx</span>
-                <span
-                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
-                    categoryCounts['NgRx'] }}</span>
-            </li>
-            <li (click)="filterByCategory('Signals')"
-                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
-                <span>Signals</span>
-                <span
-                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
-                    categoryCounts['Signals'] }}</span>
-            </li>
-            <li (click)="filterByCategory('JavaScript')"
-                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
-                <span>JavaScript</span>
-                <span
-                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
-                    categoryCounts['JavaScript'] }}</span>
-            </li>
-            <li (click)="filterByCategory('HR')"
-                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
-                <span>HR</span>
-                <span
-                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
-                    categoryCounts['HR'] }}</span>
-            </li>
-            <li (click)="filterByCategory('MCP')"
-                class="cursor-pointer flex items-center justify-between text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-4 py-2.5 rounded-xl font-medium transition duration-150 group">
-                <span>MCP</span>
-                <span
-                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">{{
-                    categoryCounts['MCP'] }}</span>
-            </li> -->
-
-
-            <!--! I will the for loop here -->
-            @for (category of categories; track $index) {
-            <li (click)="filterByCategory(category.name)" [ngClass]="{
+    <aside class="lg:col-span-3 space-y-6 sticky top-24 overflow-y-auto">
+        <div class=" bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4 ">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 px-2">Categories</h2>
+            @if (categoryCounts$ | async; as categoryCounts) {
+            <ul class="space-y-1">
+                @for (category of categories; track $index) {
+                <li (click)="filterByCategory(category.name)" [ngClass]="{
                 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20': activeCategory === category.name,
                 'text-slate-600 hover:text-slate-900 hover:bg-slate-50': activeCategory !== category.name }"
-                class="cursor-pointer flex items-center justify-between px-4 py-2.5 rounded-xl font-medium transition duration-200">
+                    class="cursor-pointer flex items-center justify-between px-4 py-2.5 rounded-xl font-medium transition duration-200">
 
-                <span>{{ category.name }}</span>
-                <span
-                    class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">
-                    {{ categoryCounts[category.name] }}
-                </span>
-            </li>
+                    <span>{{ category.name }}</span>
+                    <span
+                        class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">
+                        {{ categoryCounts[category.name] }}
+                    </span>
+                </li>
+                }
+            </ul>
             }
-        </ul>
-        }
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Notes Section</h4>
+            <ul class="space-y-2 text-xs font-medium">
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>ID 10 will be removed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>ID 11 will be removed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>ID 12 will be removed</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </aside>
 
     <section class="lg:col-span-6 space-y-8">
@@ -113,69 +90,65 @@
         </div>
 
         <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-
-
-            <div>
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Artificial Intelligence</h4>
-                <ul class="space-y-2 text-xs font-medium">
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>Neural Networks</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>Natural Language Processing</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>LLM and ChatGPT</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>Prompt Engineering</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>RAG PPT</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>Lang Chain</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>LVMs and Stable Diffusion</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                            <span>AI and Multi AI agents</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Artificial Intelligence</h4>
+            <ul class="space-y-2 text-xs font-medium">
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Neural Networks</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Natural Language Processing</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>LLM and ChatGPT</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Prompt Engineering</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>RAG PPT</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Lang Chain</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>LVMs and Stable Diffusion</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>AI and Multi AI agents</span>
+                    </a>
+                </li>
+            </ul>
         </div>
 
         <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl relative overflow-hidden">
@@ -206,247 +179,3 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
     </svg>
 </button>
-
-
-
-
-
-
-
-<!--! This design is deprecated and will be removed in favor of a more modern. -->
-<div class="w-full px-4 mx-auto my-12">
-    <div class="grid grid-cols-12 gap-6">
-
-        <!-- Left Sidebar -->
-        <div class="col-span-12 md:col-span-3">
-            <!-- <aside class="w-full shrink-0 bg-white p-8 rounded-lg shadow-sm mb-6">
-                <h3 class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Categories</h3>
-                @if (categoryCounts$ | async; as categoryCounts) {
-                <ul class="space-y-1">
-                    <li (click)="filterByCategory('All')"
-                        class="flex items-center justify-between rounded-lg bg-orange-500 px-4 py-2.5 text-sm font-bold text-white shadow-lg shadow-orange-200">
-                        <span>All</span>
-                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">{{ categoryCounts['All']}}</span>
-                    </li>
-
-                    <li (click)="filterByCategory('Angular')"
-                        class="cursor-pointer group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        <span>Angular</span>
-                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
-                            {{ categoryCounts['Angular'] }}
-                        </span>
-                    </li>
-                    <li (click)="filterByCategory('NgRx')"
-                        class="cursor-pointer group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        <span>NgRx</span>
-                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
-                            {{ categoryCounts['NgRx'] }}
-                        </span>
-                    </li>
-                    <li (click)="filterByCategory('Signals')"
-                        class="cursor-pointer group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        <span>Signals</span>
-                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
-                            {{ categoryCounts['Signals'] }}
-                        </span>
-                    </li>
-                    <li (click)="filterByCategory('JavaScript')"
-                        class="cursor-pointer group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        <span>JavaScript</span>
-                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
-                            {{ categoryCounts['JavaScript'] }}
-                        </span>
-                    </li>
-                    <li (click)="filterByCategory('HR')"
-                        class="cursor-pointer group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        <span>HR</span>
-                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
-                            {{ categoryCounts['HR'] }}
-                        </span>
-                    </li>
-                    <li (click)="filterByCategory('MCP')"
-                        class="cursor-pointer group flex items-center justify-between rounded-lg px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-white hover:text-orange-500 transition-all">
-                        <span>MCP</span>
-                        <span class="text-xs text-slate-400 group-hover:text-orange-400">
-                            {{ categoryCounts['MCP'] }}
-                        </span>
-                    </li>
-                </ul>
-                }
-            </aside> -->
-
-
-
-            <!--! This design is deprecated and will be removed in favor of a more modern. -->
-            <div class="hidden">
-                <h3 class="mb-4 text-xl font-semibold">Categories</h3>
-
-                <div class="bg-gray-100 rounded p-4 shadow">
-                    <!-- side-panel content -->
-                    <!-- <ul class="space-y-2">
-                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
-                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'All'}"
-                            (click)="filterByCategory('All')">All</li>
-                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
-                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'Angular'}"
-                            (click)="filterByCategory('Angular')">Angular</li>
-                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
-                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'NgRx'}"
-                            (click)="filterByCategory('NgRx')">NgRx</li>
-                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
-                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'Signals'}"
-                            (click)="filterByCategory('Signals')">Signals</li>
-                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
-                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'JavaScript'}"
-                            (click)="filterByCategory('JavaScript')">JavaScript</li>
-                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
-                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'HR'}"
-                            (click)="filterByCategory('HR')">HR</li>
-                        <li class="cursor-pointer px-3 py-2 rounded hover:bg-gray-200"
-                            [ngClass]="{'bg-blue-500 text-white': activeCategory() == 'MCP'}"
-                            (click)="filterByCategory('MCP')">MCP</li>
-                    </ul> -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Center Content -->
-        <div class="col-span-12 md:col-span-6">
-            <!-- question content -->
-            <!-- <router-outlet></router-outlet> -->
-        </div>
-
-        <!-- Right Sidebar -->
-        <!-- <div class="col-span-12 md:col-span-3">
-
-            <aside class="bg-white p-8 rounded-lg shadow-sm mb-6">
-                <div class="sticky top-8">
-                    <h3 class="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Quick Navigation</h3>
-                    <div class="rounded-xl bg-blue-50 border border-blue-100 p-6">
-                        <h4 class="font-bold text-blue-900 mb-2">Getting Started</h4>
-                        <p class="text-sm text-blue-700 mb-4">New to NgRx? Start with our reactive state patterns guide.
-                        </p>
-                        <button
-                            class="w-full bg-orange-500 text-white font-bold py-2 rounded-lg hover:bg-orange-400 transition-colors">
-                            View Roadmap
-                        </button>
-                    </div>
-
-                    <div class="mt-8">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-4">Related Topics</h4>
-                        <div class="space-y-3">
-                            <div
-                                class="flex items-center gap-3 text-sm text-slate-600 hover:text-blue-600 cursor-pointer">
-                                <div class="h-2 w-2 rounded-full bg-orange-500"></div>
-                                Angular Signals API
-                            </div>
-                            <div
-                                class="flex items-center gap-3 text-sm text-slate-600 hover:text-blue-600 cursor-pointer">
-                                <div class="h-2 w-2 rounded-full bg-orange-500"></div>
-                                RxJS Observables
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <aside class="hidden xl:block w-72 shrink-0">
-                <div class="rounded-2xl bg-slate-900 p-6 text-white shadow-xl shadow-slate-200">
-                    <h3 class="text-lg font-bold">Progress</h3>
-                    <p class="mt-2 text-sm text-slate-400">You've covered 40% of the NgRx module.</p>
-                    <div class="mt-4 h-2 w-full rounded-full bg-slate-800">
-                        <div class="h-full w-2/5 rounded-full bg-orange-500"></div>
-                    </div>
-                    <button
-                        class="mt-6 w-full rounded-xl bg-orange-500 py-3 text-sm font-bold hover:bg-orange-400 transition-colors">Continue
-                        Learning</button>
-                </div>
-            </aside>
-        </div> -->
-
-        <!-- Right Sidebar: Stats/Widgets -->
-        <!-- <aside class="hidden xl:block w-72 shrink-0">
-            <div class="rounded-2xl bg-slate-900 p-6 text-white shadow-xl shadow-slate-200">
-                <h3 class="text-lg font-bold">Progress</h3>
-                <p class="mt-2 text-sm text-slate-400">You've covered 40% of the NgRx module.</p>
-                <div class="mt-4 h-2 w-full rounded-full bg-slate-800">
-                    <div class="h-full w-2/5 rounded-full bg-orange-500"></div>
-                </div>
-                <button
-                    class="mt-6 w-full rounded-xl bg-orange-500 py-3 text-sm font-bold hover:bg-orange-400 transition-colors">Continue
-                    Learning</button>
-            </div>
-        </aside> -->
-
-    </div>
-</div>
-
-
-
-<!--! Deprecated Old Layout -->
-<!-- <div class="container-fluid my-5 hidden">
-
-    <div class="row">
-        <div class="col-md-3">
-            <h3 class="mb-4 text-xl">Categories</h3>
-            <div class="side-panel">
-                <ul class="list-group">
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'All'}"
-                        (click)="filterByCategory('All')">All</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'Angular'}"
-                        (click)="filterByCategory('Angular')">Angular</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'NgRx'}"
-                        (click)="filterByCategory('NgRx')">NgRx</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'Signals'}"
-                        (click)="filterByCategory('Signals')">Signals</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'JavaScript'}"
-                        (click)="filterByCategory('JavaScript')">JavaScript</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'HR'}"
-                        (click)="filterByCategory('HR')">HR</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'MCP'}"
-                        (click)="filterByCategory('MCP')">MCP</li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <router-outlet></router-outlet>
-        </div>
-        <div class="col-md-3">
-            <h3 class="mb-4 text-xl">Categories</h3>
-            <div class="side-panel">
-                <ul class="list-group">
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'All'}"
-                        (click)="filterByCategory('All')">All</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'Angular'}"
-                        (click)="filterByCategory('Angular')">Angular</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'NgRx'}"
-                        (click)="filterByCategory('NgRx')">NgRx</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'Signals'}"
-                        (click)="filterByCategory('Signals')">Signals</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'JavaScript'}"
-                        (click)="filterByCategory('JavaScript')">JavaScript</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'HR'}"
-                        (click)="filterByCategory('HR')">HR</li>
-                    <li class="list-group-item" [ngClass]="{'active': activeCategory() == 'MCP'}"
-                        (click)="filterByCategory('MCP')">MCP</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-
-<!-- <div class="scrollToTop">
-    <div class="cursor-pointer" (click)="scrollToTop()">
-        <img src="scrollTop.png" alt="Back to Top">
-    </div>
-</div> -->
-
-<!-- Floating Action Button -->
-<!-- <button type="button" (click)="scrollToTop()"
-    class="fixed bottom-8 right-8 flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 text-white shadow-2xl hover:scale-110 transition-transform">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-    </svg>
-</button> -->

@@ -76,43 +76,65 @@ $codeColor: #ebebeb;
 
     .question-text {
         @apply text-lg sm:text-xl font-bold text-slate-900 mb-4;
-        color: #002050;
+        // @apply text-xl sm:text-2xl tracking-tight;
+        // color: #002050;
     }
 
     .answer-section {
         @apply text-slate-600 space-y-3 leading-relaxed;
-        //! this is the custom change for reading only and will be removed later
         font-size: 18px;
         color: #002050;
     }
 
-    .italic-answer {
-        @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
+    h3 {
+        @apply text-lg text-slate-900 font-bold mb-4;
     }
 
-    .answer-section ul {
+    h4 {
+        @apply text-slate-700 font-medium mb-4;
+    }
+
+    .answer-section ul.list-design-1 {
         @apply space-y-3;
     }
 
-    .answer-section li {
+
+    .answer-section ul.list-design-1 li {
         @apply bg-slate-50 p-3.5 rounded-xl border border-slate-100;
+
+        strong {
+            @apply mr-2 font-medium block sm:inline;
+        }
     }
 
-    .answer-section li strong {
-        @apply mr-2;
-        color: #002050;
+    .answer-section ul.list-design-2 {
+        @apply space-y-3;
+
+        li {
+            @apply font-normal relative pl-5;
+
+            &::before {
+                @apply absolute rounded-full bg-orange-500 left-0 top-3 w-1.5 h-1.5;
+                content: "";
+            }
+
+            strong {
+                @apply mr-2 font-medium block sm:inline;
+            }
+        }
+    }
+
+
+    .notes-italic {
+        @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
+
+        strong {
+            @apply font-medium;
+        }
     }
 
     code {
         @apply bg-slate-100 text-slate-800 text-xs px-1.5 py-0.5 rounded font-mono border border-slate-200;
         font-size: 14px;
-    }
-
-    .notes-italic {
-        @apply bg-slate-50 border-l-4 border-orange-500 p-3 rounded-r-xl text-slate-700 italic;
-    }
-
-    .notes-italic strong {
-        @apply font-medium;
     }
 }

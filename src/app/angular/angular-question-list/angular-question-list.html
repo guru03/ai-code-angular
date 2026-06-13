@@ -72,9 +72,9 @@
             </div>
             <!--? This is Final design ends -->
 
-            <h3 class="question-text">
+            <h2 class="question-text">
                 {{ item.question }}
-            </h3>
+            </h2>
 
 
             <div class="answer-section" [innerHTML]="setHtml(item.answer)">
@@ -94,7 +94,7 @@
 
 </div>
 
-<!--! This? -->
+<!--! This? is for the design purpose only-->
 
 <div class="space-y-6 mt-7">
     @for (item of getQuestionList$ | async; track $index) {
@@ -139,37 +139,20 @@
             </div>
             <!--? This is Final design ends -->
 
-            <h3 class="question-text">
+            <h2 class="question-text">
                 How many types of compilation does Angular provide?
-            </h3>
+            </h2>
 
-            <div class="answer-section">
-                <p>Angular provides two types of compilation:</p>
-                <ul class="list-disc list-inside space-y-2 mt-3">
-                    <li><strong>JIT (Just-in-Time) Compilation:</strong> Happens at runtime in the browser. Compiles the
-                        Angular application in the browser as it loads, offering faster development builds but slower
-                        performance in production.</li>
-                    <li><strong>AOT (Ahead-of-Time) Compilation:</strong> Happens during the build time. Compiles the
-                        Angular application into efficient JavaScript before it runs in the browser, resulting in
-                        faster rendering and better performance in production.</li>
-                </ul>
-                <div class="notes-italic">
-                    <p><strong>In JIT compilation,</strong> the application compiles inside the browser during runtime.
-                    </p>
-                    <p><strong>In AOT compilation,</strong> the application compiles during the build time.</p>
-                </div>
-            </div>
 
             @if(false){
             <div class="answer-section">
                 <p></p>
-                <ul class="list-disc list-inside mt-3">
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
-                    <li><strong></strong></li>
+                <ul class="list-design-2">
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
                 </ul>
                 <div class="notes-italic">
                     <p><strong></strong> <span></span> </p>
@@ -178,6 +161,37 @@
                 </div>
             </div>
             }
+
+
+            @if(false){
+            <!--? This is working design -->
+            <div class="answer-section">
+                <p>Signals in Angular is essentially a wrapper around a value that notifies consumers (funtions,
+                    components, or services) whenever the value changes. This allow for a reactive data flow, where
+                    changes in the signal's value can trigger updateds elsewhere in the application.</p>
+                <h3>Characteristics of Signals:</h3>
+                <ul class="list-design-2">
+                    <li>
+                        <span>They can hold any type of value: primitives like strings, numbers,
+                            booleans, or complex objects.</span>
+                    </li>
+                    <li><span>Signals expose a getter function for reading their value.</span></li>
+                    <li><span>Signals notify Angular when their value is used, allowing Angular to
+                            track depencencies automatically. This is useful for creating reactive applications.</span>
+                    </li>
+                </ul>
+                <h4>Signals may be either writable or read-only.</h4>
+                <ul class="list-design-2">
+                    <li><strong>Writable Signals:</strong><span> These are signals that can be updated with a new value
+                            using a setter function.</span></li>
+                    <li><strong>Computed Signals:</strong><span> These are signals that are derived from other signals
+                            and automatically update when their dependencies change.</span></li>
+                </ul>
+
+            </div>
+            <!--? This is working design ends here -->
+            }
+
 
             @if (item.answer2) {
             <hr class="border-slate-200 my-6" />

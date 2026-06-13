@@ -4,8 +4,6 @@ import { Home } from './home/home';
 import { About } from './about/about';
 import { Contact } from './contact/contact';
 import { Signal } from './signal/signal';
-import { QuestionDetails } from './angular/question-details/question-details';
-import { AngularQuestionDetails } from './angular/angular-question-details/angular-question-details';
 
 export const routes: Routes = [
     {
@@ -44,11 +42,11 @@ export const routes: Routes = [
         loadChildren: () =>
             import('./design/design.routes').then(m => m.DESIGN_ROUTES)
     },
-    // {
-    //     path: 'counter',
-    //     loadComponent: () =>
-    //         import('./counter/counter').then(m => m.Counter)
-    // },
+    {
+        path: 'coding-practice',
+        loadComponent: () =>
+            import('./coding-practice/coding-practice').then(m => m.CodingPractice)
+    },
     {
         path: 'about',
         component: About,
