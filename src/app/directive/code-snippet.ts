@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, AfterViewInit } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import Prism from 'prismjs';
 // Load Prism language components used in this project
 import 'prismjs/components/prism-clike';
@@ -11,32 +11,18 @@ import 'prismjs/components/prism-css';
   selector: '[aicCodeSnippet]',
   standalone: true,
 })
-export class CodeSnippet implements AfterViewInit {
-  @Input() language?: string;
-  @Input() file?: string;
+export class CodeSnippet implements OnChanges {
+  @Input() language = 'typescript';
+  @Input() codeBlock = '';
 
   constructor(private el: ElementRef) { }
 
-  ngAfterViewInit() {
-    const codeElement = this.el.nativeElement;
-
-    // Detect language
-    let lang = this.language;
-    if (!lang) {
-      const dataLang = codeElement.getAttribute('data-lang');
-      if (dataLang) lang = dataLang;
-
-      if (this.file) {
-        if (this.file.endsWith('.ts')) lang = 'typescript';
-        else if (this.file.endsWith('.js')) lang = 'javascript';
-        else if (this.file.endsWith('.html')) lang = 'markup';
-        else if (this.file.endsWith('.css')) lang = 'css';
-      }
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['codeBlock']) {
+      const codeElement = this.el.nativeElement;
+      codeElement.textContent = this.codeBlock;
+      codeElement.classList.add(`language-${this.language}`);
+      Prism.highlightElement(codeElement);
     }
-
-    if (!lang) lang = 'typescript'; // default fallback
-
-    codeElement.classList.add(`language-${lang}`);
-    Prism.highlightElement(codeElement);
   }
 }
