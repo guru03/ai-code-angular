@@ -10,38 +10,37 @@ import { Question } from '../../models/question.model';
 import { WorkStatus } from '../../enum/enum';
 import { Observable } from 'rxjs';
 import { PadZeroPipe } from '../../pipes/pad-zero-pipe';
-import { CodeSnippet } from '../../directive/code-snippet';
-import { CodeFormatterDirective } from '../../directive/code-formatter-directive';
 import { CodeHighlighterDirective } from '../../directive/code-highlighter-directive';
+import { CodeSnippetDirective } from '../../directive/code-snippet-directive';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeHighlighterDirective],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
   encapsulation: ViewEncapsulation.None,
 })
 export class AngularQuestionList implements OnInit {
-  codeSnippet = `
-    export class UserCardComponent {
-      @Input() user: User;
+  // codeSnippet = `
+  //   export class UserCardComponent {
+  //     @Input() user: User;
       
-      constructor(private ngZone: NgZone) {}
+  //     constructor(private ngZone: NgZone) {}
 
-      ngOnInit() {
-        this.ngZone.runOutsideAngular(() => {
-          setInterval(() => {
-            this.updateInternalCounter(); // does not trigger CD
-          }, 100);
-        });
-      }
+  //     ngOnInit() {
+  //       this.ngZone.runOutsideAngular(() => {
+  //         setInterval(() => {
+  //           this.updateInternalCounter(); // does not trigger CD
+  //         }, 100);
+  //       });
+  //     }
 
-      updateUI() {
-        this.ngZone.run(() => {
-          this.displayValue = this.internalCounter; // triggers CD
-        });
-      }
-    }`
+  //     updateUI() {
+  //       this.ngZone.run(() => {
+  //         this.displayValue = this.internalCounter; // triggers CD
+  //       });
+  //     }
+  //   }`
   activeCategory = signal('All');
   readonly WorkStatus = WorkStatus;
   getQuestionList$!: Observable<Question[]>;
