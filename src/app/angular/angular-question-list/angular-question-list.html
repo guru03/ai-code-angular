@@ -89,7 +89,15 @@
                 <!-- <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
                     <code aicCodeSnippet [codeBlock]="item.code_block" ></code>
                 </pre> -->
-                <pre aicCodeSnippet [language]="'typescript'" [codeBlock]="item.code_block"></pre>
+                
+                
+                <!-- <pre aicCodeSnippet [language]="'typescript'" [codeBlock]="item.code_block"></pre> -->
+
+                <pre>
+                    <code aicCodeFormatterDirective aicCodeHighlighterDirective language="typescript">
+                        {{item.code_block}}
+                    </code>
+                </pre>
             </div>
 
 
@@ -269,4 +277,3 @@
         </code>
     </pre> -->
 </div>
-
