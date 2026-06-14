@@ -86,46 +86,17 @@
             }
 
             @if (item.code_block) {
-            <div class="code-container combineBothDirectives mb-4">
-                <!-- <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
-                    <code aicCodeSnippet [codeBlock]="item.code_block" ></code>
-                </pre> -->
-
-
-                <!-- <pre aicCodeSnippet [language]="'typescript'" [codeBlock]="item.code_block"></pre> -->
-
-                <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
-                    <code aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="'typescript'"></code>
-                </pre>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="'typescript'"></pre>
             </div>
             }
-
-            @if (false) {
-            <div class="code-container seperateDirectives ">
-                <!-- <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
-                    <code aicCodeSnippet [codeBlock]="item.code_block" ></code>
-                </pre> -->
-
-
-                <!-- <pre aicCodeSnippet [language]="'typescript'" [codeBlock]="item.code_block"></pre> -->
-
-                <pre class="bg-gray-900 p-4 rounded overflow-x-auto">
-                    <!-- <code aicCodeHighlighterDirective [codeBlock]="item.code_block" [language]="'typescript'"></code> -->
-                </pre>
-            </div>
-            }
-
         </div>
     </div>
     }
 
-
-
     <!--? This is for the design purposes only, we can remove it later. -->
 
 </div>
-
-
 
 <!--! This? is for the design purpose only-->
 

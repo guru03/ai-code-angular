@@ -21,26 +21,6 @@ import { CodeSnippetDirective } from '../../directive/code-snippet-directive';
   encapsulation: ViewEncapsulation.None,
 })
 export class AngularQuestionList implements OnInit {
-  // codeSnippet = `
-  //   export class UserCardComponent {
-  //     @Input() user: User;
-      
-  //     constructor(private ngZone: NgZone) {}
-
-  //     ngOnInit() {
-  //       this.ngZone.runOutsideAngular(() => {
-  //         setInterval(() => {
-  //           this.updateInternalCounter(); // does not trigger CD
-  //         }, 100);
-  //       });
-  //     }
-
-  //     updateUI() {
-  //       this.ngZone.run(() => {
-  //         this.displayValue = this.internalCounter; // triggers CD
-  //       });
-  //     }
-  //   }`
   activeCategory = signal('All');
   readonly WorkStatus = WorkStatus;
   getQuestionList$!: Observable<Question[]>;
