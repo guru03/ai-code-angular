@@ -10,12 +10,11 @@ import { Question } from '../../models/question.model';
 import { WorkStatus } from '../../enum/enum';
 import { Observable } from 'rxjs';
 import { PadZeroPipe } from '../../pipes/pad-zero-pipe';
-import { CodeHighlighterDirective } from '../../directive/code-highlighter-directive';
 import { CodeSnippetDirective } from '../../directive/code-snippet-directive';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe,  CodeSnippetDirective],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
   encapsulation: ViewEncapsulation.None,

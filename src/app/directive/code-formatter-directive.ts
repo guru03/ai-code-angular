@@ -1,40 +1,60 @@
-import { Directive, ElementRef, Input, AfterViewInit, Optional } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+} from '@angular/core';
 import prettier from 'prettier/standalone';
-import * as parserTypescript from 'prettier/plugins/typescript';
-import * as parserHtml from 'prettier/plugins/html';
 import * as parserEstree from 'prettier/plugins/estree';
-import * as parserCss from 'prettier/plugins/postcss';
-import { CodeHighlighterDirective } from './code-highlighter-directive';
-
+import * as parserHtml from 'prettier/plugins/html';
+import * as parserPostcss from 'prettier/plugins/postcss';
+import * as parserTypescript from 'prettier/plugins/typescript';
 @Directive({
   selector: '[aicCodeFormatterDirective]',
   standalone: true,
 })
-export class CodeFormatterDirective {
-  @Input() language: string = 'typescript';
+export class CodeFormatterDirective implements OnChanges, AfterViewInit{
+  @Input() language?: string;
+  @Input() codeBlock = '';
 
-  constructor(
-    private el: ElementRef,
-    @Optional() private highlighter: CodeHighlighterDirective // 👈 sibling directive injection
-  ) { }
+  constructor(private el: ElementRef<HTMLElement>) { }
 
-  async ngAfterViewInit() {
-    const code = this.el.nativeElement.textContent.trim();
+  ngAfterViewInit() {
+    void this.format();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['codeBlock'] || changes['language']) {
+      void this.format();
+    }
+  }
+
+  private async format() {
+    const codeElement = this.el.nativeElement;
+    const rawCode = this.codeBlock || codeElement.textContent || '';
+    const language = this.normalizeLanguage(this.language || 'typescript');
 
     try {
-      const formatted = await prettier.format(code, {
-        parser: this.language,
-        plugins: [parserTypescript, parserHtml, parserCss]
+      const formatted = await prettier.format(rawCode, {
+        parser: this.getParser(language),
+        plugins: [parserTypescript, parserEstree, parserHtml, parserPostcss],
       });
-
-      this.el.nativeElement.textContent = formatted;
-
-      // 🔥 Always trigger highlighter after formatting
-      if (this.highlighter) {
-        this.highlighter.highlight(formatted);
-      }
+      codeElement.textContent = formatted;
     } catch (err) {
-      console.error('Formatting error:', err);
+      console.warn('Prettier formatting failed, using raw code:', err);
+      codeElement.textContent = rawCode;
     }
+  }
+
+  private normalizeLanguage(language: string) {
+    return language === 'html' ? 'markup' : language;
+  }
+
+  private getParser(language: string) {
+    if (language === 'markup') return 'html';
+    if (language === 'css') return 'css';
+    return 'typescript';
   }
 }

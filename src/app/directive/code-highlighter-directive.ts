@@ -1,21 +1,30 @@
-import { Directive, ElementRef, Input, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  AfterViewInit,
+  inject,
+} from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 import Prism from 'prismjs';
 
-// Import the language grammars you need
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
-import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-clike';
 
 @Directive({
   selector: '[aicCodeHighlighterDirective]',
   standalone: true,
 })
 export class CodeHighlighterDirective implements OnChanges, AfterViewInit {
-  @Input() language: string = 'typescript';
-  @Input() codeBlock: string = '';
+  @Input() language?: string;
+  private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   constructor(private el: ElementRef<HTMLElement>) { }
 
@@ -24,28 +33,35 @@ export class CodeHighlighterDirective implements OnChanges, AfterViewInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['codeBlock'] || changes['language']) {
+    if (changes['language']) {
       this.highlight();
     }
   }
 
-  private async highlight() {
-    const rawCode = this.codeBlock || this.el.nativeElement.textContent || '';
+  private highlight() {
+    const codeElement = this.el.nativeElement;
+    const language = this.normalizeLanguage(this.language || 'typescript');
 
-    // ✅ Lazy load grammar if not already present
-    if (!Prism.languages[this.language]) {
-      try {
-        await import(
-          /* webpackChunkName: "prism-[request]" */
-          `prismjs/components/prism-${this.language}`
-        );
-      } catch (err) {
-        console.warn(`Prism: could not load grammar for ${this.language}`, err);
-      }
+    this.setLanguageClass(codeElement, language);
+
+    if (this.isBrowser) {
+      const grammar = Prism.languages[language] || Prism.languages['typescript'];
+      requestAnimationFrame(() => {
+        codeElement.innerHTML = Prism.highlight(codeElement.textContent || '', grammar, language);
+      });
     }
+  }
 
-    const grammar = Prism.languages[this.language] || Prism.languages['javascript'];
-    const highlighted = Prism.highlight(rawCode, grammar, this.language);
-    this.el.nativeElement.innerHTML = highlighted;
+  private normalizeLanguage(language: string) {
+    return language === 'html' ? 'markup' : language;
+  }
+
+  private setLanguageClass(codeElement: HTMLElement, language: string) {
+    Array.from(codeElement.classList).forEach(className => {
+      if (className.startsWith('language-')) {
+        codeElement.classList.remove(className);
+      }
+    });
+    codeElement.classList.add(`language-${language}`, 'rounded-md');
   }
 }
