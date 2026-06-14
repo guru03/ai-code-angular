@@ -95,7 +95,7 @@ export class CodeSnippet implements OnChanges, AfterViewInit {
   }
 
   private setLanguageClass(codeElement: HTMLElement, language: string) {
-    codeElement.classList.forEach(className => {
+    Array.from(codeElement.classList).forEach(className => {
       if (className.startsWith('language-')) {
         codeElement.classList.remove(className);
       }

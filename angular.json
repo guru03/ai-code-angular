@@ -77,6 +77,18 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "prerender": {
+          "builder": "@angular/build:prerender",
+          "options": {
+            "browserTarget": "ai-code-angular:build:production",
+            "serverTarget": "ai-code-angular:build:production",
+            "routes": [
+              "/",
+              "/about",
+              "/contact"
+            ]
+          }
         }
       }
     }
