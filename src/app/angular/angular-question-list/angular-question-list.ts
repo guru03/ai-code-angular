@@ -16,7 +16,7 @@ import { CodeHighlighterDirective } from '../../directive/code-highlighter-direc
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeFormatterDirective, CodeHighlighterDirective],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeHighlighterDirective],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
   encapsulation: ViewEncapsulation.None,
