@@ -1,9 +1,9 @@
 // import { Injectable } from '@angular/core';
-// import {  Question } from './question.model'; // your model interface
+// import {  Question, QuestionLanguage, questionLanguageDto } from './question.model'; // your model interface
 
 // @Injectable({ providedIn: 'root' })
 // export class QuestionAdapter {
-//   getQuestionsAdapter(item: any): Question {
+//   getQuestionsAdapter(item: questionLanguageDto): QuestionLanguage {
 //     return {
 //       id: item.id,
 //       serial_number: item.serial_number,

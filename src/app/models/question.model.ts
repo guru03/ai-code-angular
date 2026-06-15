@@ -3,7 +3,7 @@ import { WorkStatus } from "../enum/enum";
 export interface Question {
   id: number;
   serial_number: number;
-  category: string;
+  language: Language;
   topic: string;
   visible: boolean;
   content_status: WorkStatus;
@@ -28,12 +28,12 @@ export interface QuestionCategory {
   categories: [];
 }
 
-export interface Category {
+export interface Language {
   id: number;
   name: string;
 }
 
-export const CATEGORIES: Category[] = [
+export const LANGUAGES: Language[] = [
   { id: 1, name: 'All' },
   { id: 2, name: 'Angular' },
   { id: 3, name: 'NgRx' },

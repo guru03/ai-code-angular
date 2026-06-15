@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
 import { loadQuestions } from './state/angular.action';
-import { getCategoryCounts } from './state/angular.selector';
-import { CATEGORIES } from '../models/question.model';
+import { getLanguageCounts } from './state/angular.selector';
+import { LANGUAGES } from '../models/question.model';
 
 @Component({
   selector: 'aic-angular',
@@ -19,36 +19,26 @@ export class Angular implements OnInit {
   private router = inject(Router);
   private store = inject(Store<AppState>);
   // activeCategory = signal('All');
-  testing = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
-  categories = CATEGORIES;
-  activeCategory: string = 'All'; // default active
-  categoryCounts$!: Observable<Record<string, number>>;
+  languages = LANGUAGES;
+  activeLanguage: string = 'All'; // default active
+  languageCounts$!: Observable<Record<string, number>>;
 
   ngOnInit(): void {
-    this.categoryCounts$ = this.store.select(getCategoryCounts);
+    this.languageCounts$ = this.store.select(getLanguageCounts);
     this.store.dispatch(loadQuestions());
 
     this.route.queryParamMap.subscribe(params => {
-      this.activeCategory = params.get('category') ?? 'All';
-      this.filterByCategory(this.activeCategory);
+      this.activeLanguage = params.get('language') ?? 'All';
+      this.filterByLanguage(this.activeLanguage);
     });
-
-    this.sortingCategory();
   }
 
-  sortingCategory() {
-    this.testing.sort((a, b) =>
-      a.localeCompare(b) ? 1 : -1
-    );
-    console.log(this.testing);
-  }
-
-  filterByCategory(category: string): void {
-    this.activeCategory = category;
+  filterByLanguage(language: string): void {
+    this.activeLanguage = language;
 
     this.router.navigate(['questions'], {
       relativeTo: this.route,
-      queryParams: category === 'All' ? {} : { category },
+      queryParams: language === 'All' ? {} : { language },
     });
   }
 
