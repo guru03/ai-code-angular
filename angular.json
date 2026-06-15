@@ -65,6 +65,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "proxyConfig": "proxy.conf.js"
+          },
           "configurations": {
             "production": {
               "buildTarget": "ai-code-angular:build:production"
@@ -77,18 +80,6 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
-        },
-        "prerender": {
-          "builder": "@angular/build:prerender",
-          "options": {
-            "browserTarget": "ai-code-angular:build:production",
-            "serverTarget": "ai-code-angular:build:production",
-            "routes": [
-              "/",
-              "/about",
-              "/contact"
-            ]
-          }
         }
       }
     }
