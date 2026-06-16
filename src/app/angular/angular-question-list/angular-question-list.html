@@ -25,6 +25,18 @@
 
                 <span class="text-slate-300">•</span>
 
+                <span class=" px-2.5 py-1 rounded-full" [ngClass]="{
+                        'bg-blue-50 text-blue-700': item.label === label.Beginner,
+                        'bg-amber-50 text-amber-700': item.label === label.Intermediate,
+                        'bg-indigo-50 text-indigo-700': item.label === label.Expert,
+                        'bg-teal-50 text-teal-700': item.label === label.Mastery,
+                        'bg-emerald-50 text-emerald-700': item.label === label.Advanced,
+                        }">
+                    {{item.label | titlecase}}
+                </span>
+
+                <span class="text-slate-300">•</span>
+
                 <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">{{ item.id | padZero:2 }}</span>
 
                 <span class="text-slate-300">•</span>
@@ -151,9 +163,9 @@
             @if(false){
             <div class="answer-section">
                 <h3></h3>
-                <h4></h4>
-                <p class="answer-text"></p>
                 <p class="answer-text"><strong></strong></p>
+                <p class="answer-text"></p>
+                <h4></h4>
                 <ul class="list-design-2">
                     <li><strong></strong><span></span></li>
                     <li><strong></strong><span></span></li>
@@ -170,23 +182,20 @@
 
 
             <div class="">
-
-                <h3></h3>
-                <p class="answer-text">Change Detection is the mechanism by which Angular keeps the view in sync with
-                    the component data. Whenever data changes — due to user events, HTTP responses, timers, or Promises
-                    — Angular traverses the component tree to determine which views need to be re-rendered.</p>
-                <p class="answer-text">Angular uses Zone.js to intercept all async operations (setTimeout, Promises,
-                    XHR, etc.) and automatically trigger change detection after each one completes.</p>
-                <h4>Two Change Detection Strategies:</h4>
-                <p class="answer-text"><strong>1. Default (CheckAlways)</strong><span>Every component is checked on
-                        every change detection cycle regardless of whether its inputs changed.</span></p>
-                <p class="answer-text"><strong>2. OnPush</strong><span>A component is only checked when:</span></p>
+                <p class="answer-text"></p>
+                <h4></h4>
                 <ul class="list-design-2">
-                    <li><span>An @Input() reference changes</span></li>
-                    <li><span>An event originates from the component or its children</span></li>
-                    <li><span>An async pipe emits a new value</span></li>
-                    <li><span>Change detection is triggered manually via ChangeDetectorRef</span></li>
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
+                    <li><strong></strong><span></span></li>
                 </ul>
+                <div class="notes-italic">
+                    <p><strong></strong> <span></span> </p>
+                    <p><strong></strong> <span></span> </p>
+                    <p><strong></strong> <span></span> </p>
+                </div>
 
 
             </div>

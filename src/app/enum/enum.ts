@@ -18,6 +18,26 @@ export enum WorkStatus {
   InProgress = "in progress"
 }
 
+export enum Labels {
+  Beginner = "beginner",
+  Intermediate = "intermediate",
+  Advanced = "advanced",
+  Expert = "expert",
+  Mastery = "mastery"
+}
+
+export enum ContentStatus {
+  Pending = "pending",
+  Draft = "draft",
+  InReview = "in review",
+  Approved = "approved",
+  Rejected = "rejected",
+  Updated = "updated",
+  Archived = "archived",
+  Completed = "completed",
+  InProgress = "in progress"
+}
+
 export enum Status {
   Active = 'Active',
   Inactive = 'Inactive',
