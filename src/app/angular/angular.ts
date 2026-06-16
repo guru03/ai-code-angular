@@ -21,7 +21,7 @@ export class Angular implements OnInit {
   // activeCategory = signal('All');
   testing = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
   categories = LANGUAGES;
-  activeCategory: string = 'All'; // default active
+  activeCategory: string = LANGUAGES[0].name;
   categoryCounts$!: Observable<Record<string, number>>;
 
   ngOnInit(): void {
@@ -29,7 +29,7 @@ export class Angular implements OnInit {
     this.store.dispatch(loadQuestions());
 
     this.route.queryParamMap.subscribe(params => {
-      this.activeCategory = params.get('category') ?? 'All';
+      this.activeCategory = params.get('category') ?? LANGUAGES[0].name;
       this.filterByCategory(this.activeCategory);
     });
 
@@ -48,7 +48,7 @@ export class Angular implements OnInit {
 
     this.router.navigate(['questions'], {
       relativeTo: this.route,
-      queryParams: category === 'All' ? {} : { category },
+      queryParams: category === LANGUAGES[0].name ? {} : { category },
     });
   }
 

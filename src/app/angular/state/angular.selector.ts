@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { QuestionsState } from "../../models/question.model";
+import { LANGUAGES, QuestionsState } from "../../models/question.model";
 
 
 const selectAngularState = createFeatureSelector<QuestionsState>('questions');
@@ -17,10 +17,11 @@ export const getCategoryCounts = createSelector(
         return state.questions.reduce<Record<string, number>>(
             (counts, question) => ({
                 ...counts,
-                All: counts['All'] + 1,
+                // instead of hardcoding "All", use the first entry from LANGUAGES
+                [LANGUAGES[0].name]: (counts[LANGUAGES[0].name] ?? 0) + 1,
                 [question.language]: (counts[question.language] ?? 0) + 1,
             }),
-            { All: 0 }
+            { [LANGUAGES[0].name]: 0 } // initialize with dynamic "All"
         );
     }
 );
@@ -29,7 +30,7 @@ export const selectQuestionsByCategory = (category: string) =>
     createSelector(
         selectAngularState,
         (state: QuestionsState) => {
-            if (category === 'All') {
+            if (category === LANGUAGES[0].name) {
                 return state.questions;
             } else {
                 return state.questions.filter(q => q.language === category);

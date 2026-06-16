@@ -4,6 +4,8 @@ export interface Question {
   id: number;
   serial_number: number;
   language: string;
+  Level: string;
+  category: string;
   topic: string;
   visible: boolean;
   content_status: WorkStatus;
@@ -46,4 +48,18 @@ export const LANGUAGES: Category[] = [
   { id: 9, name: 'question_design', value: 'Question Design' },
   { id: 10, name: 'question_design2', value: 'Question Design2' },
   { id: 11, name: 'question_design22', value: 'Question Design22' },
+];
+
+export interface Level {
+  id: number;
+  name: string;   // backend value
+  label: string;  // frontend display
+}
+
+export const LEVELS: Level[] = [
+  { id: 1, name: 'basic', label: 'Basic' },
+  { id: 2, name: 'intermediate', label: 'Intermediate' },
+  { id: 3, name: 'advanced', label: 'Advanced' },
+  { id: 4, name: 'expert', label: 'Expert' },
+  { id: 5, name: 'mastery', label: 'Mastery' },
 ];
