@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
 import { loadQuestions } from './state/angular.action';
-import { getLanguageCounts } from './state/angular.selector';
+import { getCategoryCounts } from './state/angular.selector';
 import { LANGUAGES } from '../models/question.model';
 
 @Component({
@@ -19,26 +19,36 @@ export class Angular implements OnInit {
   private router = inject(Router);
   private store = inject(Store<AppState>);
   // activeCategory = signal('All');
-  languages = LANGUAGES;
-  activeLanguage: string = 'All'; // default active
-  languageCounts$!: Observable<Record<string, number>>;
+  testing = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
+  categories = LANGUAGES;
+  activeCategory: string = 'All'; // default active
+  categoryCounts$!: Observable<Record<string, number>>;
 
   ngOnInit(): void {
-    this.languageCounts$ = this.store.select(getLanguageCounts);
+    this.categoryCounts$ = this.store.select(getCategoryCounts);
     this.store.dispatch(loadQuestions());
 
     this.route.queryParamMap.subscribe(params => {
-      this.activeLanguage = params.get('language') ?? 'All';
-      this.filterByLanguage(this.activeLanguage);
+      this.activeCategory = params.get('category') ?? 'All';
+      this.filterByCategory(this.activeCategory);
     });
+
+    this.sortingCategory();
   }
 
-  filterByLanguage(language: string): void {
-    this.activeLanguage = language;
+  sortingCategory() {
+    this.testing.sort((a, b) =>
+      a.localeCompare(b) ? 1 : -1
+    );
+    console.log(this.testing);
+  }
+
+  filterByCategory(category: string): void {
+    this.activeCategory = category;
 
     this.router.navigate(['questions'], {
       relativeTo: this.route,
-      queryParams: language === 'All' ? {} : { language },
+      queryParams: category === 'All' ? {} : { category },
     });
   }
 

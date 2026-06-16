@@ -11,26 +11,28 @@ export const getQuestions = createSelector(
     }
 );
 
-export const getLanguageCounts = createSelector(
+export const getCategoryCounts = createSelector(
     selectAngularState,
     (state: QuestionsState) => {
-        return state.questions.reduce<Record<string, number>>((counts, question) => {
-            counts['All'] = (counts['All'] ?? 0) + 1;
-            const lang = question.language.name;
-            counts[lang] = (counts[lang] ?? 0) + 1;
-            return counts;
-        }, { All: 0 });
+        return state.questions.reduce<Record<string, number>>(
+            (counts, question) => ({
+                ...counts,
+                All: counts['All'] + 1,
+                [question.language]: (counts[question.language] ?? 0) + 1,
+            }),
+            { All: 0 }
+        );
     }
 );
 
-export const selectQuestionsByLanguage = (language: string) =>
+export const selectQuestionsByCategory = (category: string) =>
     createSelector(
         selectAngularState,
         (state: QuestionsState) => {
-            if (language === 'All') {
+            if (category === 'All') {
                 return state.questions;
             } else {
-                return state.questions.filter(q => q.language.name === language);
+                return state.questions.filter(q => q.language === category);
             }
         }
     );

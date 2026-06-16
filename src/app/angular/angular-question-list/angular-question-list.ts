@@ -4,7 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
-import { getQuestions, selectQuestionsByLanguage } from '../state/angular.selector';
+import { getQuestions, selectQuestionsByCategory } from '../state/angular.selector';
 import { loadQuestionById, loadQuestions } from '../state/angular.action';
 import { Question } from '../../models/question.model';
 import { WorkStatus } from '../../enum/enum';
@@ -37,7 +37,7 @@ export class AngularQuestionList implements OnInit {
       this.getQuestionList$ =
         category === 'All'
           ? this.store.select(getQuestions)
-          : this.store.select(selectQuestionsByLanguage(category));
+          : this.store.select(selectQuestionsByCategory(category));
     });
   }
 
