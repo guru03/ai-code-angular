@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, map, mergeMap, of } from "rxjs";
+import { catchError, exhaustMap, map, mergeMap, of } from "rxjs";
 import { loadQuestions, loadQuestionsSuccess, loadQuestionsFailure, loadQuestionByIdFailure, loadQuestionByIdSuccess, loadQuestionById } from "./angular.action";
 import { Question } from "../../models/question.model";
 import { environment } from "../../environments/environment";
@@ -10,14 +10,14 @@ import { getQuestions } from "./angular.selector";
 @Injectable()
 export class QuestionEffects {
     // private readonly baseurl = environment.baseurl.replace(/\/+$/, '');
-    private readonly rooturl = `${environment.baseurl}/angular`;
+    private readonly rooturl = `${environment.baseurl}/angular/ascending`;
     private actions$ = inject(Actions);
     private http = inject(HttpClient);
 
     loadQuestions$ = createEffect(() =>
         this.actions$.pipe(
             ofType(loadQuestions),
-            mergeMap(() =>
+            exhaustMap(() =>
                 this.http.get<Question[]>(this.rooturl + '/').pipe(
                     map((questions) => loadQuestionsSuccess({ questions })),
                     catchError((error) =>
@@ -27,20 +27,6 @@ export class QuestionEffects {
             )
         )
     );
-
-    // getQuestions$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(loadQuestions),
-    //         mergeMap(() =>
-    //             this.http.get<Question[]>(this.rooturl).pipe(
-    //                 map((questions) => loadQuestionsSuccess({ questions })),
-    //                 catchError((error) =>
-    //                     of(loadQuestionsFailure({ error: error?.message ?? 'Unknown error' }))
-    //                 )
-    //             )
-    //         )
-    //     )
-    // )
 
     // Load Question Details Component
 

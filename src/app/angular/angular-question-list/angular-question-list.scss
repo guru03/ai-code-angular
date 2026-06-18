@@ -26,22 +26,22 @@ $codeColor: #ebebeb;
     width: 35px;
 }
 
-// .code-block {
-//     font-family: 'Consolas', Monaco, monospace;
-//     color: inherit;
-//     border: 1px solid $codeColor;
-//     padding: 3px 8px;
-//     margin: 0 1px;
-//     font-size: 16px;
-//     display: inline-block;
-//     background-color: $codeColor;
-//     border-radius: 3px;
+.code-block {
+    font-family: 'Consolas', Monaco, monospace;
+    color: inherit;
+    border: 1px solid $codeColor;
+    padding: 3px 8px;
+    margin: 0 1px;
+    font-size: 16px;
+    display: inline-block;
+    background-color: $codeColor;
+    border-radius: 3px;
 
-//     pre {
-//         margin: 0;
-//         font-size: 16px;
-//     }
-// }
+    pre {
+        margin: 0;
+        font-size: 16px;
+    }
+}
 
 //*  html generated CSS
 
@@ -142,8 +142,7 @@ $codeColor: #ebebeb;
         }
     }
 
-    // code {
-    //     @apply bg-slate-100 text-slate-800 text-xs px-1.5 py-0.5 rounded font-mono border border-slate-200;
-    //     font-size: 14px;
-    // }
+    .code{
+        @apply bg-slate-100 text-slate-800 text-sm mx-2 px-1.5 py-0.5 rounded font-mono border border-slate-200;
+    }
 }

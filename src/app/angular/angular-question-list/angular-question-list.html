@@ -97,10 +97,47 @@
             <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
             }
 
-            @if (item.code_block) {
-            <div class="code-container combineBothDirectives mt-6">
-                <pre aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="'typescript'"></pre>
+
+            @if(item.code_block_title){
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title)">
             </div>
+            }
+
+            @if (item.code_block) {
+            <span>{{item.code_language}}</span>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="item.code_language"></pre>
+            </div>
+            }
+
+            @if(item.code_block_title2){
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title2)">
+            </div>
+            }
+
+            @if (item.code_block2) {
+            <span>{{item.code_language2}}</span>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_block2" [language]="item.code_language2"></pre>
+            </div>
+            }
+
+            @if(item.code_block_title3){
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title3)">
+            </div>
+            }
+
+            @if (item.code_block3) {
+            <span>{{item.code_language3}}</span>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_block3" [language]="item.code_language3"></pre>
+            </div>
+            }
+            @if (item.answer3) {
+            <div class="answer-section" [innerHTML]="setHtml(item.answer3)"></div>
+            }
+            @if (item.answer4) {
+            <div class="answer-section" [innerHTML]="setHtml(item.answer4)"></div>
             }
         </div>
     </div>
@@ -121,51 +158,53 @@
         </div>
 
         <div class="pl-2">
-            <!--? This is Final design -->
-
-            <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
-                <!-- Brand/Topic -->
-                <span class="text-orange-600 font-bold uppercase tracking-wider">{{ item.language }}</span>
-
-                <span class="text-slate-300">•</span>
-
-                <span class="text-slate-500">{{item.topic}}</span>
-
-                <span class="text-slate-300">•</span>
-
-                <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">{{ item.id | padZero:2 }}</span>
-
-                <span class="text-slate-300">•</span>
-
-                <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serial_number | padZero:2
-                    }}</span>
-
-                <span class="text-slate-300">•</span>
-                <!-- ?This is for the content status, we can have different colors based on the status value. -->
-
-                <span
-                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border capitalize"
-                    [ngClass]="{
-                        'bg-slate-100 text-slate-600 border-slate-200': item.content_status === WorkStatus.Draft,
-                        }">
-
-                    {{ item.content_status | titlecase }}
-                </span>
-                <span class="text-slate-300">•</span>
-            </div>
-            <!--? This is Final design ends -->
 
             <h2 class="question-text">
                 How many types of compilation does Angular provide?
             </h2>
 
-
             @if(false){
             <div class="answer-section">
+                <code class="code"></code>
                 <h3></h3>
                 <p class="answer-text"><strong></strong></p>
-                <p class="answer-text"></p>
+                <p class="answer-text">The <code class="code">async</code> pipe in Angular templates is used to
+                    automatically subscribe to an Observable or Promise and unwrap the value they emit. When a new value
+                    is emitted, the pipe triggers change detection to update the view.</p>
+                <h4>Its main purposes are:</h4>
+                <ul class="list-design-2">
+                    <li><strong></strong><span>Simplifying template code by removing the need for manual subscription
+                            and variable updates in the component class</span></li>
+                    <li><strong></strong><span>Preventing memory leaks by automatically unsubscribing from the
+                            Observable when the component is destroyed</span></li>
+                    <li><strong></strong><span>Handling the <code class="code">asynchronous</code> nature of data
+                            streams gracefully in the template</span></li>
+                </ul>
+                <div class="notes-italic">
+                    <p><strong></strong> <span></span> </p>
+                    <p><strong></strong> <span></span> </p>
+                    <p><strong></strong> <span></span> </p>
+                </div>
+            </div>
+
+
+            <div class="">
                 <h4></h4>
+                <p class="answer-text">
+                    <span>The<code class="code">trackBy</code> function in Angular's <code class="code">ngFor</code>
+                        directive is used to improve performance when
+                        rendering lists. By default, when the collection iterated by <code class="code">ngFor</code>
+                        changes (items are added,
+                        removed, or reordered), Angular re-renders the entire list of DOM elements.</span>
+                </p>
+                <p class="answer-text">Using <code class="code">trackBy</code>, you provide a function that returns a
+                    unique identifier for each item in the collection. Angular then uses this identifier to track items
+                    across changes. Instead of re-rendering everything, Angular can efficiently update the DOM by only
+                    adding, removing, or moving elements corresponding to items whose identity has changed. This avoids
+                    unnecessary destruction and recreation of DOM elements, leading to faster rendering and potentially
+                    preserving element state like input focus or scroll position.</p>
+                <h4>You define a <code class="code">trackBy</code> function in your component class:</h4>
+                <h4>And use it in your template:</h4>
                 <ul class="list-design-2">
                     <li><strong></strong><span></span></li>
                     <li><strong></strong><span></span></li>
@@ -178,23 +217,10 @@
                     <p><strong></strong> <span></span> </p>
                     <p><strong></strong> <span></span> </p>
                 </div>
-            </div>
 
 
-            <div class="">
-                <p class="answer-text"></p>
-                <h4></h4>
-                <ul class="list-design-2">
-                    <li><strong></strong><span></span></li>
-                    <li><strong></strong><span></span></li>
-                    <li><strong></strong><span></span></li>
-                    <li><strong></strong><span></span></li>
-                    <li><strong></strong><span></span></li>
-                </ul>
-                <div class="notes-italic">
-                    <p><strong></strong> <span></span> </p>
-                    <p><strong></strong> <span></span> </p>
-                    <p><strong></strong> <span></span> </p>
+                <div class="">
+
                 </div>
 
 

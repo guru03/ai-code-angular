@@ -13,7 +13,23 @@ export interface Question {
   question: string;
   answer: string;
   answer2?: string;
+
+  code_language: string;
+  code_block_title: string;
   code_block: string;
+
+
+  code_language2: string;
+  code_block_title2: string;
+  code_block2: string;
+
+
+  code_language3: string;
+  code_block_title3: string;
+  code_block3: string;
+
+  answer3?: string;
+  answer4?: string;
   imageUrl?: string;
   image2Url?: string;
   image3Url?: string;
@@ -45,6 +61,7 @@ export const LANGUAGES: Category[] = [
   { id: 6, name: 'javascript', value: 'JavaScript' },
   { id: 7, name: 'hr', value: 'HR' },
   { id: 8, name: 'ai', value: 'Artificial Intelligence' },
+  { id: 9, name: 'question_design', value: 'Question Design' },
 ];
 
 // export interface Label {
