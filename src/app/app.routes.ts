@@ -30,6 +30,12 @@ export const routes: Routes = [
             import('./angular/angular.routes').then(m => m.ANGULAR_ROUTES)
     },
 
+    {
+        path: 'javascript',
+        loadChildren: () =>
+            import('./javascript/javascript.routes').then(m => m.JAVASCRIPT_ROUTES)
+    },
+
 
     {
         path: 'blogs',
