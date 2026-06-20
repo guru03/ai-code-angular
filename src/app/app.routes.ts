@@ -36,6 +36,12 @@ export const routes: Routes = [
             import('./javascript/javascript.routes').then(m => m.JAVASCRIPT_ROUTES)
     },
 
+    {
+        path: 'coding',
+        loadChildren: () =>
+            import('./coding/coding.routes').then(m => m.CODING_ROUTES)
+    },
+
 
     {
         path: 'blogs',
@@ -48,11 +54,11 @@ export const routes: Routes = [
         loadChildren: () =>
             import('./design/design.routes').then(m => m.DESIGN_ROUTES)
     },
-    {
-        path: 'coding-practice',
-        loadComponent: () =>
-            import('./coding-practice/coding-practice').then(m => m.CodingPractice)
-    },
+    // {
+    //     path: 'coding-practice',
+    //     loadComponent: () =>
+    //         import('./coding-practice/coding-practice').then(m => m.CodingPractice)
+    // },
     {
         path: 'about',
         component: About,

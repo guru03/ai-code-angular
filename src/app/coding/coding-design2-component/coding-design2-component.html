@@ -1,0 +1,218 @@
+<div class="bg-[#f8fafc] text-[#1e293b] min-h-screen flex flex-col">
+
+    <!-- <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div
+                    class="bg-[#ff8a00] text-white font-black px-2.5 py-1.5 rounded-lg text-sm tracking-wider uppercase flex items-center gap-1">
+                    <span>AI</span> <span
+                        class="bg-white text-[#ff8a00] px-1 rounded-sm text-[11px] font-bold">WEB</span>
+                </div>
+                <span class="text-xl font-black tracking-tight text-[#1e293b]">HACK</span>
+            </div>
+
+            <nav class="hidden md:flex items-center space-x-8 text-[14px] font-medium text-slate-600">
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">Home</a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">About</a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">Angular</a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">Javascript</a>
+                <a href="#" class="text-[#ff8a00] border-b-2 border-[#ff8a00] pb-5 pt-5 font-semibold">Coding</a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">blog-list</a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">Signals</a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">Design</a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">Resources <i
+                        class="fa-solid fa-chevron-down text-[10px] ml-0.5"></i></a>
+                <a href="#" class="hover:text-[#ff8a00] transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <button class="text-sm font-medium text-slate-600 hover:text-slate-900">Login</button>
+                <button
+                    class="bg-[#0f172a] text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-slate-800 transition-all shadow-sm">Sign
+                    Up</button>
+            </div>
+        </div>
+    </header> -->
+
+    <main class="flex-1 max-w-[1600px] w-full mx-auto p-4 lg:p-6 grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+
+        <section class="xl:col-span-4 flex flex-col gap-6 h-full min-h-[calc(100vh-120px)]">
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col flex-1 overflow-hidden">
+                <div class="bg-slate-50 border-b border-slate-200 px-5 py-3.5 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="bg-[#ff8a00]/10 text-[#ff8a00] text-xs font-bold px-2.5 py-1 rounded-md">Task
+                            05</span>
+                        <h2 class="text-sm font-bold text-slate-800">Custom RxJS Map Operator</h2>
+                    </div>
+                    <span class="text-xs bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded-full font-medium"><i
+                            class="fa-solid fa-circle text-[6px] mr-1 align-middle"></i> Active</span>
+                </div>
+
+                <div class="p-6 overflow-y-auto space-y-5 flex-1 text-[14px] leading-relaxed text-slate-600">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">Build a Custom Multiply Operator</h3>
+                        <p>Implement a custom RxJS operator called <code
+                                class="bg-slate-100 px-1.5 py-0.5 rounded text-rose-600 text-xs font-mono">multiplyBy()</code>
+                            that accepts a configuration factor argument and pipes a stream of numbers, scaling each
+                            value transformation reactively.</p>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2">
+                        <h4 class="font-semibold text-slate-800 text-xs uppercase tracking-wider">Expected Behavior:
+                        </h4>
+                        <ul class="list-disc list-inside space-y-1 text-slate-600 text-xs">
+                            <li>Input stream emits: <code class="font-mono text-slate-900">1, 2, 3</code></li>
+                            <li>Operator instantiated as: <code class="font-mono text-blue-600">multiplyBy(10)</code>
+                            </li>
+                            <li>Output sequence results: <code class="font-mono text-emerald-600">10, 20, 30</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="space-y-3 pt-2">
+                        <h4 class="font-bold text-slate-900 text-xs uppercase tracking-wider">Test Specifications</h4>
+
+                        <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-800">Should return an RxJS Observable
+                                    platform</p>
+                                <p class="text-[11px] text-slate-400">Ensures strict pipeline structural compatibility
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <i class="fa-solid fa-circle-check text-emerald-500 mt-0.5"></i>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-800">Should correctly scale sequence
+                                    variables</p>
+                                <p class="text-[11px] text-slate-400">Verifies mathematical transform inside map mapping
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <i class="fa-solid fa-circle-notch text-amber-500 animate-spin mt-0.5"></i>
+                            <div>
+                                <p class="text-xs font-semibold text-slate-800">Should gracefully handle empty source
+                                    streams</p>
+                                <p class="text-[11px] text-slate-400">Edge case processing pipeline stream evaluation
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-slate-200 p-4 bg-slate-50 flex gap-3">
+                    <button
+                        class="flex-1 bg-[#0f172a] hover:bg-slate-800 text-white text-xs font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play text-[10px]"></i> Run Code
+                    </button>
+                    <button
+                        class="flex-1 bg-[#ff8a00] hover:bg-[#e07a00] text-white text-xs font-semibold py-3 px-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shadow-[#ff8a00]/20">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Submit Solution
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Workspace Repository</h3>
+                <div class="space-y-1">
+                    <div
+                        class="flex items-center justify-between p-2 rounded-lg bg-slate-50 text-slate-800 font-medium text-xs cursor-pointer">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-folder-open text-[#ff8a00]"></i>
+                            <span>src / app / operators</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+                    </div>
+                    <div class="pl-4 space-y-0.5">
+                        <div
+                            class="flex items-center gap-2 p-2 rounded-lg bg-[#ff8a00]/5 text-[#ff8a00] font-semibold text-xs cursor-pointer">
+                            <i class="fa-solid fa-file-code"></i>
+                            <span>multiply.operator.ts</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-50 font-medium text-xs cursor-pointer transition-colors">
+                            <i class="fa-solid fa-file-code text-blue-500"></i>
+                            <span>multiply.spec.ts</span>
+                        </div>
+                        <div
+                            class="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-50 font-medium text-xs cursor-pointer transition-colors">
+                            <i class="fa-solid fa-file text-slate-400"></i>
+                            <span>readme.md</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="xl:col-span-8 flex flex-col gap-6 h-full min-h-[calc(100vh-120px)]">
+
+            <div
+                class="bg-[#1e222b] rounded-2xl shadow-xl border border-slate-800 flex flex-col flex-1 overflow-hidden">
+                <div class="bg-[#14171e] px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <div class="flex space-x-1.5 mr-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                        </div>
+                        <span
+                            class="bg-[#1e222b] text-slate-300 text-xs font-mono px-3.5 py-1.5 rounded-t-lg border-t border-x border-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-file-code text-[#ff8a00]"></i> multiply.operator.ts
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-slate-400 text-xs">
+                        <span class="font-mono bg-slate-800 px-2 py-1 rounded text-slate-300">TypeScript (v5.4)</span>
+                        <button class="hover:text-white p-1 transition-colors" title="Reset Code Configuration"><i
+                                class="fa-solid fa-rotate-right"></i></button>
+                        <button class="hover:text-white p-1 transition-colors" title="Toggle Fullscreen Canvas"><i
+                                class="fa-solid fa-expand"></i></button>
+                    </div>
+                </div>
+
+                <div class="p-4 flex-1 flex items-start code-font text-sm leading-6 overflow-y-auto bg-[#1e222b]">
+
+                    <p>Your code is here</p>
+
+                </div>
+            </div>
+
+            <div class="bg-[#14171e] rounded-2xl border border-slate-800 shadow-lg flex flex-col h-56 overflow-hidden">
+                <div class="bg-[#0b0d12] px-4 py-2.5 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-slate-200 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-terminal text-emerald-400 text-[10px]"></i> Output Terminal Log
+                        </span>
+                        <div class="flex space-x-2 text-[11px]">
+                            <span
+                                class="text-slate-500 hover:text-slate-300 cursor-pointer border-b border-white pb-0.5">Console</span>
+                            <span class="text-slate-500 hover:text-slate-300 cursor-pointer">Test Results (2/3
+                                passed)</span>
+                        </div>
+                    </div>
+                    <button
+                        class="text-slate-500 hover:text-slate-300 text-xs px-2 py-0.5 rounded bg-slate-800/50">Clear</button>
+                </div>
+
+                <div class="p-4 flex-1 overflow-y-auto font-mono text-xs space-y-1.5 text-slate-400">
+                    <p class="text-slate-500">[14:32:01] Compiled workspace bundle module asset architecture
+                        successfully...</p>
+                    <p class="text-emerald-400"><i class="fa-solid fa-check text-[10px] mr-1"></i> TEST 1: RxJS Stream
+                        pipeline
+                        successfully resolved dynamic observable instance context wrapper.</p>
+                    <p class="text-emerald-400"><i class="fa-solid fa-check text-[10px] mr-1"></i> TEST 2: Sequence
+                        array
+                        transformation metrics evaluated correctly inside mathematical mapping array.</p>
+                    <p class="text-amber-400 animate-pulse"><i
+                            class="fa-solid fa-triangle-exclamation text-[10px] mr-1"></i>
+                        RUNNING: Instantiating performance profiling sequence bounds verification indices...</p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+</div>
