@@ -9,10 +9,11 @@ export const BLOGS_ROUTES: Routes = [
         path: '',
         component: BlogList,
         children: [
-            { path: 'blogs', component: Blogs }, //todo this Component will be removed after modification blog list
+
             { path: 'details/:id', component: BlogDetail },
             { path: 'add-blog', component: AddBlog },
             { path: 'edit/:id', component: AddBlog },
         ]
     },
+    { path: 'blogs', component: Blogs }, //todo this Component will be removed after modification blog list
 ];
