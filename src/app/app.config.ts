@@ -8,7 +8,8 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { appReducer } from './store/app.reducer';
-import { QuestionEffects } from './angular/state/angular.effetcts';
+import { QuestionEffects as AngularQuestionEffects } from './angular/state/angular.effetcts';
+import { QuestionEffects as JavascriptQuestionEffects } from './javascript/state/javascript.effetcts';
 import { provideRouterStore } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
@@ -18,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideStore(appReducer),
-    provideEffects([QuestionEffects]),
+    provideEffects([AngularQuestionEffects, JavascriptQuestionEffects]),
     provideStoreDevtools({ logOnly: !isDevMode() }),
     provideRouterStore()
 ]

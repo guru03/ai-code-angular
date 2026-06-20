@@ -4,7 +4,7 @@ import { initialState } from './javascript.state';
 import { QuestionsState } from '../../models/question.model';
 
 
-export const angularReducer = createReducer(
+export const javascriptReducer = createReducer(
   initialState,
 
   // When loadQuestions is dispatched, set loading true and clear errors
