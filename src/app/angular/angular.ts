@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { AppState } from '../store/app.state';
 import { loadQuestions } from './state/angular.action';
 import { getCategoryCounts } from './state/angular.selector';
-import { LANGUAGES } from '../models/question.model';
+import { LANGUAGES, TOPICS } from '../models/question.model';
 
 @Component({
   selector: 'aic-angular',
@@ -21,7 +21,9 @@ export class Angular implements OnInit {
   // activeCategory = signal('All');
   testing = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
   categories = LANGUAGES;
+  topics = TOPICS;
   activeCategory: string = LANGUAGES[0].name;
+  activeTopic: string = TOPICS[0].name;
   categoryCounts$!: Observable<Record<string, number>>;
 
   ngOnInit(): void {
@@ -31,6 +33,9 @@ export class Angular implements OnInit {
     this.route.queryParamMap.subscribe(params => {
       this.activeCategory = params.get('category') ?? LANGUAGES[0].name;
       this.filterByCategory(this.activeCategory);
+
+      this.activeTopic = params.get('topic') ?? LANGUAGES[0].name;
+      this.filterByTopics(this.activeTopic);
     });
 
     this.sortingCategory();
@@ -49,6 +54,15 @@ export class Angular implements OnInit {
     this.router.navigate(['questions'], {
       relativeTo: this.route,
       queryParams: category === LANGUAGES[0].name ? {} : { category },
+    });
+  }
+
+  filterByTopics(topics: string): void {
+    this.activeTopic = topics;
+
+    this.router.navigate(['questions'], {
+      relativeTo: this.route,
+      queryParams: topics === TOPICS[0].name ? {} : { topics },
     });
   }
 

@@ -17,6 +17,7 @@ import { CodeSnippetDirective } from '../../directive/code-snippet-directive';
   imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe,  CodeSnippetDirective],
   templateUrl: './javascript-question-list.html',
   styleUrl: './javascript-question-list.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class JavascriptQuestionList implements OnInit {
   activeCategory = signal('All');

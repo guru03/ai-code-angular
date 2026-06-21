@@ -52,6 +52,12 @@ export interface Category {
   value: string; // human‑friendly label (e.g. "Angular")
 }
 
+export interface Topics {
+  id: number;
+  name: string;  // backend value (e.g. "angular")
+  value: string; // human‑friendly label (e.g. "Angular")
+}
+
 export const LANGUAGES: Category[] = [
   { id: 1, name: 'All', value: 'All' },
   { id: 2, name: 'angular', value: 'Angular' },
@@ -62,6 +68,13 @@ export const LANGUAGES: Category[] = [
   { id: 7, name: 'hr', value: 'HR' },
   { id: 8, name: 'ai', value: 'Artificial Intelligence' },
   { id: 9, name: 'question_design', value: 'Question Design' },
+];
+
+export const TOPICS: Topics[] = [
+  { id: 1, name: 'pipes', value: 'Pipes' },
+  { id: 2, name: 'compilation', value: 'Compilation' },
+  { id: 3, name: 'Components', value: 'components' },
+  
 ];
 
 // export interface Label {
