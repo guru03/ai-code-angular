@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'aic-coding',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './coding.html',
   styleUrl: './coding.scss',
 })

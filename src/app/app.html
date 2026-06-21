@@ -23,10 +23,11 @@
       <a routerLinkActive="text-orange-600 border-b-2 border-orange-500" [routerLink]='["/coding"]'
         class="hover:text-orange-500 transition-colors">Coding</a>
 
-      <div class="relative inline-block text-left group py-3">
+      <!--? This this dropdown links for the Coding -->
+      <!-- <div class="relative inline-block text-left group py-3">
         <button type="button"
           class="inline-flex items-center gap-1 text-slate-600 group-hover:text-slate-900 group-hover:bg-slate-50 rounded-md transition focus:outline-none">
-          <span>Resources</span>
+          <span>Coding</span>
           <svg
             class="h-4 w-4 text-slate-400 group-hover:text-slate-600 transition-transform duration-200 group-hover:rotate-180"
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -36,11 +37,10 @@
           </svg>
         </button>
 
-        <!-- Dropdown -->
         <div class="absolute left-0 mt-1 w-56 origin-top-left rounded-xl bg-white p-2 shadow-xl ring-1 ring-black ring-opacity-5 z-50
               hidden group-hover:block transition-all duration-150 ease-out">
           <div class="py-1">
-            <a [routerLink]='["/coding"]'
+            <a [routerLink]='["/coding/coding"]'
               class="flex items-center px-3 py-2  text-slate-700 hover:bg-slate-50 hover:text-orange-600 rounded-lg transition">
               Coding
             </a>
@@ -48,7 +48,7 @@
               class="flex items-center px-3 py-2  text-slate-700 hover:bg-slate-50 hover:text-orange-600 rounded-lg transition">
               Practice
             </a>
-            <a [routerLink]='["/coding/design-1"]'
+            <a [routerLink]='["/coding/design"]'
               class="flex items-center px-3 py-2 text-slate-700 hover:bg-slate-50 hover:text-orange-600 rounded-lg transition">
               Design
             </a>
@@ -59,7 +59,7 @@
             </a>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <a routerLinkActive="text-orange-600 border-b-2 border-orange-500" [routerLink]='["/blogs/blogs"]'
         class="hover:text-orange-500 transition-colors">blog-list</a>

@@ -1,1 +1,318 @@
-<p>coding works! 22222222222222</p>
+<section class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8
+    items-start">
+
+    <aside class="lg:col-span-3 space-y-6 sticky top-24 overflow-y-auto">
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Coding Tracks</h3>
+            <ul class="space-y-1">
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-4 py-2.5 rounded-xl bg-brand-orange text-white font-medium text-sm">
+                        <span>All Challenges</span>
+                        <span class="bg-white bg-opacity-20 px-2 py-0.5 rounded-md text-xs">120</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-4 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-sm transition">
+                        <span>Data Structures</span>
+                        <span class="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md text-xs">34</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-4 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-sm transition">
+                        <span>Algorithms</span>
+                        <span class="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md text-xs">45</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-4 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-sm transition">
+                        <span>TypeScript Challenges</span>
+                        <span class="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md text-xs">21</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-4 py-2.5 rounded-xl text-slate-600 hover:bg-slate-50 font-medium text-sm transition">
+                        <span>RxJS Playground</span>
+                        <span class="bg-slate-100 text-slate-500 px-2 py-0.5 rounded-md text-xs">12</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Difficulty</h3>
+            <div class="space-y-2">
+                <label class="flex items-center text-sm font-medium text-slate-600 cursor-pointer">
+                    <input type="checkbox"
+                        class="rounded text-brand-orange focus:ring-brand-orange mr-3 h-4 w-4 border-slate-300"> Easy
+                </label>
+                <label class="flex items-center text-sm font-medium text-slate-600 cursor-pointer">
+                    <input type="checkbox"
+                        class="rounded text-brand-orange focus:ring-brand-orange mr-3 h-4 w-4 border-slate-300" checked>
+                    Medium
+                </label>
+                <label class="flex items-center text-sm font-medium text-slate-600 cursor-pointer">
+                    <input type="checkbox"
+                        class="rounded text-brand-orange focus:ring-brand-orange mr-3 h-4 w-4 border-slate-300"> Hard
+                </label>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">QUICK LINKS</h3>
+            <ul class="space-y-2.5 text-xs font-medium text-slate-600">
+                <li>
+                    <a [routerLink]='["/coding/coding"]' class="hover:text-brand-orange flex items-center">
+                        <i class="fa-solid fa-book text-slate-400 mr-2"></i> Coding</a>
+                </li>
+                <li>
+                    <a [routerLink]='["/coding/practice"]' class="hover:text-brand-orange flex items-center">
+                        <i class="fa-solid fa-book text-slate-400 mr-2"></i> Practice</a>
+                </li>
+                <li>
+                    <a [routerLink]='["/coding/design"]' class="hover:text-brand-orange flex items-center">
+                        <i class="fa-solid fa-book text-slate-400 mr-2"></i> Coding Design</a>
+                </li>
+                 <li>
+                    <a [routerLink]='["/coding/design-2"]' class="hover:text-brand-orange flex items-center">
+                        <i class="fa-solid fa-book text-slate-400 mr-2"></i> Coding Design-2</a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <section class="lg:col-span-6 space-y-6">
+
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="p-6 border-b border-slate-50">
+                <div class="flex items-center space-x-2 text-xs font-medium text-slate-400 mb-2">
+                    <span class="text-brand-orange font-bold">ALGORITHMS</span>
+                    <span>•</span>
+                    <span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded">Medium</span>
+                    <span>•</span>
+                    <span>Max Score: 50</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900 mb-3">1. Custom RxJS Filter Operator</h2>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Implement a custom RxJS pipeable operator named <code
+                        class="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono">filterMap</code>. It should first
+                    filter out elements based on a predicate function, and then map the remaining items using a
+                    projection function.
+                </p>
+            </div>
+
+            <div class="bg-brand-dark p-4 font-mono text-xs text-slate-300 relative">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-slate-400">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
+                    </div>
+                    <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 rounded">TypeScript</span>
+                </div>
+                <!-- <pre class="overflow-x-auto leading-6">
+<span class="text-purple-400">import</span> { Observable } <span class="text-purple-400">from</span> <span class="text-emerald-400">'rxjs'</span>;
+
+<span class="text-purple-400">export function</span> <span class="text-blue-400">filterMap</span>&lt;<span class="text-yellow-400">T</span>, <span class="text-yellow-400">R</span>&gt;(
+  <span class="text-slate-400">predicate</span>: (value: <span class="text-yellow-400">T</span>) =&gt; <span class="text-blue-400">boolean</span>,
+  <span class="text-slate-400">project</span>: (value: <span class="text-yellow-400">T</span>) =&gt; <span class="text-yellow-400">R</span>
+) {
+  <span class="text-purple-400">return</span> (<span class="text-slate-400">source</span>: Observable&lt;<span class="text-yellow-400">T</span>&gt;) =&gt; <span class="text-purple-400">new</span> <span class="text-yellow-400">Observable</span>(<span class="text-slate-400">subscriber</span> =&gt; {
+    <span class="text-gray-500">// TODO: Implement stream interception logic here</span>
+    
+  });
+}</pre> -->
+            </div>
+
+            <div class="p-4 bg-slate-50 flex items-center justify-between border-t border-slate-100">
+                <button class="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center">
+                    <i class="fa-solid fa-gears mr-1.5"></i> Run Custom Tests
+                </button>
+                <div class="flex space-x-3">
+                    <button
+                        class="bg-slate-200 text-slate-700 text-xs font-bold px-4 py-2 rounded-lg hover:bg-slate-300 transition">Reset</button>
+                    <button
+                        class="bg-brand-orange text-white text-xs font-bold px-5 py-2 rounded-lg hover:bg-opacity-95 shadow-sm transition">Submit
+                        Solution</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-2">
+            <h3 class="font-bold text-slate-800 text-lg">Daily Coding Grid</h3>
+            <select
+                class="bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-600 px-3 py-1.5 focus:ring-brand-orange focus:border-brand-orange">
+                <option>Sort by: Newest</option>
+                <option>Sort by: Most Solved</option>
+            </select>
+        </div>
+
+        <div
+            class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:border-slate-200 transition">
+            <div class="space-y-1">
+                <div class="flex items-center space-x-2 text-[11px] font-medium text-slate-400">
+                    <span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded font-bold">Easy</span>
+                    <span>•</span>
+                    <span>Success Rate: 84%</span>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base hover:text-brand-orange cursor-pointer">Flatten a
+                    Multi-dimensional Array</h4>
+            </div>
+            <button
+                class="border border-slate-200 text-slate-600 hover:bg-brand-orange hover:text-white hover:border-brand-orange text-xs font-bold px-4 py-2 rounded-xl transition">
+                Solve
+            </button>
+        </div>
+
+        <div
+            class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:border-slate-200 transition">
+            <div class="space-y-1">
+                <div class="flex items-center space-x-2 text-[11px] font-medium text-slate-400">
+                    <span class="bg-red-50 text-red-600 px-2 py-0.5 rounded font-bold">Hard</span>
+                    <span>•</span>
+                    <span>Success Rate: 31%</span>
+                </div>
+                <h4 class="font-bold text-slate-800 text-base hover:text-brand-orange cursor-pointer">Build a Dependency
+                    Injection Container</h4>
+            </div>
+            <button
+                class="border border-slate-200 text-slate-600 hover:bg-brand-orange hover:text-white hover:border-brand-orange text-xs font-bold px-4 py-2 rounded-xl transition">
+                Solve
+            </button>
+        </div>
+    </section>
+
+
+    <!-- Main Content -->
+    <main class="col-span-6 space-y-6">
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs text-slate-500">ALGORITHMS • Medium • Max Score: 50</span>
+          <span class="text-xs bg-slate-100 px-2 py-1 rounded">TYPESCRIPT</span>
+        </div>
+        <h2 class="font-bold text-lg text-slate-900 mb-2">1. Custom RxJS Filter Operator</h2>
+        <p class="text-sm text-slate-600 mb-4">
+          Implement a custom RxJS pipeable operator named <code class="text-orange-500">filterMap</code>.
+          It should first filter out elements based on a predicate function, then map the remaining items using a projection function.
+        </p>
+        <div class="flex items-center space-x-3 mb-4">
+          <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+          <span class="w-3 h-3 bg-yellow-400 rounded-full"></span>
+          <span class="w-3 h-3 bg-red-500 rounded-full"></span>
+          <span class="text-xs text-slate-500">solution.ts</span>
+        </div>
+        <div class="flex space-x-3">
+          <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Run Custom Tests</button>
+          <button class="bg-slate-100 text-slate-600 px-4 py-2 rounded">Reset</button>
+          <button class="bg-slate-200 text-slate-400 px-4 py-2 rounded cursor-not-allowed">Submit Solution</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="font-semibold text-slate-800">Daily Coding Grid</h3>
+          <select class="border border-slate-200 rounded px-2 py-1 text-sm">
+            <option>Sort by: Newest</option>
+          </select>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex justify-between items-center border-b pb-3">
+            <div>
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Easy</span>
+              <p class="font-medium text-slate-800 mt-1">Flatten a Multi-dimensional Array</p>
+              <p class="text-xs text-slate-500">Success Rate: 84%</p>
+            </div>
+            <button class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600">Solve</button>
+          </div>
+
+          <div class="flex justify-between items-center">
+            <div>
+              <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">Hard</span>
+              <p class="font-medium text-slate-800 mt-1">Build a Dependency Injection Container</p>
+              <p class="text-xs text-slate-500">Success Rate: 31%</p>
+            </div>
+            <button class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600">Solve</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+
+
+    <aside class="lg:col-span-3 space-y-6 sticky top-24 overflow-y-auto">
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Your Progress</h3>
+            <div class="space-y-4">
+                <div>
+                    <div class="flex justify-between text-xs font-medium text-slate-500 mb-1">
+                        <span>Challenges Completed</span>
+                        <span class="font-bold text-slate-800">12 / 30</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                        <div class="bg-brand-orange h-full rounded-full" style="width: 40%"></div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 italic">You've reached 40% of the baseline algorithm track!</p>
+                <button
+                    class="w-full bg-brand-orange text-white text-xs font-bold py-2.5 rounded-xl hover:bg-opacity-90 shadow-sm transition">
+                    View Analytics Dashboard
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-brand-dark p-6 rounded-2xl text-white shadow-md relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-brand-orange opacity-20 rounded-full blur-xl"></div>
+
+            <div class="relative z-10">
+                <div
+                    class="flex items-center space-x-2 text-brand-orange text-xs font-bold uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+                    <span>Daily Streak</span>
+                </div>
+                <h4 class="text-2xl font-black mb-1">5 Days Active</h4>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">Keep your momentum rolling! Complete any daily
+                    challenge to extend your streak.</p>
+                <div class="grid grid-cols-7 gap-1 text-center text-[10px] font-bold text-slate-400">
+                    <div
+                        class="bg-slate-800 p-1.5 rounded text-brand-orange border border-brand-orange border-opacity-30">
+                        M</div>
+                    <div
+                        class="bg-slate-800 p-1.5 rounded text-brand-orange border border-brand-orange border-opacity-30">
+                        T</div>
+                    <div
+                        class="bg-slate-800 p-1.5 rounded text-brand-orange border border-brand-orange border-opacity-30">
+                        W</div>
+                    <div
+                        class="bg-slate-800 p-1.5 rounded text-brand-orange border border-brand-orange border-opacity-30">
+                        T</div>
+                    <div
+                        class="bg-slate-800 p-1.5 rounded text-brand-orange border border-brand-orange border-opacity-30">
+                        F</div>
+                    <div class="bg-slate-800 p-1.5 rounded">S</div>
+                    <div class="bg-slate-800 p-1.5 rounded">S</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Cheatsheets & Docs</h3>
+            <ul class="space-y-2.5 text-xs font-medium text-slate-600">
+                <li><a href="#" class="hover:text-brand-orange flex items-center"><i
+                            class="fa-solid fa-book text-slate-400 mr-2"></i> TypeScript Utility Types</a></li>
+                <li><a href="#" class="hover:text-brand-orange flex items-center"><i
+                            class="fa-solid fa-book text-slate-400 mr-2"></i> RxJS Operator Decision Tree</a></li>
+                <li><a href="#" class="hover:text-brand-orange flex items-center"><i
+                            class="fa-solid fa-book text-slate-400 mr-2"></i> Modern Angular Control Flow</a></li>
+            </ul>
+        </div>
+
+    </aside>
+</section>
