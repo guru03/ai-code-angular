@@ -10,7 +10,10 @@ import { getQuestions } from "./angular.selector";
 @Injectable()
 export class QuestionEffects {
     // private readonly baseurl = environment.baseurl.replace(/\/+$/, '');
-    private readonly rooturl = `${environment.baseurl}/angular/ascending`;
+    private readonly rooturlAngular = `${environment.baseurl}/angular/ascending`;
+    
+    private readonly rooturlJavascript = `${environment.baseurl}/javascript/ascending`;
+    
     private actions$ = inject(Actions);
     private http = inject(HttpClient);
 
@@ -18,7 +21,7 @@ export class QuestionEffects {
         this.actions$.pipe(
             ofType(loadQuestions),
             exhaustMap(() =>
-                this.http.get<Question[]>(this.rooturl + '/').pipe(
+                this.http.get<Question[]>(this.rooturlAngular + '/').pipe(
                     map((questions) => loadQuestionsSuccess({ questions })),
                     catchError((error) =>
                         of(loadQuestionsFailure({ error: error?.message ?? 'Unknown error' }))
@@ -34,7 +37,7 @@ export class QuestionEffects {
         this.actions$.pipe(
             ofType(loadQuestionById),
             mergeMap(({ id }) =>
-                this.http.get<Question>(`${this.rooturl}/${id}/`).pipe(
+                this.http.get<Question>(`${this.rooturlAngular}/${id}/`).pipe(
                     map((question) => loadQuestionByIdSuccess({ question })),
                     catchError((error) =>
                         of(loadQuestionByIdFailure({ error: error?.message ?? 'Unknown error' }))

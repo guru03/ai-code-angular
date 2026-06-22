@@ -10,7 +10,7 @@ import { getQuestions } from "./javascript.selector";
 @Injectable()
 export class QuestionEffects {
     // private readonly baseurl = environment.baseurl.replace(/\/+$/, '');
-    private readonly rooturl = `${environment.baseurl}/javascript`;
+    private readonly rooturl = `${environment.baseurl}/javascript/ascending`;
     private actions$ = inject(Actions);
     private http = inject(HttpClient);
 
