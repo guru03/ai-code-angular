@@ -23,7 +23,7 @@ export class Angular implements OnInit {
   categories = LANGUAGES;
   topics = TOPICS;
   activeCategory: string = LANGUAGES[0].name;
-  activeTopic: string = TOPICS[0].name;
+  activeTopic: string = '';
   categoryCounts$!: Observable<Record<string, number>>;
 
   ngOnInit(): void {
@@ -32,10 +32,7 @@ export class Angular implements OnInit {
 
     this.route.queryParamMap.subscribe(params => {
       this.activeCategory = params.get('category') ?? LANGUAGES[0].name;
-      this.filterByCategory(this.activeCategory);
-
-      this.activeTopic = params.get('topic') ?? LANGUAGES[0].name;
-      this.filterByTopics(this.activeTopic);
+      this.activeTopic = params.get('topic') ?? '';
     });
 
     this.sortingCategory();
@@ -53,16 +50,18 @@ export class Angular implements OnInit {
 
     this.router.navigate(['questions'], {
       relativeTo: this.route,
-      queryParams: category === LANGUAGES[0].name ? {} : { category },
+      queryParams: { category: category === LANGUAGES[0].name ? null : category },
+      // queryParamsHandling: 'merge',
     });
   }
 
-  filterByTopics(topics: string): void {
-    this.activeTopic = topics;
+  filterByTopics(topic: string): void {
+    this.activeTopic = topic;
 
     this.router.navigate(['questions'], {
       relativeTo: this.route,
-      queryParams: topics === TOPICS[0].name ? {} : { topics },
+      queryParams: { topic },
+      queryParamsHandling: 'merge',
     });
   }
 

@@ -4,7 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
-import { getQuestions, selectQuestionsByCategory } from '../state/angular.selector';
+import { selectQuestionsByFilters } from '../state/angular.selector';
 import { loadQuestionById, loadQuestions } from '../state/angular.action';
 import { Question } from '../../models/question.model';
 import { Labels, WorkStatus } from '../../enum/enum';
@@ -34,11 +34,9 @@ export class AngularQuestionList implements OnInit {
 
     this.route.queryParamMap.subscribe(params => {
       const category = params.get('category') ?? 'All';
+      const topic = params.get('topic');
       this.activeCategory.set(category);
-      this.getQuestionList$ =
-        category === 'All'
-          ? this.store.select(getQuestions)
-          : this.store.select(selectQuestionsByCategory(category));
+      this.getQuestionList$ = this.store.select(selectQuestionsByFilters(category, topic));
     });
   }
 

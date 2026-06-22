@@ -38,6 +38,23 @@ export const selectQuestionsByCategory = (category: string) =>
         }
     );
 
+export const selectQuestionsByFilters = (category: string, topic: string | null) =>
+    createSelector(
+        selectAngularState,
+        (state: QuestionsState) => {
+            const normalizedTopic = topic?.toLowerCase();
+
+            return state.questions.filter(question => {
+                const matchesCategory =
+                    category === LANGUAGES[0].name || question.language === category;
+                const matchesTopic =
+                    !normalizedTopic || question.topic.toLowerCase() === normalizedTopic;
+
+                return matchesCategory && matchesTopic;
+            });
+        }
+    );
+
 // Load Question Details Component
 
 export const getSelectedQuestion = createSelector(
