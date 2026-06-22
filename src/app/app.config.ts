@@ -11,6 +11,7 @@ import { appReducer } from './store/app.reducer';
 import { QuestionEffects as AngularQuestionEffects } from './angular/state/angular.effetcts';
 import { QuestionEffects as JavascriptQuestionEffects } from './javascript/state/javascript.effetcts';
 import { provideRouterStore } from '@ngrx/router-store';
+import { QuestionBankEffects } from './features/question-bank-component/state/question-bank.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,8 +20,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideStore(appReducer),
-    provideEffects([AngularQuestionEffects, JavascriptQuestionEffects]),
+    provideEffects([QuestionBankEffects, AngularQuestionEffects, JavascriptQuestionEffects]),
     provideStoreDevtools({ logOnly: !isDevMode() }),
     provideRouterStore()
-]
+  ]
 };

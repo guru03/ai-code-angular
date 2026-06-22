@@ -1,1 +1,226 @@
 <p>question-bank-component works!</p>
+<!-- <div class="max-w-[1600px] mx-auto px-4 py-8 md:py-12 border-b border-gray-100 bg-gradient-to-r from-orange-50/30 to-transparent rounded-xl">
+    <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-orange-600 bg-orange-50 rounded-full mb-4 uppercase tracking-wider">
+        Interview Prep
+    </span>
+
+    <h1 class="text-2xl md:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight mb-3">
+        🚀 Complete Software Development Interview Questions & Answers Handbook
+    </h1>
+
+    <p class="text-sm md:text-base text-gray-600 max-w-4xl leading-relaxed">
+        A complete collection of beginner to advanced technical interview questions and answers covering 
+        <span class="font-medium text-gray-800">Angular, JavaScript, TypeScript, Python, Java, HTML, CSS, SQL, Git, APIs</span>, 
+        and modern software development concepts.
+    </p>
+</div> -->
+
+<div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8
+    items-start">
+    <aside class="lg:col-span-3 space-y-6 sticky top-24 overflow-y-auto">
+        <div class=" bg-white p-6 rounded-2xl border border-slate-100 shadow-sm space-y-4 ">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4 px-2">Categories</h2>
+            @if (categoryCounts$ | async; as categoryCounts) {
+            <ul class="space-y-1">
+                @for (category of categories; track $index) {
+                <li (click)="filterByCategory(category.name)" [ngClass]="{
+                'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20': activeCategory === category.name,
+                'text-slate-600 hover:text-slate-900 hover:bg-slate-50': activeCategory !== category.name }"
+                    class="cursor-pointer flex items-center justify-between px-4 py-2.5 rounded-xl font-medium transition duration-200">
+
+                    <span>{{ category.value }}</span>
+                    <span
+                        class="bg-slate-100 text-slate-500 group-hover:bg-slate-200 transition text-xs font-semibold px-2 py-0.5 rounded-full">
+                        {{ categoryCounts[category.name] }}
+                    </span>
+                </li>
+                }
+            </ul>
+            }
+        </div>
+
+        <div class="flex gap-2">
+            <button class="px-4 py-2 rounded" [class.bg-blue-500]="activeCategory === 'angular'"
+                (click)="filterByCategory('angular')">
+                Angular
+            </button>
+            <button class="px-4 py-2 rounded" [class.bg-green-500]="activeCategory === 'javascript'"
+                (click)="filterByCategory('javascript')">
+                JavaScript
+            </button>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Notes Section</h4>
+            <ul class="space-y-2 text-xs font-medium">
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>ID 10 will be removed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>ID 11 will be removed</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>ID 12 will be removed</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <section class="lg:col-span-6 space-y-8">
+        <router-outlet></router-outlet>
+    </section>
+
+    <aside class="lg:col-span-3 space-y-6 sticky top-24 overflow-y-auto">
+
+        <!--? Quick Navigation -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Quick Navigation</h2>
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                <h4 class="font-bold text-slate-900 text-sm mb-1">Getting Started</h4>
+                <p class="text-xs text-slate-500 leading-relaxed mb-4">New to NgRx? Start with our reactive state
+                    patterns guide.</p>
+                <button
+                    class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-md shadow-orange-500/10 hover:shadow-lg transition duration-200">
+                    View Roadmap
+                </button>
+            </div>
+
+            <!--? Related Topics -->
+
+            <div class="mt-6 pt-6 border-t border-slate-100">
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Related Topics</h4>
+                <ul class="space-y-2 text-xs font-medium">
+                    @for (topic of topics; track $index) {
+                    <li (click)="filterByTopics(topic.name)"
+                        class="cursor-pointer flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        {{topic.value}}
+                    </li>
+                    }
+                    <li>
+                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                            Change Detection
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                            RxJS Observables
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                            Dependency Injection
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                            State Management
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--? Artificial Intelligence -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Artificial Intelligence</h4>
+            <ul class="space-y-2 text-xs font-medium">
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Neural Networks</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Natural Language Processing</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>LLM and ChatGPT</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Prompt Engineering</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>RAG PPT</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>Lang Chain</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>LVMs and Stable Diffusion</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
+                        <span
+                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                        <span>AI and Multi AI agents</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 w-24 h-24 bg-orange-500 rounded-full blur-3xl opacity-40">
+            </div>
+
+            <h3 class="font-bold text-base mb-1">Progress</h3>
+            <p class="text-xs text-slate-400 mb-4">You've covered 40% of the NgRx module.</p>
+
+            <div class="w-full bg-slate-800 rounded-full h-2.5 mb-5 overflow-hidden">
+                <div class="bg-gradient-to-r from-orange-500 to-amber-500 h-2.5 rounded-full transition-all duration-500"
+                    style="width: 40%"></div>
+            </div>
+
+            <button
+                class="w-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2.5 px-4 rounded-xl transition backdrop-blur-sm">
+                Continue Learning
+            </button>
+        </div>
+    </aside>
+</div>

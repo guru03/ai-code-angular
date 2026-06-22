@@ -7,7 +7,7 @@ import { QuestionBank } from "./models/question-bank.models";
 import { loadQuestionBank, loadQuestionBankById, loadQuestionBankByIdFailure, loadQuestionBankByIdSuccess, loadQuestionBankFailure, loadQuestionBankSuccess } from "./question-bank.action";
 
 @Injectable()
-export class QuestionEffects {
+export class QuestionBankEffects {
     private actions$ = inject(Actions);
     private http = inject(HttpClient);
 

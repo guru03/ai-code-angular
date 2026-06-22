@@ -1,1 +1,182 @@
 <p>question-list-component works!</p>
+<div class="border-b border-slate-200 pb-6">
+    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{{activeCategory()}} Concepts</h1>
+    <p class="mt-2 text-base text-slate-500">Master state management with our comprehensive guide to Redux
+        patterns in Angular.</p>
+</div>
+
+
+<div class="space-y-6 relative">
+    
+    @if(loading$ | async){
+    <aic-loader></aic-loader>
+    }
+
+
+    @for (item of getQuestionList$ | async; track $index) {
+    <div class="question-section">
+        <div [routerLink]="['/angular/questions', item.id]" class="serial-number">
+            <span>{{ $index + 1 | padZero:2 }}</span>
+        </div>
+
+        <div class="pl-2">
+            <!--? This is Final design -->
+
+            <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
+                <!-- Brand/Topic -->
+                <span class="text-orange-600 font-bold uppercase tracking-wider">{{ item.language }}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="text-slate-500">{{item.topic}}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class=" px-2.5 py-1 rounded-full" [ngClass]="{
+                        'bg-blue-50 text-blue-700': item.label === label.Beginner,
+                        'bg-amber-50 text-amber-700': item.label === label.Intermediate,
+                        'bg-indigo-50 text-indigo-700': item.label === label.Expert,
+                        'bg-teal-50 text-teal-700': item.label === label.Mastery,
+                        'bg-emerald-50 text-emerald-700': item.label === label.Advanced,
+                        }">
+                    {{item.label | titlecase}}
+                </span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">{{ item.id | padZero:2 }}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serial_number | padZero:2
+                    }}</span>
+
+                <span class="text-slate-300">•</span>
+                <!-- ?This is for the content status, we can have different colors based on the status value. -->
+
+                <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border capitalize"
+                    [ngClass]="{
+                        'bg-slate-100 text-slate-600 border-slate-200': item.content_status === WorkStatus.Draft,
+                        'bg-amber-50 text-amber-700 border-amber-200': item.content_status === WorkStatus.Pending,
+                        'bg-indigo-50 text-indigo-700 border-indigo-200': item.content_status === WorkStatus.InProgress,
+                        'bg-purple-50 text-purple-700 border-purple-200': item.content_status === WorkStatus.InReview,
+                        'bg-emerald-50 text-emerald-700 border-emerald-200': item.content_status === WorkStatus.Approved,
+                        'bg-teal-50 text-teal-700 border-teal-200': item.content_status === WorkStatus.Completed,
+                        'bg-rose-50 text-rose-700 border-rose-200': item.content_status === WorkStatus.Rejected,
+                        'bg-sky-50 text-sky-700 border-sky-200': item.content_status === WorkStatus.Updated,
+                        'bg-zinc-200 text-zinc-700 border-zinc-300': item.content_status === WorkStatus.Archived
+                        }">
+
+                    <!-- <span class="w-1.5 h-1.5 rounded-full" [ngClass]="{
+                                'bg-slate-400': item.content_status === WorkStatus.Draft,
+                                'bg-amber-500 animate-pulse': item.content_status === WorkStatus.Pending,
+                                'bg-indigo-500': item.content_status === WorkStatus.InProgress,
+                                'bg-purple-500': item.content_status === WorkStatus.InReview,
+                                'bg-emerald-500': item.content_status === WorkStatus.Approved,
+                                'bg-teal-500': item.content_status === WorkStatus.Completed,
+                                'bg-rose-500': item.content_status === WorkStatus.Rejected,
+                                'bg-sky-500': item.content_status === WorkStatus.Updated,
+                                'bg-zinc-500': item.content_status === WorkStatus.Archived
+                    }"></span> -->
+
+                    {{ item.content_status | titlecase }}
+                </span>
+                <span class="text-slate-300">•</span>
+
+                <!-- Time to Read -->
+                <span class="text-slate-400 flex items-center gap-1">
+                    5 min read
+                </span>
+            </div>
+            <!--? This is Final design ends -->
+
+            <h2 class="question-text">
+                {{ item.question }}
+            </h2>
+
+
+            <div class="answer-section" [innerHTML]="setHtml(item.answer)">
+            </div>
+            @if (item.answer2) {
+            <hr class="border-slate-200 my-6" />
+            <div class="mt-3"><span class="text-lg font-medium">Additional Explanation:</span></div>
+            <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
+            }
+
+
+            @if(item.code_block_title){
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title)">
+            </div>
+            }
+
+            @if (item.code_block) {
+            <span>{{item.code_language}}</span>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="item.code_language"></pre>
+            </div>
+            }
+
+            @if(item.code_block_title2){
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title2)">
+            </div>
+            }
+
+            @if (item.code_block2) {
+            <span>{{item.code_language2}}</span>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_block2" [language]="item.code_language2"></pre>
+            </div>
+            }
+
+            @if(item.code_block_title3){
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title3)">
+            </div>
+            }
+
+            @if (item.code_block3) {
+            <span>{{item.code_language3}}</span>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_block3" [language]="item.code_language3"></pre>
+            </div>
+            }
+            @if (item.answer3) {
+            <div class="answer-section" [innerHTML]="setHtml(item.answer3)"></div>
+            }
+            @if (item.answer4) {
+            <div class="answer-section" [innerHTML]="setHtml(item.answer4)"></div>
+            }
+        </div>
+    </div>
+    }
+
+    <!--? This is for the design purposes only, we can remove it later. -->
+
+</div>
+
+<!--! This? is for the design purpose only-->
+
+<div class="code-block-container">
+    <!-- <div class="code-header">
+        <div class="window-controls">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+        </div>
+        <span class="file-name">app-user-card.component.ts</span>
+        <button class="copy-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy
+        </button>
+    </div> -->
+
+    <!-- <pre>
+        <code class="language-typescript">
+            {{codeTesting}}
+        </code>
+    </pre> -->
+</div>

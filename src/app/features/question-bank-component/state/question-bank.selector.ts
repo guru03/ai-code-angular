@@ -43,7 +43,7 @@ export const selectQuestionsByCategory = (category: string) =>
         }
     );
 
-export const selectQuestionsByFilters = (category: string, topic: string | null) =>
+export const selectQuestionBankByFilters = (category: string, topic: string | null) =>
     createSelector(
         selectAngularState,
         (state: QuestionBankState) => {

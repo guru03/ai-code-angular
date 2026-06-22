@@ -25,6 +25,12 @@ export const routes: Routes = [
     },
 
     {
+        path: 'question-bank',
+        loadChildren: () =>
+            import('./features/question-bank-component/question-bank.routes').then(m => m.QUESTION_BANK_ROUTES)
+    },
+
+    {
         path: 'angular',
         loadChildren: () =>
             import('./angular/angular.routes').then(m => m.ANGULAR_ROUTES)
