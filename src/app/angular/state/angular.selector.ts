@@ -11,6 +11,11 @@ export const getQuestions = createSelector(
     }
 );
 
+export const selectLoading = createSelector(
+    selectAngularState,
+    (state: QuestionsState) => state.loading
+);
+
 export const getCategoryCounts = createSelector(
     selectAngularState,
     (state: QuestionsState) => {

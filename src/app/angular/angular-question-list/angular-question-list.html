@@ -5,7 +5,13 @@
 </div>
 
 
-<div class="space-y-6">
+<div class="space-y-6 relative">
+    
+    @if(loading$ | async){
+    <aic-loader></aic-loader>
+    }
+
+
     @for (item of getQuestionList$ | async; track $index) {
     <div class="question-section">
         <div [routerLink]="['/angular/questions', item.id]" class="serial-number">

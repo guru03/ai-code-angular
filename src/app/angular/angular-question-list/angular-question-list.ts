@@ -4,17 +4,18 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
-import { selectQuestionsByFilters } from '../state/angular.selector';
+import { selectLoading, selectQuestionsByFilters } from '../state/angular.selector';
 import { loadQuestionById, loadQuestions } from '../state/angular.action';
 import { Question } from '../../models/question.model';
 import { Labels, WorkStatus } from '../../enum/enum';
 import { Observable } from 'rxjs';
 import { PadZeroPipe } from '../../pipes/pad-zero-pipe';
 import { CodeSnippetDirective } from '../../directive/code-snippet-directive';
+import { Loader } from '../../loader/loader';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe,  CodeSnippetDirective],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe,  CodeSnippetDirective, Loader],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
   encapsulation: ViewEncapsulation.None,
@@ -23,10 +24,11 @@ export class AngularQuestionList implements OnInit {
   activeCategory = signal('All');
   readonly WorkStatus = WorkStatus;
   readonly label = Labels;
+  private store = inject(Store<AppState>);
   getQuestionList$!: Observable<Question[]>;
+  loading$ = this.store.select(selectLoading);
   selectedQuestion$!: Observable<Question | null>;
   private sanitizer = inject(DomSanitizer);
-  private store = inject(Store<AppState>);
   private route = inject(ActivatedRoute);
 
   ngOnInit() {
