@@ -2,22 +2,22 @@ import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { LANGUAGES, QuestionBankState } from "./models/question-bank.models";
 
 
-const selectAngularState = createFeatureSelector<QuestionBankState>('questions');
+const selectQuestionBankState = createFeatureSelector<QuestionBankState>('questionBank');
 
 export const getQuestions = createSelector(
-    selectAngularState,
+    selectQuestionBankState,
     (state: QuestionBankState) => {
         return state.questions;
     }
 );
 
 export const selectLoading = createSelector(
-    selectAngularState,
+    selectQuestionBankState,
     (state: QuestionBankState) => state.loading
 );
 
 export const getCategoryCounts = createSelector(
-    selectAngularState,
+    selectQuestionBankState,
     (state: QuestionBankState) => {
         return state.questions.reduce<Record<string, number>>(
             (counts, question) => ({
@@ -33,7 +33,7 @@ export const getCategoryCounts = createSelector(
 
 export const selectQuestionsByCategory = (category: string) =>
     createSelector(
-        selectAngularState,
+        selectQuestionBankState,
         (state: QuestionBankState) => {
             if (category === LANGUAGES[0].name) {
                 return state.questions;
@@ -45,7 +45,7 @@ export const selectQuestionsByCategory = (category: string) =>
 
 export const selectQuestionBankByFilters = (category: string, topic: string | null) =>
     createSelector(
-        selectAngularState,
+        selectQuestionBankState,
         (state: QuestionBankState) => {
             const normalizedTopic = topic?.toLowerCase();
 
@@ -63,6 +63,6 @@ export const selectQuestionBankByFilters = (category: string, topic: string | nu
 // Load Question Details Component
 
 export const getSelectedQuestion = createSelector(
-    selectAngularState,
+    selectQuestionBankState,
     (state: QuestionBankState) => state.selectedQuestion ?? null
 );

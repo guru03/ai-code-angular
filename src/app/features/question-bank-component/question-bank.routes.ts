@@ -9,6 +9,7 @@ export const QUESTION_BANK_ROUTES: Routes = [
         path: '',
         component: QuestionBankComponent,
         children: [
+            { path: '', pathMatch: 'full', redirectTo: 'questions' },
             { path: 'questions', component: QuestionListComponent },
             { path: 'questions/:id', component: QuestionDetailsComponent },
         ]

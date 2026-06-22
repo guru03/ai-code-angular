@@ -1,5 +1,5 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PadZeroPipe } from '../../../pipes/pad-zero-pipe';
 import { CodeSnippetDirective } from '../../../directive/code-snippet-directive';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { Question } from '../../../models/question.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { loadQuestionBank, loadQuestionBankById } from '../state/question-bank.action';
+import { loadQuestionBank } from '../state/question-bank.action';
 import { selectLoading, selectQuestionBankByFilters } from '../state/question-bank.selector';
 
 @Component({
@@ -18,6 +18,7 @@ import { selectLoading, selectQuestionBankByFilters } from '../state/question-ba
   imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader],
   templateUrl: './question-list-component.html',
   styleUrl: './question-list-component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class QuestionListComponent implements OnInit {
   activeCategory = signal('All');

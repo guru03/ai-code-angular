@@ -10,6 +10,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server
   },
   {
+    path: 'question-bank/questions/:id',
+    renderMode: RenderMode.Server
+  },
+  {
     path: 'blogs/details/:id',
     renderMode: RenderMode.Server
   },

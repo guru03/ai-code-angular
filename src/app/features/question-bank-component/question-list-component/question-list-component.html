@@ -15,7 +15,7 @@
 
     @for (item of getQuestionList$ | async; track $index) {
     <div class="question-section">
-        <div [routerLink]="['/angular/questions', item.id]" class="serial-number">
+        <div [routerLink]="['/question-bank/questions', item.id]" class="serial-number">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
 
