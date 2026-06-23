@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { Question } from '../../../models/question.model';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { loadQuestionBank } from '../state/question-bank.action';
+import { loadQuestionBank, loadQuestionBankById } from '../state/question-bank.action';
 import { selectLoading, selectQuestionBankByFilters } from '../state/question-bank.selector';
 
 @Component({
@@ -50,7 +50,9 @@ export class QuestionListComponent implements OnInit {
   }
 
   onQuestionClick(id: number) {
-    // this.store.dispatch(loadQuestionBankById({ id }));
+    const category = this.activeCategory();
+    const language = category.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
+    this.store.dispatch(loadQuestionBankById({ id, language }));
   }
 
   setHtml(content: string): SafeHtml {
