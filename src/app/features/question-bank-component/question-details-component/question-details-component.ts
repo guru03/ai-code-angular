@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { AppState } from '../../../store/app.state';
 import { Store } from '@ngrx/store';
@@ -6,10 +6,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { loadQuestionBankById } from '../state/question-bank.action';
 import { getSelectedQuestion } from '../state/question-bank.selector';
+import { PadZeroPipe } from '../../../pipes/pad-zero-pipe';
+import { CodeSnippetDirective } from '../../../directive/code-snippet-directive';
+import { Loader } from '../../../loader/loader';
+import { Labels, WorkStatus } from '../../../enum/enum';
 
 @Component({
   selector: 'aic-question-details-component',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader],
   templateUrl: './question-details-component.html',
   styleUrl: './question-details-component.scss',
 })
@@ -17,6 +21,8 @@ export class QuestionDetailsComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private store = inject(Store<AppState>);
   private sanitizer = inject(DomSanitizer);
+  readonly label = Labels;
+  readonly WorkStatus = WorkStatus;
   selectedQuestion$ = this.store.select(getSelectedQuestion);
 
   ngOnInit() {

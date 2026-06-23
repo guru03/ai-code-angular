@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
@@ -13,6 +13,7 @@ import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
   imports: [AsyncPipe, NgClass, RouterOutlet, CommonModule],
   templateUrl: './question-bank-component.html',
   styleUrl: './question-bank-component.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class QuestionBankComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
