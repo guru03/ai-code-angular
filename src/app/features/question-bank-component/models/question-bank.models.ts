@@ -1,4 +1,4 @@
-import { WorkStatus } from "../../../../enum/enum";
+import { WorkStatus } from "../../../enum/enum";
 
 export interface QuestionBank {
   id: number;
