@@ -45,7 +45,7 @@ export const routes: Routes = [
     {
         path: 'coding',
         loadChildren: () =>
-            import('./coding/coding.routes').then(m => m.CODING_ROUTES)
+            import('./features/coding/coding.routes').then(m => m.CODING_ROUTES)
     },
 
 

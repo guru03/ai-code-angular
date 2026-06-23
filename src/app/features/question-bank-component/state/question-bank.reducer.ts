@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./question-bank.state";
-import { QuestionBankState } from "./models/question-bank.models";
+import { QuestionBankState } from "../models/question-bank.models";
 import {
     loadQuestionBank,
     loadQuestionBankSuccess,

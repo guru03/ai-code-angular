@@ -1,4 +1,3 @@
-<p>question-list-component works!</p>
 <div class="border-b border-slate-200 pb-6">
     <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{{activeCategory()}} Concepts</h1>
     <p class="mt-2 text-base text-slate-500">Master state management with our comprehensive guide to Redux
@@ -15,9 +14,18 @@
 
     @for (item of getQuestionList$ | async; track $index) {
     <div class="question-section">
-        <div [routerLink]="['/question-bank/questions', item.id]" class="serial-number">
+
+        <div
+            [routerLink]="['/question-bank/questions', item.id]"
+            [queryParams]="{ category: activeCategory() === 'All' ? null : activeCategory() }"
+            class="serial-number">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
+
+        <!-- If want without category in routing use below commented code -->
+        <!-- <div [routerLink]="['/question-bank/questions', item.id]" class="serial-number">
+            <span>{{ $index + 1 | padZero:2 }}</span>
+        </div> -->
 
         <div class="pl-2">
             <!--? This is Final design -->

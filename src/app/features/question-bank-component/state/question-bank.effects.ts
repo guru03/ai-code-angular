@@ -3,7 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, mergeMap, Observable, of } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { QuestionBank } from "./models/question-bank.models";
+import { QuestionBank } from "../models/question-bank.models";
 import { loadQuestionBank, loadQuestionBankById, loadQuestionBankByIdFailure, loadQuestionBankByIdSuccess, loadQuestionBankFailure, loadQuestionBankSuccess } from "./question-bank.action";
 import { Action } from "@ngrx/store";
 

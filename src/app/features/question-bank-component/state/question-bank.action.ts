@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { QuestionBank } from "./models/question-bank.models";
+import { QuestionBank } from "../models/question-bank.models";
 
 // Load Question Bank
 export const loadQuestionBank = createAction(

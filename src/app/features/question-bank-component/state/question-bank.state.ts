@@ -1,4 +1,4 @@
-import { QuestionBankState } from "./models/question-bank.models";
+import { QuestionBankState } from "../models/question-bank.models";
 
 export const initialState: QuestionBankState = {
     questions:[],
