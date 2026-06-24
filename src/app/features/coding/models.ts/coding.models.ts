@@ -12,8 +12,8 @@ export interface Programming {
     content_status: WorkStatus;
 
     programe: string;
-    soution: string;
-    alternate_soution?: string;
+    solution: string;
+    alternate_solution?: string;
 
     code_language: string;
     code_block_title: string;

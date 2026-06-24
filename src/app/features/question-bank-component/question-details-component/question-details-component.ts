@@ -13,7 +13,7 @@ import { Labels, WorkStatus } from '../../../enum/enum';
 
 @Component({
   selector: 'aic-question-details-component',
-  imports: [AsyncPipe, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader],
+  imports: [AsyncPipe, CommonModule, PadZeroPipe, CodeSnippetDirective],
   templateUrl: './question-details-component.html',
   styleUrl: './question-details-component.scss',
 })
