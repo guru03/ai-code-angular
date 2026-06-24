@@ -4,7 +4,7 @@ import { Programming } from '../models.ts/coding.models';
 // -----------------------------
 // Types
 // -----------------------------
-export type Language = 'angular' | 'javascript';
+export type Language = 'angular' | 'javascript' | 'coding';
 
 // -----------------------------
 // Programming Actions

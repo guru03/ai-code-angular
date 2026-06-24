@@ -4,7 +4,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AppState } from '../../../store/app.state';
 import { Store } from '@ngrx/store';
 import { Labels, WorkStatus } from '../../../enum/enum';
-import { selectLoading } from '../state/coding.selector';
+import { selectLoading, selectProgrammings } from '../state/coding.selector';
 import { Observable } from 'rxjs';
 import { Programming } from '../models.ts/coding.models';
 import { loadProgramming } from '../state/coding.action';
@@ -24,7 +24,7 @@ export class CodingListComponent implements OnInit {
   readonly label = Labels;
   private sanitizer = inject(DomSanitizer);
   private store = inject(Store<AppState>);
-  getCodingList$!: Observable<Programming[]>;
+  getCodingList$ = this.store.select(selectProgrammings);
   loading$ = this.store.select(selectLoading);
 
   codeBlock = `// Syntax:
@@ -47,9 +47,9 @@ export class CodingListComponent implements OnInit {
   inviteEmployee1("Hello", "How are you?"); // Hello John Rodson, How are you?
   inviteEmployee2("Hello", "How are you?"); // Hello Jimmy Baily, How are you?`;
   language = 'typescript';
-  items = Array.from({ length: 10 }); // creates an array of 10 empty slots
+  items = Array.from({ length: 1 }); // creates an array of 10 empty slots
   ngOnInit() {
-    this.store.dispatch(loadProgramming({ language: 'angular' }))
+    this.store.dispatch(loadProgramming({ language: 'coding' }))
   }
   setHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);

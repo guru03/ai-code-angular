@@ -16,7 +16,7 @@ export class CodingEffects {
         this.actions$.pipe(
             ofType(loadProgramming),
             exhaustMap(({ language }) =>
-                this.http.get<Programming[]>(`${environment.baseurl}/${'coding'}/ascending/`).pipe(
+                this.http.get<Programming[]>(`${environment.baseurl}/${language}/ascending/`).pipe(
                     map((programmings) => loadProgrammingSuccess({ programmings })),
                     catchError((error) =>
                         of(loadProgrammingFailure({ error: error?.message ?? 'Unknown error' }))
