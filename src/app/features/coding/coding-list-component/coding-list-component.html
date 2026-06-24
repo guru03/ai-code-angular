@@ -1,3 +1,136 @@
+<div class="space-y-6 relative">
+
+    @if(loading$ | async){
+    <aic-loader></aic-loader>
+    }
+
+
+    @for (item of getCodingList$ | async; track $index) {
+    <div class="question-section">
+        <h2>working now</h2>
+
+        <div [routerLink]="['/question-bank/questions', item.id]">
+            <span>{{ $index + 1 | padZero:2 }}</span>
+        </div>
+
+        <!-- If want without category in routing use below commented code -->
+        <!-- <div [routerLink]="['/question-bank/questions', item.id]" class="serial-number">
+            <span>{{ $index + 1 | padZero:2 }}</span>
+        </div> -->
+
+        <div class="pl-2">
+            <!--? This is Final design -->
+
+            <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
+                <!-- Brand/Topic -->
+                <span class="text-orange-600 font-bold uppercase tracking-wider">{{ item.language }}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="text-slate-500">{{item.topic}}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <!-- <span class=" px-2.5 py-1 rounded-full" [ngClass]="{
+                        'bg-blue-50 text-blue-700': item.label === label.Beginner,
+                        'bg-amber-50 text-amber-700': item.label === label.Intermediate,
+                        'bg-indigo-50 text-indigo-700': item.label === label.Expert,
+                        'bg-teal-50 text-teal-700': item.label === label.Mastery,
+                        'bg-emerald-50 text-emerald-700': item.label === label.Advanced,
+                        }">
+                    {{item.label | titlecase}}
+                </span> -->
+
+                <span class="text-slate-300">•</span>
+
+                <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">{{ item.id | padZero:2 }}</span>
+
+                <span class="text-slate-300">•</span>
+
+                <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serial_number | padZero:2
+                    }}</span>
+
+                <span class="text-slate-300">•</span>
+                <!-- ?This is for the content status, we can have different colors based on the status value. -->
+
+                <span
+                    class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border capitalize"
+                    [ngClass]="{
+                        'bg-slate-100 text-slate-600 border-slate-200': item.content_status === WorkStatus.Draft,
+                        'bg-amber-50 text-amber-700 border-amber-200': item.content_status === WorkStatus.Pending,
+                        'bg-indigo-50 text-indigo-700 border-indigo-200': item.content_status === WorkStatus.InProgress,
+                        'bg-purple-50 text-purple-700 border-purple-200': item.content_status === WorkStatus.InReview,
+                        'bg-emerald-50 text-emerald-700 border-emerald-200': item.content_status === WorkStatus.Approved,
+                        'bg-teal-50 text-teal-700 border-teal-200': item.content_status === WorkStatus.Completed,
+                        'bg-rose-50 text-rose-700 border-rose-200': item.content_status === WorkStatus.Rejected,
+                        'bg-sky-50 text-sky-700 border-sky-200': item.content_status === WorkStatus.Updated,
+                        'bg-zinc-200 text-zinc-700 border-zinc-300': item.content_status === WorkStatus.Archived
+                        }">
+
+                    <!-- <span class="w-1.5 h-1.5 rounded-full" [ngClass]="{
+                                'bg-slate-400': item.content_status === WorkStatus.Draft,
+                                'bg-amber-500 animate-pulse': item.content_status === WorkStatus.Pending,
+                                'bg-indigo-500': item.content_status === WorkStatus.InProgress,
+                                'bg-purple-500': item.content_status === WorkStatus.InReview,
+                                'bg-emerald-500': item.content_status === WorkStatus.Approved,
+                                'bg-teal-500': item.content_status === WorkStatus.Completed,
+                                'bg-rose-500': item.content_status === WorkStatus.Rejected,
+                                'bg-sky-500': item.content_status === WorkStatus.Updated,
+                                'bg-zinc-500': item.content_status === WorkStatus.Archived
+                    }"></span> -->
+
+                    {{ item.content_status | titlecase }}
+                </span>
+                <span class="text-slate-300">•</span>
+
+                <!-- Time to Read -->
+                <span class="text-slate-400 flex items-center gap-1">
+                    5 min read
+                </span>
+            </div>
+            <!--? This is Final design ends -->
+
+            <h2 class="question-text">
+                {{ item.programe }}
+            </h2>
+
+
+            <div class="answer-section" [innerHTML]="setHtml(item.solution)">
+            </div>
+            @if (item.alternate_solution) {
+            <hr class="border-slate-200 my-6" />
+            <div class="mt-3"><span class="text-lg font-medium">Additional Explanation:</span></div>
+            <div class="answer-section" [innerHTML]="setHtml(item.alternate_solution)"></div>
+            }
+
+
+            @if(item.code_block_title){
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title)">
+            </div>
+            }
+
+            @if (item.code_editor) {
+            <span>{{item.code_language}}</span>
+            <div class="code-container combineBothDirectives mt-6">
+                <pre aicCodeSnippetDirective [codeBlock]="item.code_editor" [language]="item.code_language"></pre>
+            </div>
+            }
+
+
+        </div>
+    </div>
+    }
+
+    <!--? This is for the design purposes only, we can remove it later. -->
+
+</div>
+
+
+
+
+
+
+
 <p>coding-list-component works!</p>
 
 <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
