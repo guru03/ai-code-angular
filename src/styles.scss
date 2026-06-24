@@ -5,12 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url(./app/styles/_common.scss);
 
-$fontColor: #002050;
 
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f2f5;
-    color: $fontColor;
-}
