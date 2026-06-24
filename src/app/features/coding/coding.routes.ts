@@ -1,15 +1,15 @@
 import { Routes } from "@angular/router";
-import { Coding } from "./coding";
 import { CodingDesignComponent } from "./coding-design-component/coding-design-component";
 import { CodingDesign2Component } from "./coding-design2-component/coding-design2-component";
 import { CodingPracticeComponent } from "./coding-practice-component/coding-practice-component";
 import { CodingListComponent } from "./coding-list-component/coding-list-component";
 import { CodingDetailComponent } from "./coding-detail-component/coding-detail-component";
+import { CodingComponent } from "./coding-component/coding-component";
 
 export const CODING_ROUTES: Routes = [
     {
         path: '',
-        component: Coding,
+        component: CodingComponent,
         children: [
             { path: '', pathMatch: 'full', redirectTo: 'codings' },
             { path: 'codings', component: CodingListComponent },
