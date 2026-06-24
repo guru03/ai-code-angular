@@ -9,12 +9,12 @@
     <div class="question-section">
         <h2>working now</h2>
 
-        <div [routerLink]="['/question-bank/questions', item.id]">
+        <div [routerLink]="['/coding/coding', item.id]">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
 
         <!-- If want without category in routing use below commented code -->
-        <!-- <div [routerLink]="['/question-bank/questions', item.id]" class="serial-number">
+        <!-- <div [routerLink]="['/coding/coding', item.id]" class="serial-number">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div> -->
 

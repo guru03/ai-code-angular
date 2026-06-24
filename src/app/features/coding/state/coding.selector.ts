@@ -5,7 +5,7 @@ import { ProgrammingState } from '../models.ts/coding.models';
 // Feature Selector
 // -----------------------------
 export const selectProgrammingState =
-  createFeatureSelector<ProgrammingState>('questionBank');
+  createFeatureSelector<ProgrammingState>('codings');
 
 // -----------------------------
 // Basic Selectors
