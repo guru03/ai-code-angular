@@ -7,6 +7,7 @@
     @for (item of getCodingList$ | async; track $index) {
     <div class="question-section">
 
+        <!-- Serial Number -->
         <div [routerLink]="['/coding/coding', item.id]" class="serial-number">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
@@ -17,10 +18,9 @@
         </div> -->
 
         <div class="pl-2">
-            <!--? This is Final design -->
 
+            <!-- Meta Info -->
             <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
-                <!-- Brand/Topic -->
                 <span class="text-orange-600 font-bold uppercase tracking-wider">{{ item.language }}</span>
 
                 <span class="text-slate-300">•</span>
@@ -74,15 +74,17 @@
                     5 min read
                 </span>
             </div>
-            <!--? This is Final design ends -->
 
+            <!-- Question -->
             <h2 class="question-text">
                 {{ item.question }}
             </h2>
 
-
+            <!-- Solution -->
             <div class="answer-section" [innerHTML]="setHtml(item.solution)">
             </div>
+
+            <!-- Primary Code -->
             @if (item.alternate_solution) {
             <hr class="border-slate-200 my-6" />
             <div class="mt-3"><span class="text-lg font-medium">Additional Explanation:</span></div>
@@ -111,19 +113,19 @@
             </div>
             }
 
-            @if (item.code_editor) {
-
+            @if (item.code_output) {
             <div class="code-output">
                 <p><strong>Output:</strong> <span>{{item.code_output}}</span></p>
             </div>
             }
 
             @if (item.code_explanation) {
-            <div class="code-output">
+            <div class="code-explanation">
                 <p><span>{{item.code_explanation}}</span></p>
             </div>
             }
 
+            <!-- Code Examples -->
             @for (example of item.code_examples; track example.id) {
             <div class="answer-section" [innerHTML]="setHtml(item.code_title)">
             </div>
@@ -152,182 +154,4 @@
         </div>
     </div>
     }
-
-    <!--? This is for the design purposes only, we can remove it later. -->
-
-</div>
-
-<div class="space-y-6 relative mt-6">
-
-
-    <!-- <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-slate-50">
-            <div class="flex items-center space-x-2 text-xs font-medium text-slate-400 mb-2">
-                <span class="text-brand-orange font-bold">ALGORITHMS</span>
-                <span>•</span>
-                <span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded">Medium</span>
-                <span>•</span>
-                <span>Max Score: 50</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900 mb-3">1. Write a Program to reverse a string in JavaScript.
-            </h2>
-            <p class="text-sm text-slate-600 leading-relaxed">
-                This code splits the string into an array of characters using the split() method, reverses the
-                array, and joins it back into a string using the <code
-                    class="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono">join() method.</code>.
-            </p>
-        </div>
-
-        <div class="bg-brand-dark p-4 font-mono text-xs text-slate-300 relative">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-slate-400">
-                <div class="flex items-center space-x-2">
-                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                    <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
-                </div>
-                <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 rounded">TypeScript</span>
-            </div>
-           
-            <div class="code-container combineBothDirectives">
-                <pre aicCodeSnippetDirective [codeBlock]="codeBlock" [language]="language"></pre>
-            </div>
-        </div>
-    </div> -->
-
-    @for (item of items; track $index) {
-    <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-slate-50">
-            <div class="flex items-center space-x-2 text-xs font-medium text-slate-400 mb-2">
-                <span class="text-brand-orange font-bold">ALGORITHMS</span>
-                <span>•</span>
-                <span class="bg-blue-50 text-blue-600 px-2 py-0.5 rounded">Medium</span>
-                <span>•</span>
-                <span>Max Score: 50</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900 mb-3">1. Custom RxJS Filter Operator</h2>
-            <p class="text-sm text-slate-600 leading-relaxed">
-                Implement a custom RxJS pipeable operator named <code
-                    class="bg-slate-100 px-1.5 py-0.5 rounded text-xs font-mono">filterMap</code>. It should first
-                filter out elements based on a predicate function, and then map the remaining items using a
-                projection function.
-            </p>
-        </div>
-
-        <div class="bg-brand-dark p-4 font-mono text-xs text-slate-300 relative">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3 text-slate-400">
-                <div class="flex items-center space-x-2">
-                    <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                    <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                    <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
-                </div>
-                <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 rounded">TypeScript</span>
-            </div>
-            <!-- <pre class="overflow-x-auto leading-6">
-                    
-                </pre> -->
-            <div class="code-container combineBothDirectives">
-                <pre aicCodeSnippetDirective [codeBlock]="codeBlock" [language]="language"></pre>
-            </div>
-        </div>
-    </div>
-    }
-
-    <div class="flex items-center justify-between pt-2">
-        <h3 class="font-bold text-slate-800 text-lg">Daily Coding Grid</h3>
-        <select
-            class="bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-600 px-3 py-1.5 focus:ring-brand-orange focus:border-brand-orange">
-            <option>Sort by: Newest</option>
-            <option>Sort by: Most Solved</option>
-        </select>
-    </div>
-
-    <div
-        class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:border-slate-200 transition">
-        <div class="space-y-1">
-            <div class="flex items-center space-x-2 text-[11px] font-medium text-slate-400">
-                <span class="bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded font-bold">Easy</span>
-                <span>•</span>
-                <span>Success Rate: 84%</span>
-            </div>
-            <h4 class="font-bold text-slate-800 text-base hover:text-brand-orange cursor-pointer">Flatten a
-                Multi-dimensional Array</h4>
-        </div>
-        <button
-            class="border border-slate-200 text-slate-600 hover:bg-brand-orange hover:text-white hover:border-brand-orange text-xs font-bold px-4 py-2 rounded-xl transition">
-            Solve
-        </button>
-    </div>
-
-    <div
-        class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between hover:border-slate-200 transition">
-        <div class="space-y-1">
-            <div class="flex items-center space-x-2 text-[11px] font-medium text-slate-400">
-                <span class="bg-red-50 text-red-600 px-2 py-0.5 rounded font-bold">Hard</span>
-                <span>•</span>
-                <span>Success Rate: 31%</span>
-            </div>
-            <h4 class="font-bold text-slate-800 text-base hover:text-brand-orange cursor-pointer">Build a Dependency
-                Injection Container</h4>
-        </div>
-        <button
-            class="border border-slate-200 text-slate-600 hover:bg-brand-orange hover:text-white hover:border-brand-orange text-xs font-bold px-4 py-2 rounded-xl transition">
-            Solve
-        </button>
-    </div>
-
-    <div class="bg-white rounded-lg shadow p-6">
-        <div class="flex items-center justify-between mb-3">
-            <span class="text-xs text-slate-500">ALGORITHMS • Medium • Max Score: 50</span>
-            <span class="text-xs bg-slate-100 px-2 py-1 rounded">TYPESCRIPT</span>
-        </div>
-        <h2 class="font-bold text-lg text-slate-900 mb-2">1. Custom RxJS Filter Operator</h2>
-        <p class="text-sm text-slate-600 mb-4">
-            Implement a custom RxJS pipeable operator named <code class="text-orange-500">filterMap</code>.
-            It should first filter out elements based on a predicate function, then map the remaining items using a
-            projection function.
-        </p>
-        <div class="flex items-center space-x-3 mb-4">
-            <span class="w-3 h-3 bg-green-500 rounded-full"></span>
-            <span class="w-3 h-3 bg-yellow-400 rounded-full"></span>
-            <span class="w-3 h-3 bg-red-500 rounded-full"></span>
-            <span class="text-xs text-slate-500">solution.ts</span>
-        </div>
-        <div class="flex space-x-3">
-            <button class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600">Run Custom Tests</button>
-            <button class="bg-slate-100 text-slate-600 px-4 py-2 rounded">Reset</button>
-            <button class="bg-slate-200 text-slate-400 px-4 py-2 rounded cursor-not-allowed">Submit
-                Solution</button>
-        </div>
-    </div>
-
-    <div class="bg-white rounded-lg shadow p-6">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="font-semibold text-slate-800">Daily Coding Grid</h3>
-            <select class="border border-slate-200 rounded px-2 py-1 text-sm">
-                <option>Sort by: Newest</option>
-            </select>
-        </div>
-
-        <div class="space-y-4">
-            <div class="flex justify-between items-center border-b pb-3">
-                <div>
-                    <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">Easy</span>
-                    <p class="font-medium text-slate-800 mt-1">Flatten a Multi-dimensional Array</p>
-                    <p class="text-xs text-slate-500">Success Rate: 84%</p>
-                </div>
-                <button class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600">Solve</button>
-            </div>
-
-            <div class="flex justify-between items-center">
-                <div>
-                    <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">Hard</span>
-                    <p class="font-medium text-slate-800 mt-1">Build a Dependency Injection Container</p>
-                    <p class="text-xs text-slate-500">Success Rate: 31%</p>
-                </div>
-                <button class="bg-orange-500 text-white px-4 py-1 rounded hover:bg-orange-600">Solve</button>
-            </div>
-        </div>
-    </div>
 </div>

@@ -21,6 +21,27 @@ import { Loader } from '../../loader/loader';
   encapsulation: ViewEncapsulation.None,
 })
 export class AngularQuestionList implements OnInit {
+  codeTesting = `// Syntax:
+  var boundFunc = func.bind(thisArg[, arg1[, arg2[, ...]]])
+
+
+  // Example:
+  var employee1 = { firstName: "John", lastName: "Rodson" };
+  var employee2 = { firstName: "Jimmy", lastName: "Baily" };
+
+  function invite(greeting1, greeting2) {
+    console.log(
+      greeting1 + " " + this.firstName + " " + this.lastName + ", " + greeting2
+    );
+  }
+
+  var inviteEmployee1 = invite.bind(employee1);
+  var inviteEmployee2 = invite.bind(employee2);
+
+  inviteEmployee1("Hello", "How are you?"); // Hello John Rodson, How are you?
+  inviteEmployee2("Hello", "How are you?"); // Hello Jimmy Baily, How are you?`;
+
+
   activeCategory = signal('All');
   readonly WorkStatus = WorkStatus;
   readonly label = Labels;

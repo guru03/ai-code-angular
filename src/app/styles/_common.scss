@@ -70,11 +70,11 @@ $codeColor: #ebebeb;
     }
 
     h3 {
-        @apply text-lg text-slate-900 font-bold mb-4;
+        @apply text-lg text-slate-900 !font-bold mb-4;
     }
 
     h4 {
-        @apply text-slate-700 font-medium mb-4;
+        @apply text-slate-700 !font-medium mb-4;
     }
 
     .answer-text {
@@ -128,5 +128,9 @@ $codeColor: #ebebeb;
 
     .code {
         @apply bg-slate-100 text-slate-800 text-sm mx-2 px-1.5 py-0.5 rounded font-mono border border-slate-200;
+    }
+
+    .code-container{
+        @apply text-[14px];
     }
 }
