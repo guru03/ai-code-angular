@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Programming } from '../models.ts/coding.models';
+import { Coding } from '../models.ts/coding.models';
 
 // -----------------------------
 // Types
@@ -7,41 +7,41 @@ import { Programming } from '../models.ts/coding.models';
 export type Language = 'angular' | 'javascript' | 'coding';
 
 // -----------------------------
-// Programming Actions
+// Coding Actions
 // -----------------------------
 
-// Load Programming
-export const loadProgramming = createAction(
-  '[Programming] Load',
+// Load Coding List
+export const loadCoding = createAction(
+  '[Coding] Load',
   props<{ language: Language }>()
 );
 
-// Load Programming Success
-export const loadProgrammingSuccess = createAction(
-  '[Programming] Load Success',
-  props<{ programmings: Programming[] }>()
+// Load Coding Success
+export const loadCodingSuccess = createAction(
+  '[Coding] Load Success',
+  props<{ codings: Coding[] }>()
 );
 
-// Load Programming Failure
-export const loadProgrammingFailure = createAction(
-  '[Programming] Load Failure',
+// Load Coding Failure
+export const loadCodingFailure = createAction(
+  '[Coding] Load Failure',
   props<{ error: string }>()
 );
 
-// Load Programming Details by Id
-export const loadProgrammingById = createAction(
-  '[Programming] Load By Id',
+// Load Coding Details by Id
+export const loadCodingById = createAction(
+  '[Coding] Load By Id',
   props<{ id: number; language: Language }>()
 );
 
-// Load Programming Details Success
-export const loadProgrammingByIdSuccess = createAction(
-  '[Programming] Load By Id Success',
-  props<{ programming: Programming }>()
+// Load Coding Details Success
+export const loadCodingByIdSuccess = createAction(
+  '[Coding] Load By Id Success',
+  props<{ coding: Coding }>()
 );
 
-// Load Programming Details Failure
-export const loadProgrammingByIdFailure = createAction(
-  '[Programming] Load By Id Failure',
+// Load Coding Details Failure
+export const loadCodingByIdFailure = createAction(
+  '[Coding] Load By Id Failure',
   props<{ error: string }>()
 );

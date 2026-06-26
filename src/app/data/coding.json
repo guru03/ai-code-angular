@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "serial_number": 1,
+        "language": "javascript",
+        "difficulty": "beginner",
+        "topic": "coding",
+        "visible": true,
+        "content_status": "pending",
+        "program": "Write a program to reverse a string in Angular.",
+        "solution": "",
+        "alternate_solution": "",
+        "code_language": "typescript",
+        "code_block_title": "String Reversal Example",
+        "code_editor": "// Syntax:\nvar boundFunc = func.bind(thisArg[, arg1[, arg2[, ...]]])\n\n// Example:\nvar employee1 = { firstName: 'John', lastName: 'Rodson' };\nvar employee2 = { firstName: 'Jimmy', lastName: 'Baily' };\n\nfunction invite(greeting1, greeting2) {\n  console.log(\n    greeting1 + ' ' + this.firstName + ' ' + this.lastName + ', ' + greeting2\n  );\n}\n\nvar inviteEmployee1 = invite.bind(employee1);\nvar inviteEmployee2 = invite.bind(employee2);\n\ninviteEmployee1('Hello', 'How are you?'); // Hello John Rodson, How are you?\ninviteEmployee2('Hello', 'How are you?'); // Hello Jimmy Baily, How are you?",
+        "created_at": "2026-06-24T08:29:31.841Z",
+        "updated_at": "2026-06-24T09:17:27.206Z"
+    }
+]

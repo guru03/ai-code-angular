@@ -1,9 +1,8 @@
-import { ProgrammingState } from "../models.ts/coding.models";
+import { CodingState } from "../models.ts/coding.models";
 
-
-export const initialState: ProgrammingState = {
-    programmings:[],
-    selectedProgram: null,
+export const initialState: CodingState = {
+    codings: [],
+    selectedCoding: null,
     loading: false,
     error: null
-}
+};

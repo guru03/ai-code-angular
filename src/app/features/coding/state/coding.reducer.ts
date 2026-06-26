@@ -1,57 +1,57 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './coding.state';
-import { ProgrammingState } from '../models.ts/coding.models';
+import { CodingState } from '../models.ts/coding.models';
 import {
-  loadProgramming,
-  loadProgrammingSuccess,
-  loadProgrammingFailure,
-  loadProgrammingById,
-  loadProgrammingByIdSuccess,
-  loadProgrammingByIdFailure,
+  loadCoding,
+  loadCodingSuccess,
+  loadCodingFailure,
+  loadCodingById,
+  loadCodingByIdSuccess,
+  loadCodingByIdFailure,
 } from './coding.action';
 
-export const programmingReducer = createReducer(
+export const codingReducer = createReducer(
   initialState,
 
   // -----------------------------
-  // Load Programming
+  // Load Coding List
   // -----------------------------
-  on(loadProgramming, (state): ProgrammingState => ({
+  on(loadCoding, (state): CodingState => ({
     ...state,
     loading: true,
     error: null,
   })),
 
-  on(loadProgrammingSuccess, (state, { programmings }): ProgrammingState => ({
+  on(loadCodingSuccess, (state, { codings }): CodingState => ({
     ...state,
-    programmings,
+    codings,
     loading: false,
     error: null,
   })),
 
-  on(loadProgrammingFailure, (state, { error }): ProgrammingState => ({
+  on(loadCodingFailure, (state, { error }): CodingState => ({
     ...state,
     loading: false,
     error,
   })),
 
   // -----------------------------
-  // Load Programming By Id
+  // Load Coding By Id
   // -----------------------------
-  on(loadProgrammingById, (state): ProgrammingState => ({
+  on(loadCodingById, (state): CodingState => ({
     ...state,
     loading: true,
     error: null,
   })),
 
-  on(loadProgrammingByIdSuccess, (state, { programming }): ProgrammingState => ({
+  on(loadCodingByIdSuccess, (state, { coding }): CodingState => ({
     ...state,
-    selectedProgram: programming,
+    selectedCoding: coding,
     loading: false,
     error: null,
   })),
 
-  on(loadProgrammingByIdFailure, (state, { error }): ProgrammingState => ({
+  on(loadCodingByIdFailure, (state, { error }): CodingState => ({
     ...state,
     loading: false,
     error,

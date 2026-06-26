@@ -72,7 +72,7 @@ export class CodeSnippetDirective implements OnChanges, AfterViewInit {
 
     this.setLanguageClass(codeElement, language);
 
-    codeElement.classList.add('rounded-md');
+    codeElement.classList.add('rounded-md', '!p-6');
 
     if (this.isBrowser) {
       const grammar = Prism.languages[language] || Prism.languages['typescript'];
