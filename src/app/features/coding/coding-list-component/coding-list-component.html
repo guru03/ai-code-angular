@@ -12,12 +12,7 @@
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
 
-        <!-- If want without category in routing use below commented code -->
-        <!-- <div [routerLink]="['/coding/coding', item.id]" class="serial-number">
-            <span>{{ $index + 1 | padZero:2 }}</span>
-        </div> -->
-
-        <div class="pl-2">
+        <div class="">
 
             <!-- Meta Info -->
             <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
@@ -97,6 +92,8 @@
             </div>
             }
 
+            <!-- Primary IDE Window Style Container -->
+
             @if (item.code_editor) {
             <div class="code-container combineBothDirectives">
                 <div
@@ -113,12 +110,17 @@
             </div>
             }
 
+            <!-- Formatted Output Block -->
             @if (item.code_output) {
-            <div class="code-output">
-                <p><strong>Output:</strong> <span>{{item.code_output}}</span></p>
+
+            <div
+                class="flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-3 rounded-xl text-xs font-mono">
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Output:</span>
+                <span class="text-slate-700 font-semibold">{{item.code_output}}</span>
             </div>
             }
 
+            <!-- Code Explanation -->
             @if (item.code_explanation) {
             <div class="code-explanation">
                 <p><span>{{item.code_explanation}}</span></p>
@@ -127,8 +129,10 @@
 
             <!-- Code Examples -->
             @for (example of item.code_examples; track example.id) {
-            <div class="answer-section" [innerHTML]="setHtml(item.code_title)">
+            <div class="answer-section" [innerHTML]="setHtml(example.code_title)">
             </div>
+
+            <!-- Secondary IDE Window Style Container -->
             <div class="code-container combineBothDirectives">
                 <div
                     class="flex items-center justify-between text-slate-400 rounded-md px-4 py-1 bg-slate-900 relative top-4 border-b border-gray-700">
@@ -143,9 +147,16 @@
                 </div>
                 <pre aicCodeSnippetDirective [codeBlock]="example.code_editor" [language]="example.code_language"></pre>
             </div>
-            <div class="code-output">
-                <p><strong>Output:</strong> <span>{{example.code_output}}</span></p>
+
+            <!-- Secondary Output Block -->
+            <div
+                class="flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-3 rounded-xl text-xs font-mono">
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Output:</span>
+                <span class="text-slate-700 font-semibold">{{example.code_output}}</span>
             </div>
+
+
+
             <div class="code-output">
                 <p><span>{{item.code_explanation}}</span></p>
             </div>
@@ -155,3 +166,124 @@
     </div>
     }
 </div>
+
+
+
+
+<!-- Main Content Area (Middle Section) -->
+<section class="mt-6">
+
+    <article class="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm relative">
+
+        <!-- Meta Data Header Row -->
+        <div class="flex flex-wrap items-center gap-3 text-xs font-semibold text-slate-400 mb-5">
+            <span
+                class="bg-orange-50 text-orange-600 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider">JavaScript</span>
+            <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+            <span>coding</span>
+            <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+            <span
+                class="bg-amber-50 text-amber-600 px-2.5 py-0.5 rounded-md text-[11px] font-medium border border-amber-200/50">Pending</span>
+            <span class="w-1 h-1 rounded-full bg-slate-300"></span>
+            <span class="font-normal text-slate-400">5 min read</span>
+        </div>
+
+        <!-- Main Question Title -->
+        <h2 class="text-2xl font-bold text-slate-800 mb-4 tracking-tight leading-snug">
+            How to remove the first element from an array in JavaScript?
+        </h2>
+
+        <!-- Explanatory Text with Inline Code Highlighting -->
+        <p class="text-slate-600 text-sm leading-relaxed mb-8">
+            The code initializes an array <code
+                class="text-orange-600 bg-orange-50/80 px-1.5 py-0.5 rounded font-mono text-xs">arr</code> with values
+            <code class="text-orange-600 bg-orange-50/80 px-1.5 py-0.5 rounded font-mono text-xs">[5, 6, 7]</code>. The
+            <code class="text-blue-600 font-semibold font-mono bg-blue-50 px-1.5 py-0.5 rounded text-xs">slice(1)</code>
+            method creates a new array, excluding the first element, resulting in <code
+                class="text-slate-700 font-mono bg-slate-100 px-1.5 py-0.5 rounded text-xs">[6, 7]</code>. Finally,
+            <code class="text-slate-600 font-mono">console.log(arr)</code> outputs the modified array to the console.
+        </p>
+
+        <!-- Solution Section 1: shift() -->
+        <div class="space-y-4 mb-8">
+            <h4 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                <span
+                    class="text-xs bg-slate-100 text-slate-500 w-5 h-5 rounded-md flex items-center justify-center font-mono">1</span>
+                Using <code class="text-orange-600 font-mono font-bold">shift()</code>
+                <span
+                    class="text-[11px] font-normal text-rose-500 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-100">(mutates
+                    the array)</span>
+            </h4>
+
+            <!-- IDE Window Style Container -->
+            <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-md shadow-slate-900/10">
+                <!-- Window Header -->
+                <div class="bg-slate-800 px-4 py-2.5 flex items-center justify-between border-b border-slate-700/50">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+                        <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+                        <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+                        <span class="text-xs font-mono text-slate-400 ml-2">solution.ts</span>
+                    </div>
+                    <span class="text-[10px] font-extrabold text-slate-400 tracking-wider uppercase">JAVASCRIPT</span>
+                </div>
+                <!-- Light Code Playground Body -->
+                <pre
+                    class="p-5 text-xs sm:text-sm text-slate-300 font-mono leading-relaxed overflow-x-auto"><span class="text-purple-400">let</span> arr = [<span class="text-amber-400">10</span>, <span class="text-amber-400">20</span>, <span class="text-amber-400">30</span>, <span class="text-amber-400">40</span>];
+arr.<span class="text-sky-400 font-semibold">shift</span>(); <span class="text-slate-500">// removes the first element</span>
+
+<span class="text-blue-400">console</span>.<span class="text-sky-400">log</span>(arr); <span class="text-slate-500">// [20, 30, 40]</span></pre>
+            </div>
+
+            <!-- Formatted Output Block -->
+            <div
+                class="flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-3 rounded-xl text-xs font-mono">
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Output:</span>
+                <span class="text-slate-700 font-semibold">[20, 30, 40]</span>
+            </div>
+        </div>
+
+        <!-- Solution Section 2: slice() -->
+        <div class="space-y-4">
+            <h4 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                <span
+                    class="text-xs bg-slate-100 text-slate-500 w-5 h-5 rounded-md flex items-center justify-center font-mono">2</span>
+                Using <code class="text-orange-600 font-mono font-bold">slice()</code>
+                <span
+                    class="text-[11px] font-normal text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100">(returns
+                    new array)</span>
+            </h4>
+
+            <!-- IDE Window Style Container -->
+            <div class="bg-slate-900 rounded-2xl overflow-hidden shadow-md shadow-slate-900/10">
+                <!-- Window Header -->
+                <div class="bg-slate-800 px-4 py-2.5 flex items-center justify-between border-b border-slate-700/50">
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+                        <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+                        <span class="w-3 h-3 rounded-full bg-[#27c93f]"></span>
+                        <span class="text-xs font-mono text-slate-400 ml-2">solution.ts</span>
+                    </div>
+                    <span class="text-[10px] font-extrabold text-slate-400 tracking-wider uppercase">JAVASCRIPT</span>
+                </div>
+                <!-- Light Code Playground Body -->
+                <pre
+                    class="p-5 text-xs sm:text-sm text-slate-300 font-mono leading-relaxed overflow-x-auto"><span class="text-purple-400">let</span> arr = [<span class="text-amber-400">10</span>, <span class="text-amber-400">20</span>, <span class="text-amber-400">30</span>, <span class="text-amber-400">40</span>];
+                    <span class="text-purple-400">let</span> newArr = arr.<span class="text-sky-400 font-semibold">slice</span>(<span class="text-amber-400">1</span>); <span class="text-slate-500">// new array without the first element</span>
+
+                    <span class="text-blue-400">console</span>.<span class="text-sky-400">log</span>(newArr); <span class="text-slate-500">// [20, 30, 40]</span></pre>
+            </div>
+
+
+
+
+            <!-- Formatted Output Block -->
+            <div
+                class="flex items-center gap-2 bg-slate-50 border border-slate-100 px-4 py-3 rounded-xl text-xs font-mono">
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Output:</span>
+                <span class="text-slate-700 font-semibold">[20, 30, 40]</span>
+            </div>
+        </div>
+
+    </article>
+</section>
