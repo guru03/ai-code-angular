@@ -2,11 +2,11 @@ import { WorkStatus } from "../../../enum/enum";
 
 export interface QuestionBank {
   id: number;
-  serial_number: number;
+  serialNumber: number;
   language: string;
   label: string;
   category: string;
-  topic: string;
+  topicLabel: string;
   visible: boolean;
   content_status: WorkStatus;
   // status: WorkStatus;
@@ -35,6 +35,39 @@ export interface QuestionBank {
   image3Url?: string;
 }
 
+export interface QuestionBankDto {
+  id: number;
+  serial_number: number;
+  language: string;
+  label: string;
+  category: string;
+  topic: string;
+  visible: boolean;
+  content_status: WorkStatus;
+
+  question: string;
+  answer: string;
+  answer2?: string;
+  answer3?: string;
+  answer4?: string;
+
+  code_language: string;
+  code_block_title: string;
+  code_block: string;
+
+  code_language2: string;
+  code_block_title2: string;
+  code_block2: string;
+
+  code_language3: string;
+  code_block_title3: string;
+  code_block3: string;
+
+  imageUrl?: string;
+  image2Url?: string;
+  image3Url?: string;
+}
+
 export interface QuestionBankState {
   questions: QuestionBank[];
   selectedQuestion: QuestionBank | null;
@@ -42,9 +75,6 @@ export interface QuestionBankState {
   error: string | null;
 }
 
-// export interface QuestionCategory {
-//   categories: [];
-// }
 
 export interface Category {
   id: number;
@@ -92,17 +122,3 @@ export const TOPICS: Topic[] = [
   { name: 'expert_angular',         value: 'Expert Angular' },
 ];
 
-
-// export interface Label {
-//   id: number;
-//   name: string;   // backend value
-//   label: string;  // frontend display
-// }
-
-// export const LABELS: Label[] = [
-//   { id: 1, name: 'beginner', label: 'Beginner' },
-//   { id: 2, name: 'intermediate', label: 'Intermediate' },
-//   { id: 3, name: 'advanced', label: 'Advanced' },
-//   { id: 4, name: 'expert', label: 'Expert' },
-//   { id: 5, name: 'mastery', label: 'Mastery' },
-// ];

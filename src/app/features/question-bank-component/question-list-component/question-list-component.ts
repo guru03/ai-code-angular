@@ -7,7 +7,7 @@ import { Loader } from '../../../loader/loader';
 import { Labels, WorkStatus } from '../../../enum/enum';
 import { AppState } from '../../../store/app.state';
 import { Observable } from 'rxjs';
-import { Question } from '../../../models/question.model';
+import { QuestionBank } from '../models/question-bank.models';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { loadQuestionBank, loadQuestionBankById } from '../state/question-bank.action';
@@ -26,9 +26,9 @@ export class QuestionListComponent implements OnInit {
   readonly label = Labels;
   // readonly topic = 
   private store = inject(Store<AppState>);
-  getQuestionList$!: Observable<Question[]>;
+  getQuestionList$!: Observable<QuestionBank[]>;
   loading$ = this.store.select(selectLoading);
-  selectedQuestion$!: Observable<Question | null>;
+  selectedQuestion$!: Observable<QuestionBank | null>;
   private sanitizer = inject(DomSanitizer);
   private route = inject(ActivatedRoute);
 
