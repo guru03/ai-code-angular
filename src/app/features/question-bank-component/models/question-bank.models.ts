@@ -52,12 +52,6 @@ export interface Category {
   value: string; // human‑friendly label (e.g. "Angular")
 }
 
-export interface Topics {
-  id: number;
-  name: string;  // backend value (e.g. "angular")
-  value: string; // human‑friendly label (e.g. "Angular")
-}
-
 export const LANGUAGES: Category[] = [
   { id: 1, name: 'All', value: 'All' },
   { id: 2, name: 'angular', value: 'Angular' },
@@ -70,13 +64,34 @@ export const LANGUAGES: Category[] = [
   { id: 9, name: 'question_design', value: 'Question Design' },
 ];
 
-export const TOPICS: Topics[] = [
-  { id: 1, name: 'pipes', value: 'Pipes' },
-  { id: 2, name: 'compilation', value: 'Compilation' },
-  { id: 3, name: 'Components', value: 'components' },
-  { id: 3, name: 'Web Storage', value: 'Web Storage' },
-  
+export interface Topic {
+  name: string;
+  value: string;
+}
+
+export const TOPICS: Topic[] = [
+  { name: 'angular_fundamentals',   value: 'Angular Fundamentals' },
+  { name: 'components_templates',   value: 'Components & Templates' },
+  { name: 'directives_pipes',       value: 'Directives & Pipes' },
+  { name: 'dependency_injection',   value: 'Dependency Injection & Services' },
+  { name: 'component_lifecycle',    value: 'Component Lifecycle' },
+  { name: 'routing',                value: 'Routing' },
+  { name: 'forms',                  value: 'Forms' },
+  { name: 'http',                   value: 'HTTP & APIs' },
+  { name: 'rxjs',                   value: 'RxJS' },
+  { name: 'signals',                value: 'Signals' },
+  { name: 'state_management',       value: 'State Management' },
+  { name: 'angular_material',       value: 'Angular Material' },
+  { name: 'advanced_angular',       value: 'Advanced Angular' },
+  { name: 'ssr_hydration',          value: 'SSR & Hydration' },
+  { name: 'testing',                value: 'Testing' },
+  { name: 'performance',            value: 'Performance' },
+  { name: 'security',               value: 'Security' },
+  { name: 'build_deployment',       value: 'Build & Deployment' },
+  { name: 'angular_ecosystem',      value: 'Angular Ecosystem' },
+  { name: 'expert_angular',         value: 'Expert Angular' },
 ];
+
 
 // export interface Label {
 //   id: number;

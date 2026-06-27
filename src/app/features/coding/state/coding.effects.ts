@@ -19,7 +19,7 @@ export class CodingEffects {
         this.actions$.pipe(
             ofType(loadCoding),
             exhaustMap(({ language }) =>
-                this.http.get<Coding[]>(`${environment.baseurl}/${language}/`).pipe(
+                this.http.get<Coding[]>(`${environment.baseurl}/${language}/ascending/`).pipe(
                     map((codings) => loadCodingSuccess({ codings })),
                     catchError((error) =>
                         of(loadCodingFailure({ error: error?.message ?? "Unknown error" }))

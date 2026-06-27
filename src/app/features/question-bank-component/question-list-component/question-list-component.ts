@@ -24,6 +24,7 @@ export class QuestionListComponent implements OnInit {
   activeCategory = signal('All');
   readonly WorkStatus = WorkStatus;
   readonly label = Labels;
+  // readonly topic = 
   private store = inject(Store<AppState>);
   getQuestionList$!: Observable<Question[]>;
   loading$ = this.store.select(selectLoading);

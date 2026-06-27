@@ -6,19 +6,16 @@
 
 
 <div class="space-y-6 relative">
-    
+
     @if(loading$ | async){
     <aic-loader></aic-loader>
     }
 
-
     @for (item of getQuestionList$ | async; track $index) {
     <div class="question-section">
 
-        <div
-            [routerLink]="['/question-bank/questions', item.id]"
-            [queryParams]="{ category: activeCategory() === 'All' ? null : activeCategory() }"
-            class="serial-number">
+        <div [routerLink]="['/question-bank/questions', item.id]"
+            [queryParams]="{ category: activeCategory() === 'All' ? null : activeCategory() }" class="serial-number">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
 
@@ -27,8 +24,7 @@
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div> -->
 
-        <div class="pl-2">
-            <!--? This is Final design -->
+        <div class="space-y-3">
 
             <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
                 <!-- Brand/Topic -->
@@ -106,8 +102,9 @@
 
             <div class="answer-section" [innerHTML]="setHtml(item.answer)">
             </div>
+
             @if (item.answer2) {
-            <hr class="border-slate-200 my-6" />
+            <hr class="border-slate-200" />
             <div class="mt-3"><span class="text-lg font-medium">Additional Explanation:</span></div>
             <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
             }
@@ -119,8 +116,7 @@
             }
 
             @if (item.code_block) {
-            <span>{{item.code_language}}</span>
-            <div class="code-container combineBothDirectives mt-6">
+            <div class="code-editor combineBothDirectives mt-6">
                 <pre aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="item.code_language"></pre>
             </div>
             }
@@ -131,8 +127,7 @@
             }
 
             @if (item.code_block2) {
-            <span>{{item.code_language2}}</span>
-            <div class="code-container combineBothDirectives mt-6">
+            <div class="code-editor combineBothDirectives mt-6">
                 <pre aicCodeSnippetDirective [codeBlock]="item.code_block2" [language]="item.code_language2"></pre>
             </div>
             }
@@ -144,7 +139,7 @@
 
             @if (item.code_block3) {
             <span>{{item.code_language3}}</span>
-            <div class="code-container combineBothDirectives mt-6">
+            <div class="code-editor combineBothDirectives mt-6">
                 <pre aicCodeSnippetDirective [codeBlock]="item.code_block3" [language]="item.code_language3"></pre>
             </div>
             }
@@ -158,33 +153,5 @@
     </div>
     }
 
-    <!--? This is for the design purposes only, we can remove it later. -->
 
-</div>
-
-<!--! This? is for the design purpose only-->
-
-<div class="code-block-container">
-    <!-- <div class="code-header">
-        <div class="window-controls">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-        </div>
-        <span class="file-name">app-user-card.component.ts</span>
-        <button class="copy-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            Copy
-        </button>
-    </div> -->
-
-    <!-- <pre>
-        <code class="language-typescript">
-            {{codeTesting}}
-        </code>
-    </pre> -->
 </div>
