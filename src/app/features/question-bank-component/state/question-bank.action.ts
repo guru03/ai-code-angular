@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { QuestionBank } from '../models/question-bank.models';
+import { QuestionBank, TopicCount } from '../models/question-bank.models';
 
 // -----------------------------
 // Types
@@ -43,5 +43,20 @@ export const loadQuestionBankByIdSuccess = createAction(
 // Load Question Bank Details Failure
 export const loadQuestionBankByIdFailure = createAction(
   '[Question Bank] Load By Id Failure',
+  props<{ error: string }>()
+);
+
+// -----------------------------
+// Topic Count Actions
+// -----------------------------
+export const loadTopicCounts = createAction('[Question Bank] Load Topic Counts');
+
+export const loadTopicCountsSuccess = createAction(
+  '[Question Bank] Load Topic Counts Success',
+  props<{ summary: TopicCount[] }>()
+);
+
+export const loadTopicCountsFailure = createAction(
+  '[Question Bank] Load Topic Counts Failure',
   props<{ error: string }>()
 );

@@ -8,12 +8,17 @@ import {
     loadQuestionBankById,
     loadQuestionBankByIdSuccess,
     loadQuestionBankByIdFailure,
+    loadTopicCounts,
+    loadTopicCountsSuccess,
+    loadTopicCountsFailure,
 } from "./question-bank.action";
 
 export const questionBankReducer = createReducer(
     initialState,
 
+    // -----------------------------
     // Load Question Bank
+    // -----------------------------
     on(loadQuestionBank, (state): QuestionBankState => ({
         ...state,
         loading: true,
@@ -35,7 +40,11 @@ export const questionBankReducer = createReducer(
         error,
     })),
 
+
+
+    // -----------------------------
     // Load Question Bank By Id
+    // -----------------------------
     on(loadQuestionBankById, (state): QuestionBankState => ({
         ...state,
         loading: true,
@@ -52,6 +61,28 @@ export const questionBankReducer = createReducer(
 
     // Load Question Bank By Id Failure
     on(loadQuestionBankByIdFailure, (state, { error }): QuestionBankState => ({
+        ...state,
+        loading: false,
+        error,
+    })),
+
+    // -----------------------------
+    // Topic Counts
+    // -----------------------------
+    on(loadTopicCounts, (state): QuestionBankState => ({
+        ...state,
+        loading: true,
+        error: null,
+    })),
+
+    on(loadTopicCountsSuccess, (state, { summary }): QuestionBankState => ({
+        ...state,
+        topicCounts: summary,
+        loading: false,
+        error: null,
+    })),
+
+    on(loadTopicCountsFailure, (state, { error }): QuestionBankState => ({
         ...state,
         loading: false,
         error,

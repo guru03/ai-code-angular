@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { QuestionBank, QuestionBankState } from "../models/question-bank.models";
+import { QuestionBank, QuestionBankState, TopicCount } from "../models/question-bank.models";
 import { LANGUAGES } from "../models/language.models";
 
 const selectQuestionBankState = createFeatureSelector<QuestionBankState>('questionBank');
@@ -15,6 +15,11 @@ export const getQuestions = createSelector(
 export const selectLoading = createSelector(
     selectQuestionBankState,
     (state: QuestionBankState) => state.loading
+);
+
+export const selectTopicCounts = createSelector(
+    selectQuestionBankState,
+    (state: QuestionBankState): TopicCount[] => state.topicCounts
 );
 
 export const getCategoryCounts = createSelector(

@@ -3,9 +3,9 @@ import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, mergeMap, Observable, of } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { QuestionBankDto, QuestionBank } from "../models/question-bank.models";
+import { QuestionBankDto, QuestionBank, TopicCount } from "../models/question-bank.models";
 import { QuestionBankAdapter } from "../models/question-bank.adapter";
-import { loadQuestionBank, loadQuestionBankById, loadQuestionBankByIdFailure, loadQuestionBankByIdSuccess, loadQuestionBankFailure, loadQuestionBankSuccess } from "./question-bank.action";
+import { loadQuestionBank, loadQuestionBankById, loadQuestionBankByIdFailure, loadQuestionBankByIdSuccess, loadQuestionBankFailure, loadQuestionBankSuccess, loadTopicCounts, loadTopicCountsFailure, loadTopicCountsSuccess } from "./question-bank.action";
 import { Action } from "@ngrx/store";
 
 @Injectable()
@@ -29,7 +29,6 @@ export class QuestionBankEffects {
 
     // Load Question Details
 
-    // Load Question Details
     loadQuestionBankById$ = createEffect((): Observable<Action> =>
         this.actions$.pipe(
             ofType(loadQuestionBankById),
@@ -46,17 +45,19 @@ export class QuestionBankEffects {
         )
     );
 
-    // loadTopicCounts$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //         ofType(loadTopicCounts),
-    //         exhaustMap(() =>
-    //             this.angularApi.getTopicsSummary().pipe(
-    //                 map((summary) => loadTopicCountsSuccess({ summary })),
-    //                 catchError((error) =>
-    //                     of(loadTopicCountsFailure({ error: error?.message ?? 'Unknown error' }))
-    //                 )
-    //             )
-    //         )
-    //     )
-    // );
+    // Load Topic Counts
+
+    loadTopicCounts$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(loadTopicCounts),
+            exhaustMap(() =>
+                this.http.get<TopicCount[]>(`${environment.baseurl}/angular/topics_summary`).pipe(
+                    map((summary) => loadTopicCountsSuccess({ summary })),
+                    catchError((error) =>
+                        of(loadTopicCountsFailure({ error: error?.message ?? 'Unknown error' }))
+                    )
+                )
+            )
+        )
+    );
 }

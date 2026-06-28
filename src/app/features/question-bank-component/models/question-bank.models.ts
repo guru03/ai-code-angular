@@ -70,8 +70,15 @@ export interface QuestionBankDto {
 export interface QuestionBankState {
   questions: QuestionBank[];
   selectedQuestion: QuestionBank | null;
+  // topicCounts: Record<string, number>;
+  topicCounts: TopicCount[];
   loading: boolean;
   error: string | null;
+}
+
+export interface TopicCount {
+  topic: string;   // the topic key, e.g. "rxjs"
+  total: number;   // how many questions belong to that topic
 }
 
 
