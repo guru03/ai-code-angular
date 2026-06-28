@@ -20,6 +20,16 @@ export const selectLoading = createSelector(
 export const selectTopicCounts = createSelector(
     selectQuestionBankState,
     (state: QuestionBankState): TopicCount[] => state.topicCounts
+
+
+    // (state: QuestionBankState): TopicCount[] => {
+    //     if (state.topicCounts?.length) {
+    //         return state.topicCounts;
+    //     }
+
+    //     return [];
+    // }
+
 );
 
 export const getCategoryCounts = createSelector(

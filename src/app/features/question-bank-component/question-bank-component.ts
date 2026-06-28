@@ -3,8 +3,8 @@ import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { getCategoryCounts } from './state/question-bank.selector';
-import { loadQuestionBank } from './state/question-bank.action';
+import { getCategoryCounts, selectTopicCounts } from './state/question-bank.selector';
+import { loadQuestionBank, loadTopicCounts } from './state/question-bank.action';
 import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
 import { LANGUAGES } from './models/language.models';
 import { TOPICS } from './models/topics.models';
@@ -27,11 +27,14 @@ export class QuestionBankComponent implements OnInit {
   activeTopic: string = '';
   categoryCounts$!: Observable<Record<string, number>>;
 
+  topicCounts$ = this.store.select(selectTopicCounts);
+
   ngOnInit(): void {
     this.categoryCounts$ = this.store.select(getCategoryCounts);
 
     // Default load (Angular by default)
     this.store.dispatch(loadQuestionBank({ language: 'angular' }));
+    this.store.dispatch(loadTopicCounts());
 
     this.activatedRoute.queryParamMap.subscribe(params => {
       this.activeCategory = params.get('category') ?? LANGUAGES[0].name;

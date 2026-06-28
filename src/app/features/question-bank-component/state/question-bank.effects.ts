@@ -17,7 +17,7 @@ export class QuestionBankEffects {
         this.actions$.pipe(
             ofType(loadQuestionBank),
             exhaustMap(({ language }) =>
-                this.http.get<QuestionBankDto[]>(`${environment.baseurl}/${language}/ascending/`).pipe(
+                this.http.get<QuestionBankDto[]>(`${environment.baseurl}/${language}/`).pipe(
                     map((dtos) => loadQuestionBankSuccess({ questions: QuestionBankAdapter.toViewModels(dtos) })),
                     catchError((error) =>
                         of(loadQuestionBankFailure({ error: error?.message ?? 'Unknown error' }))
@@ -51,7 +51,7 @@ export class QuestionBankEffects {
         this.actions$.pipe(
             ofType(loadTopicCounts),
             exhaustMap(() =>
-                this.http.get<TopicCount[]>(`${environment.baseurl}/angular/topics_summary`).pipe(
+                this.http.get<TopicCount[]>(`${environment.baseurl}/angular/topics_summary/`).pipe(
                     map((summary) => loadTopicCountsSuccess({ summary })),
                     catchError((error) =>
                         of(loadTopicCountsFailure({ error: error?.message ?? 'Unknown error' }))

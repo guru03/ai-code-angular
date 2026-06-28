@@ -85,7 +85,7 @@
 
         <!--? Quick Navigation -->
         <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Quick Navigation</h2>
+            <!-- <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Quick Navigation</h2>
             <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
                 <h4 class="font-bold text-slate-900 text-sm mb-1">Getting Started</h4>
                 <p class="text-xs text-slate-500 leading-relaxed mb-4">New to NgRx? Start with our reactive state
@@ -94,7 +94,7 @@
                     class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-md shadow-orange-500/10 hover:shadow-lg transition duration-200">
                     View Roadmap
                 </button>
-            </div>
+            </div> -->
 
             <!--? Related Topics -->
 
@@ -110,6 +110,14 @@
                     </li>
                     }
                 </ul>
+
+                <ul>
+                    <li>test</li>
+                    @for (topic of topicCounts$ | async; track $index) {
+                    <li>{{ topic.topic }}: {{ topic.total }}</li>
+                    }
+                </ul>
+
             </div>
         </div>
 
