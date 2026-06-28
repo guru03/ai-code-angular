@@ -1,5 +1,6 @@
 
-import { QuestionBankDto, QuestionBank, TOPICS } from '../models/question-bank.models';
+import { QuestionBankDto, QuestionBank } from '../models/question-bank.models';
+import { TOPICS } from './topics.models';
 
 export class QuestionBankAdapter {
 

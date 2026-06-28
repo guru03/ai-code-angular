@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 import { getCategoryCounts } from './state/question-bank.selector';
 import { loadQuestionBank } from './state/question-bank.action';
 import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
-import { LANGUAGES, TOPICS } from './models/question-bank.models';
+import { LANGUAGES } from './models/language.models';
+import { TOPICS } from './models/topics.models';
 
 @Component({
   selector: 'aic-question-bank-component',

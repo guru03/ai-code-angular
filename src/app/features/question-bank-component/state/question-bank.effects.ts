@@ -46,14 +46,14 @@ export class QuestionBankEffects {
         )
     );
 
-    // loadQuestionBankById$ = createEffect(() =>
+    // loadTopicCounts$ = createEffect(() =>
     //     this.actions$.pipe(
-    //         ofType(loadQuestionBankById),
-    //         mergeMap(({ id, language }) =>
-    //             this.http.get<Question>(`${environment.baseurl}/${language}/ascending/${id}/`).pipe(
-    //                 map((question) => loadQuestionBankByIdSuccess({ question })),
+    //         ofType(loadTopicCounts),
+    //         exhaustMap(() =>
+    //             this.angularApi.getTopicsSummary().pipe(
+    //                 map((summary) => loadTopicCountsSuccess({ summary })),
     //                 catchError((error) =>
-    //                     of(loadQuestionBankByIdFailure({ error: error?.message ?? 'Unknown error' }))
+    //                     of(loadTopicCountsFailure({ error: error?.message ?? 'Unknown error' }))
     //                 )
     //             )
     //         )

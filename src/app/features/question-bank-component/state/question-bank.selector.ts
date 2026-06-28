@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { LANGUAGES, QuestionBank, QuestionBankState } from "../models/question-bank.models";
+import { QuestionBank, QuestionBankState } from "../models/question-bank.models";
+import { LANGUAGES } from "../models/language.models";
 
 const selectQuestionBankState = createFeatureSelector<QuestionBankState>('questionBank');
 
