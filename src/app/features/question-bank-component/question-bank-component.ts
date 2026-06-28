@@ -2,7 +2,6 @@ import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
-// import { LANGUAGES, TOPICS } from '../../models/question.model';
 import { Observable } from 'rxjs';
 import { getCategoryCounts } from './state/question-bank.selector';
 import { loadQuestionBank } from './state/question-bank.action';
@@ -21,7 +20,6 @@ export class QuestionBankComponent implements OnInit {
   private router = inject(Router);
   private store = inject(Store<AppState>);
   // activeCategory = signal('All');
-  testing = ['All', 'Angular', 'NgRx', 'Signals', 'JavaScript', 'HR', 'MCP'];
   categories = LANGUAGES;
   topics = TOPICS;
   activeCategory: string = LANGUAGES[0].name;
@@ -45,21 +43,11 @@ export class QuestionBankComponent implements OnInit {
         this.store.dispatch(loadQuestionBank({ language: 'angular' }));
       }
     });
-
-    this.sortingCategory();
-  }
-
-  sortingCategory() {
-    this.testing.sort((a, b) =>
-      a.localeCompare(b) ? 1 : -1
-    );
-    console.log(this.testing);
   }
 
   filterByCategory(category: string): void {
     this.activeCategory = category;
 
-    // Navigate with query param
     this.router.navigate(['questions'], {
       relativeTo: this.activatedRoute,
       queryParams: { category: category === LANGUAGES[0].name ? null : category },
@@ -70,21 +58,13 @@ export class QuestionBankComponent implements OnInit {
     this.store.dispatch(loadQuestionBank({ language }));
   }
 
-  // filterByCategory(category: string): void {
-  //   this.activeCategory = category;
-
-  //   this.router.navigate(['questions'], {
-  //     relativeTo: this.route,
-  //     queryParams: { category: category === LANGUAGES[0].name ? null : category },
-  //   });
-  // }
-
   filterByTopics(topic: string): void {
-    this.activeTopic = topic;
+    const lowerTopic = topic.toLowerCase();
+    this.activeTopic = lowerTopic;
 
     this.router.navigate(['questions'], {
       relativeTo: this.activatedRoute,
-      queryParams: { topic },
+      queryParams: { topic: lowerTopic },
       queryParamsHandling: 'merge',
     });
   }

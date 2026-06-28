@@ -3,7 +3,8 @@ import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, exhaustMap, map, mergeMap, Observable, of } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { QuestionBank } from "../models/question-bank.models";
+import { QuestionBankDto, QuestionBank } from "../models/question-bank.models";
+import { QuestionBankAdapter } from "../models/question-bank.adapter";
 import { loadQuestionBank, loadQuestionBankById, loadQuestionBankByIdFailure, loadQuestionBankByIdSuccess, loadQuestionBankFailure, loadQuestionBankSuccess } from "./question-bank.action";
 import { Action } from "@ngrx/store";
 
@@ -16,8 +17,8 @@ export class QuestionBankEffects {
         this.actions$.pipe(
             ofType(loadQuestionBank),
             exhaustMap(({ language }) =>
-                this.http.get<QuestionBank[]>(`${environment.baseurl}/${language}/ascending/`).pipe(
-                    map((questions) => loadQuestionBankSuccess({ questions })),
+                this.http.get<QuestionBankDto[]>(`${environment.baseurl}/${language}/ascending/`).pipe(
+                    map((dtos) => loadQuestionBankSuccess({ questions: QuestionBankAdapter.toViewModels(dtos) })),
                     catchError((error) =>
                         of(loadQuestionBankFailure({ error: error?.message ?? 'Unknown error' }))
                     )
@@ -33,9 +34,9 @@ export class QuestionBankEffects {
         this.actions$.pipe(
             ofType(loadQuestionBankById),
             exhaustMap(({ id, language }) =>
-                this.http.get<QuestionBank>(`${environment.baseurl}/${language}/${id}/`).pipe(
-                    map((question: QuestionBank) =>
-                        loadQuestionBankByIdSuccess({ question }) // ✅ Action
+                this.http.get<QuestionBankDto>(`${environment.baseurl}/${language}/${id}/`).pipe(
+                    map((dto: QuestionBankDto) =>
+                        loadQuestionBankByIdSuccess({ question: QuestionBankAdapter.toViewModel(dto) })
                     ),
                     catchError((error: any) =>
                         of(loadQuestionBankByIdFailure({ error: error?.message ?? 'Unknown error' })) // ✅ Action

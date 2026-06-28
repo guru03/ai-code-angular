@@ -1,14 +1,14 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { LANGUAGES, QuestionBankState } from "../models/question-bank.models";
-
+import { LANGUAGES, QuestionBank, QuestionBankState } from "../models/question-bank.models";
 
 const selectQuestionBankState = createFeatureSelector<QuestionBankState>('questionBank');
 
+const normalizeValue = (value?: string | null): string =>
+    (value ?? '').toString().trim().toLowerCase();
+
 export const getQuestions = createSelector(
     selectQuestionBankState,
-    (state: QuestionBankState) => {
-        return state.questions;
-    }
+    (state: QuestionBankState) => state.questions
 );
 
 export const selectLoading = createSelector(
@@ -47,13 +47,13 @@ export const selectQuestionBankByFilters = (category: string, topic: string | nu
     createSelector(
         selectQuestionBankState,
         (state: QuestionBankState) => {
-            const normalizedTopic = topic?.toLowerCase();
+            const normalizedTopic = normalizeValue(topic);
 
-            return state.questions.filter(question => {
+            return state.questions.filter((question: QuestionBank) => {
                 const matchesCategory =
                     category === LANGUAGES[0].name || question.language === category;
                 const matchesTopic =
-                    !normalizedTopic || question.topic.toLowerCase() === normalizedTopic;
+                    !normalizedTopic || normalizeValue(question.topicLabel) === normalizedTopic;
 
                 return matchesCategory && matchesTopic;
             });
