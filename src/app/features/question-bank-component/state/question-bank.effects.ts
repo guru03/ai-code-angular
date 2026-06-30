@@ -50,8 +50,8 @@ export class QuestionBankEffects {
     loadTopicCounts$ = createEffect(() =>
         this.actions$.pipe(
             ofType(loadTopicCounts),
-            exhaustMap(() =>
-                this.http.get<TopicCount[]>(`${environment.baseurl}/angular/topics_summary/`).pipe(
+            exhaustMap(({ language }) =>
+                this.http.get<TopicCount[]>(`${environment.baseurl}/${language}/topics_summary/`).pipe(
                     map((summary) => loadTopicCountsSuccess({ summary })),
                     catchError((error) =>
                         of(loadTopicCountsFailure({ error: error?.message ?? 'Unknown error' }))

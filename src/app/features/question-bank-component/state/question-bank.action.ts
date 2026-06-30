@@ -52,7 +52,10 @@ export const loadQuestionBankByIdFailure = createAction(
 // -----------------------------
 // Topic Count Actions
 // -----------------------------
-export const loadTopicCounts = createAction('[Question Bank] Load Topic Counts');
+export const loadTopicCounts = createAction(
+  '[Question Bank] Load Topic Counts',
+  props<{ language: SupportedLanguage['name'] }>()
+);
 
 export const loadTopicCountsSuccess = createAction(
   '[Question Bank] Load Topic Counts Success',

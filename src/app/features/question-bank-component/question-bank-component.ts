@@ -17,51 +17,66 @@ import { TOPICS } from './models/topics.models';
   encapsulation: ViewEncapsulation.None,
 })
 export class QuestionBankComponent implements OnInit {
+  // Inject Angular services
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private store = inject(Store<AppState>);
-  // activeLanguage = signal('All');
+
+  // Supported filters
   technicalLanguages = SUPPORTED_LANGUAGES;
   topics = TOPICS;
-  activeLanguage: string = SUPPORTED_LANGUAGES[0].name;
-  activeTopic: string = '';
-  categoryCounts$!: Observable<Record<string, number>>;
 
+  // Active selections
+  activeLanguage: string = SUPPORTED_LANGUAGES[0].name; // Default to "All"
+  activeTopic: string = '';
+  // activeLanguage = signal('All');
+
+  // Observables for counts
+  categoryCounts$!: Observable<Record<string, number>>;
   topicCounts$ = this.store.select(selectTopicCounts);
 
   ngOnInit(): void {
+    // Load initial data
     this.categoryCounts$ = this.store.select(getCategoryCounts);
-
-    // Default load (Angular by default)
     this.store.dispatch(loadQuestionBank({ language: 'angular' }));
-    this.store.dispatch(loadTopicCounts());
+    this.store.dispatch(loadTopicCounts({ language: 'angular' }));
 
+    // React to query params (category/topic changes)
     this.activatedRoute.queryParamMap.subscribe(params => {
-      this.activeLanguage = params.get('category') ?? SUPPORTED_LANGUAGES[0].name;
+      this.activeLanguage = params.get('language') ?? SUPPORTED_LANGUAGES[0].name;
       this.activeTopic = params.get('topic') ?? '';
 
-      // Dispatch again when category changes
-      if (this.activeLanguage.toLowerCase() === 'javascript') {
-        this.store.dispatch(loadQuestionBank({ language: 'javascript' }));
-      } else {
-        this.store.dispatch(loadQuestionBank({ language: 'angular' }));
-      }
+      // Dispatch loadQuestionBank based on active language
+      const normalized = this.activeLanguage.toLowerCase();
+      const language = normalized === 'javascript' ? 'javascript' : 'angular';
+      this.store.dispatch(loadQuestionBank({ language }));
+      this.store.dispatch(loadTopicCounts({ language }));
     });
   }
 
+  /**
+   * Filter questions by category (language).
+   * Updates activeLanguage, navigates with query params, and dispatches store action.
+   */
   filterByCategory(techLanguage: string): void {
     this.activeLanguage = techLanguage;
 
     this.router.navigate(['questions'], {
       relativeTo: this.activatedRoute,
-      queryParams: { language: techLanguage === SUPPORTED_LANGUAGES[0].name ? null : techLanguage },
+      queryParams: {
+        language: techLanguage === SUPPORTED_LANGUAGES[0].name ? null : techLanguage,
+      },
     });
 
-    // Dispatch loadQuestions with language
     const language = techLanguage.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
     this.store.dispatch(loadQuestionBank({ language }));
+    this.store.dispatch(loadTopicCounts({ language }));
   }
 
+  /**
+   * Filter questions by topic.
+   * Updates activeTopic, merges query params, and navigates.
+   */
   filterByTopics(topic: string): void {
     const lowerTopic = topic.toLowerCase();
     this.activeTopic = lowerTopic;
@@ -73,9 +88,10 @@ export class QuestionBankComponent implements OnInit {
     });
   }
 
-  scrollToTop() {
+  /**
+   * Smooth scroll to top of the page.
+   */
+  scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
 }
-
