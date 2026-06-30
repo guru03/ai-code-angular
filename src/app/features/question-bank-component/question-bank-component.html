@@ -25,7 +25,7 @@
                 <li (click)="filterByCategory(category.name)" [ngClass]="{
                 'bg-gradient-to-r from-orange-500 to-amber-500 text-white shadow-md shadow-orange-500/20': activeCategory === category.name,
                 'text-slate-600 hover:text-slate-900 hover:bg-slate-50': activeCategory !== category.name }"
-                    class="cursor-pointer flex items-center justify-between px-4 py-2.5 rounded-xl font-medium transition duration-200">
+                    class="cursor-pointer flex items-center justify-between px-4 py-2 rounded-xl font-sm transition duration-200">
 
                     <span>{{ category.value }}</span>
                     <span
@@ -38,19 +38,18 @@
             }
         </div>
 
-        <div class="flex gap-2">
-            <button class="px-4 py-2 rounded" [class.bg-blue-500]="activeCategory === 'angular'"
-                (click)="filterByCategory('angular')">
-                Angular
-            </button>
-            <button class="px-4 py-2 rounded" [class.bg-green-500]="activeCategory === 'javascript'"
-                (click)="filterByCategory('javascript')">
-                JavaScript
-            </button>
-        </div>
-
         <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Notes Section</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Related Topics</h4>
+            <ul class="space-y-2 text-xs font-medium">
+                @for (topic of topics; track $index) {
+                <li (click)="filterByTopics(topic.value)"
+                    class="cursor-pointer flex items-center text-slate-600 hover:text-orange-600 transition group">
+                    <span class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
+                    {{topic.value}}
+                </li>
+                }
+            </ul>
+            <!-- <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Notes Section</h4>
             <ul class="space-y-2 text-xs font-medium">
                 <li>
                     <a href="#" class="flex items-center text-slate-600 hover:text-orange-600 transition group">
@@ -73,7 +72,7 @@
                         <span>ID 12 will be removed</span>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </aside>
 
@@ -82,42 +81,31 @@
     </section>
 
     <aside class="lg:col-span-3 space-y-6 sticky top-24 overflow-y-auto">
+        <!-- <aside class="lg:col-span-3 space-y-6"> -->
 
-        <!--? Quick Navigation -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-            <!-- <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Quick Navigation</h2>
-            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
-                <h4 class="font-bold text-slate-900 text-sm mb-1">Getting Started</h4>
-                <p class="text-xs text-slate-500 leading-relaxed mb-4">New to NgRx? Start with our reactive state
-                    patterns guide.</p>
-                <button
-                    class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-md shadow-orange-500/10 hover:shadow-lg transition duration-200">
-                    View Roadmap
-                </button>
-            </div> -->
 
-            <!--? Related Topics -->
 
-            <div class="mt-6 pt-6 border-t border-slate-100">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Related Topics</h4>
-                <ul class="space-y-2 text-xs font-medium">
-                    @for (topic of topics; track $index) {
-                    <li (click)="filterByTopics(topic.value)"
-                        class="cursor-pointer flex items-center text-slate-600 hover:text-orange-600 transition group">
-                        <span
-                            class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-2 group-hover:scale-125 transition"></span>
-                        {{topic.value}}
-                    </li>
-                    }
-                </ul>
 
-                <ul>
-                    <li>test</li>
-                    @for (topic of topicCounts$ | async; track $index) {
-                    <li>{{ topic.topic }}: {{ topic.total }}</li>
-                    }
-                </ul>
+        <!--? Related Topics -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm">
+            <h3 class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-4">Related Topics</h3>
 
+            <div class="flex flex-wrap gap-2">
+                @for (topic of topicCounts$ | async; track $index) {
+                <a (click)="filterByTopics(topic.topic)"
+                    class="cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 bg-slate-100/50 hover:bg-slate-100 border border-slate-100/50 rounded-lg transition-colors duration-200 group">
+                    <span>{{topic.topic}}</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold text-slate-400 bg-white border border-slate-200 rounded-full group-hover:border-slate-300 group-hover:text-slate-600 transition-colors">{{topic.total}}</span>
+                </a>
+                }
+
+                <a
+                    class="cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-700 bg-slate-100/80 hover:bg-orange-50 hover:text-orange-700 rounded-lg transition-all duration-200 group">
+                    <span>Directives & Pipes</span>
+                    <span
+                        class="text-xs font-bold text-slate-400 group-hover:text-orange-500 bg-white px-1.5 py-0.5 rounded-md shadow-sm">5</span>
+                </a>
             </div>
         </div>
 
@@ -201,5 +189,216 @@
                 Continue Learning
             </button>
         </div>
+
+
+
+        <div class="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
+            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-1">Overview</h3>
+            <ul class="space-y-2">
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                            Security
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                            Build & Deployment
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                            Angular Ecosystem
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                            Expert Angular
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="border-gray-100 mx-1" />
+
+        <div class="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex-1">
+            <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3 px-1">Topics & Metrics</h3>
+
+            <ul class="space-y-1 max-h-[60vh] overflow-y-auto pr-1 custom-scrollbar">
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-semibold text-orange-600 bg-orange-50 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+                            Compilation
+                        </span>
+                        <span class="bg-orange-200/60 text-orange-700 text-xs font-bold px-2 py-0.5 rounded-md">4</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            RxJS
+                        </span>
+                        <span class="bg-gray-100 text-gray-500 text-xs font-semibold px-2 py-0.5 rounded-md">7</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            Performance
+                        </span>
+                        <span class="bg-gray-100 text-gray-500 text-xs font-semibold px-2 py-0.5 rounded-md">1</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            State Management
+                        </span>
+                        <span class="bg-gray-100 text-gray-500 text-xs font-semibold px-2 py-0.5 rounded-md">2</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#"
+                        class="flex items-center justify-between px-3 py-2 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-gray-300"></span>
+                            Components & Templates
+                        </span>
+                        <span class="bg-gray-100 text-gray-500 text-xs font-semibold px-2 py-0.5 rounded-md">5</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm">
+            <h3 class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-4">Related Topics</h3>
+
+            <div class="flex flex-wrap gap-2">
+                <a href="#"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 rounded-full transition-colors duration-200 group">
+                    <span>Directives & Pipes</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold text-slate-400 bg-white border border-slate-200 rounded-full group-hover:border-slate-300 group-hover:text-slate-600 transition-colors">5</span>
+                </a>
+                <a href="#"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 rounded-full transition-colors duration-200 group">
+                    <span>Components & Templates</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold text-slate-400 bg-white border border-slate-200 rounded-full group-hover:border-slate-300 group-hover:text-slate-600">10</span>
+                </a>
+
+                <a href="#"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-600 bg-slate-50 hover:bg-slate-100 border border-slate-200/60 rounded-full transition-colors duration-200 group">
+                    <span>Signals</span>
+                    <span
+                        class="inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold text-slate-400 bg-white border border-slate-200 rounded-full group-hover:border-slate-300 group-hover:text-slate-600">3</span>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm">
+            <h3 class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-4">Related Topics222</h3>
+
+            <div class="flex flex-wrap gap-2">
+                <a href="#"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-700 bg-slate-100/80 hover:bg-orange-50 hover:text-orange-700 rounded-lg transition-all duration-200 group">
+                    <span>Directives & Pipes</span>
+                    <span
+                        class="text-xs font-bold text-slate-400 group-hover:text-orange-500 bg-white px-1.5 py-0.5 rounded-md shadow-sm">5</span>
+                </a>
+
+                <a href="#"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-semibold text-white bg-orange-500 rounded-lg shadow-sm shadow-orange-500/20">
+                    <span>Signals</span>
+                    <span class="text-xs font-bold text-orange-600 bg-white px-1.5 py-0.5 rounded-md">3</span>
+                </a>
+
+                <a href="#"
+                    class="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-slate-700 bg-slate-100/80 hover:bg-orange-50 hover:text-orange-700 rounded-lg transition-all duration-200 group">
+                    <span>RxJs</span>
+                    <span
+                        class="text-xs font-bold text-slate-400 group-hover:text-orange-500 bg-white px-1.5 py-0.5 rounded-md shadow-sm">7</span>
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm max-w-sm">
+            <h3 class="text-xs font-bold tracking-wider text-slate-400 uppercase mb-3">Related Topics333</h3>
+
+            <div class="divide-y divide-slate-100">
+                <a href="#" class="flex items-center justify-between py-2.5 group transition-colors">
+                    <span
+                        class="text-sm font-medium text-slate-600 group-hover:text-orange-600 transition-colors">Directives
+                        & Pipes</span>
+                    <span
+                        class="text-xs font-semibold text-slate-400 bg-slate-50 group-hover:bg-orange-50 group-hover:text-orange-600 px-2 py-0.5 rounded-md transition-colors">5</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between py-2.5 group transition-colors">
+                    <span
+                        class="text-sm font-medium text-slate-600 group-hover:text-orange-600 transition-colors">Components
+                        & Templates</span>
+                    <span
+                        class="text-xs font-semibold text-slate-400 bg-slate-50 group-hover:bg-orange-50 group-hover:text-orange-600 px-2 py-0.5 rounded-md transition-colors">10</span>
+                </a>
+
+                <a href="#" class="flex items-center justify-between py-2.5 group transition-colors">
+                    <span
+                        class="text-sm font-medium text-slate-600 group-hover:text-orange-600 transition-colors">Signals</span>
+                    <span
+                        class="text-xs font-semibold text-slate-400 bg-slate-50 group-hover:bg-orange-50 group-hover:text-orange-600 px-2 py-0.5 rounded-md transition-colors">3</span>
+                </a>
+            </div>
+        </div>
+
+
+        <!--? Quick Navigation -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-4">Quick Navigation</h2>
+            <div class="bg-slate-50 rounded-xl p-5 border border-slate-100">
+                <h4 class="font-bold text-slate-900 text-sm mb-1">Getting Started</h4>
+                <p class="text-xs text-slate-500 leading-relaxed mb-4">New to NgRx? Start with our reactive state
+                    patterns guide.</p>
+                <button
+                    class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-xs font-bold py-2.5 px-4 rounded-xl shadow-md shadow-orange-500/10 hover:shadow-lg transition duration-200">
+                    View Roadmap
+                </button>
+            </div>
+        </div>
     </aside>
+
+
 </div>
