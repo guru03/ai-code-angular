@@ -1,10 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import { QuestionBank, TopicCount } from '../models/question-bank.models';
+import { SupportedLanguage } from '../models/language.models';
+
 
 // -----------------------------
 // Types
 // -----------------------------
-export type Language = 'angular' | 'javascript';
+// export type Language = 'angular' | 'javascript';
 
 // -----------------------------
 // Question Bank Actions
@@ -13,7 +15,7 @@ export type Language = 'angular' | 'javascript';
 // Load Question Bank
 export const loadQuestionBank = createAction(
   '[Question Bank] Load',
-  props<{ language: Language }>()
+  props<{ language: SupportedLanguage['name'] }>()
 );
 
 // Load Question Bank Success
@@ -31,7 +33,7 @@ export const loadQuestionBankFailure = createAction(
 // Load Question Bank Details by Id
 export const loadQuestionBankById = createAction(
   '[Question Bank] Load By Id',
-  props<{ id: number; language: Language }>()
+  props<{ id: number; language: SupportedLanguage['name'] }>()
 );
 
 // Load Question Bank Details Success
@@ -45,6 +47,7 @@ export const loadQuestionBankByIdFailure = createAction(
   '[Question Bank] Load By Id Failure',
   props<{ error: string }>()
 );
+
 
 // -----------------------------
 // Topic Count Actions

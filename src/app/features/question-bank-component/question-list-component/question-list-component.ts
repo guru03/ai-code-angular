@@ -12,6 +12,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { loadQuestionBank, loadQuestionBankById } from '../state/question-bank.action';
 import { selectLoading, selectQuestionBankByFilters } from '../state/question-bank.selector';
+import { SUPPORTED_LANGUAGES, SupportedLanguage } from '../models/language.models';
 
 @Component({
   selector: 'aic-question-list-component',
@@ -21,40 +22,60 @@ import { selectLoading, selectQuestionBankByFilters } from '../state/question-ba
   encapsulation: ViewEncapsulation.None,
 })
 export class QuestionListComponent implements OnInit {
-  activeCategory = signal('All');
+  activeLanguage = signal('All');
   readonly WorkStatus = WorkStatus;
   readonly label = Labels;
-  // readonly topic = 
   private store = inject(Store<AppState>);
+  private sanitizer = inject(DomSanitizer);
+  private route = inject(ActivatedRoute);
   getQuestionList$!: Observable<QuestionBank[]>;
   loading$ = this.store.select(selectLoading);
   selectedQuestion$!: Observable<QuestionBank | null>;
-  private sanitizer = inject(DomSanitizer);
-  private route = inject(ActivatedRoute);
+
 
   ngOnInit() {
-    // Default load (Angular)
-    this.store.dispatch(loadQuestionBank({ language: 'angular' }));
-
     this.route.queryParamMap.subscribe(params => {
-      const category = params.get('category') ?? 'All';
+      const techLanguage = (params.get('language') ?? 'all').toLowerCase();
       const topic = params.get('topic');
 
-      this.activeCategory.set(category);
+      this.activeLanguage.set(techLanguage);
 
-      // Decide language based on category
-      const language = category.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
+      // Validate against supported languages
+
+      const languageEntry: SupportedLanguage | undefined = SUPPORTED_LANGUAGES.find(
+        lan => lan.name === techLanguage
+      );
+
+      const language = languageEntry ? languageEntry.name : 'angular'; // fallback
+
       this.store.dispatch(loadQuestionBank({ language }));
 
-      this.getQuestionList$ = this.store.select(selectQuestionBankByFilters(category, topic));
+      this.getQuestionList$ = this.store.select(
+        selectQuestionBankByFilters(language, topic)
+      );
     });
   }
 
   onQuestionClick(id: number) {
-    const category = this.activeCategory();
-    const language = category.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
+    const active = this.activeLanguage().toLowerCase();
+
+    // Find the matching language entry
+    const languageEntry: SupportedLanguage | undefined = SUPPORTED_LANGUAGES.find(
+      lan => lan.name.toLowerCase() === active
+    );
+
+    // Fallback to Angular if not found
+    const language = languageEntry ? languageEntry.name : 'angular';
+
     this.store.dispatch(loadQuestionBankById({ id, language }));
   }
+
+
+  // onQuestionClick(id: number) {
+  //   const category = this.activeLanguage();
+  //   const language = category.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
+  //   this.store.dispatch(loadQuestionBankById({ id, language }));
+  // }
 
   setHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);

@@ -1,63 +1,55 @@
 <div class="border-b border-slate-200 pb-6">
-    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">{{activeCategory()}} Concepts</h1>
-    <p class="mt-2 text-base text-slate-500">Master state management with our comprehensive guide to Redux
-        patterns in Angular.</p>
+    <h1 class="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">
+        {{ activeLanguage() }} Concepts
+    </h1>
+    <p class="mt-2 text-base text-slate-500">
+        Master state management with our comprehensive guide to Redux patterns in Angular.
+    </p>
 </div>
-
 
 <div class="space-y-6 relative">
 
-    @if(loading$ | async){
+    @if (loading$ | async) {
     <aic-loader></aic-loader>
     }
 
     @for (item of getQuestionList$ | async; track $index) {
     <div class="question-section">
 
+        <!-- Serial Number with Category Routing -->
         <div [routerLink]="['/question-bank/questions', item.id]"
-            [queryParams]="{ category: activeCategory() === 'All' ? null : activeCategory() }" class="serial-number">
+            [queryParams]="{ category: activeLanguage() === 'All' ? null : activeLanguage() }" class="serial-number">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
 
-        <!-- If want without category in routing use below commented code -->
-        <!-- <div [routerLink]="['/question-bank/questions', item.id]" class="serial-number">
-            <span>{{ $index + 1 | padZero:2 }}</span>
-        </div> -->
-
         <div class="space-y-3">
 
+            <!-- Metadata Section -->
             <div class="flex flex-wrap items-center gap-3 text-xs font-medium text-slate-600 mb-2">
-                <!-- Brand/Topic -->
                 <span class="text-orange-600 font-bold uppercase tracking-wider">{{ item.language }}</span>
-
+                <span class="text-slate-300">•</span>
+                <span class="text-slate-500">{{ item.topicLabel }}</span>
                 <span class="text-slate-300">•</span>
 
-                <span class="text-slate-500">{{item.topicLabel}}</span>
-
-                <span class="text-slate-300">•</span>
-
-                <span class=" px-2.5 py-1 rounded-full" [ngClass]="{
-                        'bg-blue-50 text-blue-700': item.label === label.Beginner,
-                        'bg-amber-50 text-amber-700': item.label === label.Intermediate,
-                        'bg-indigo-50 text-indigo-700': item.label === label.Expert,
-                        'bg-teal-50 text-teal-700': item.label === label.Mastery,
-                        'bg-emerald-50 text-emerald-700': item.label === label.Advanced,
-                        }">
-                    {{item.label | titlecase}}
+                <!-- Difficulty Label -->
+                <span class="px-2.5 py-1 rounded-full" [ngClass]="{
+                    'bg-blue-50 text-blue-700': item.label === label.Beginner,
+                    'bg-amber-50 text-amber-700': item.label === label.Intermediate,
+                    'bg-indigo-50 text-indigo-700': item.label === label.Expert,
+                    'bg-teal-50 text-teal-700': item.label === label.Mastery,
+                    'bg-emerald-50 text-emerald-700': item.label === label.Advanced
+                }">
+                    {{ item.label | titlecase }}
                 </span>
 
                 <span class="text-slate-300">•</span>
-
                 <span class="bg-blue-50 text-blue-600 px-2.5 py-1 rounded-full">{{ item.id | padZero:2 }}</span>
-
                 <span class="text-slate-300">•</span>
-
                 <span class="bg-zinc-200 text-zinc-700 px-2.5 py-1 rounded-full">{{ item.serialNumber | padZero:2
                     }}</span>
-
                 <span class="text-slate-300">•</span>
-                <!-- ?This is for the content status, we can have different colors based on the status value. -->
 
+                <!-- Content Status -->
                 <span
                     class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border capitalize"
                     [ngClass]="{
@@ -70,52 +62,33 @@
                         'bg-rose-50 text-rose-700 border-rose-200': item.content_status === WorkStatus.Rejected,
                         'bg-sky-50 text-sky-700 border-sky-200': item.content_status === WorkStatus.Updated,
                         'bg-zinc-200 text-zinc-700 border-zinc-300': item.content_status === WorkStatus.Archived
-                        }">
-
-                    <!-- <span class="w-1.5 h-1.5 rounded-full" [ngClass]="{
-                                'bg-slate-400': item.content_status === WorkStatus.Draft,
-                                'bg-amber-500 animate-pulse': item.content_status === WorkStatus.Pending,
-                                'bg-indigo-500': item.content_status === WorkStatus.InProgress,
-                                'bg-purple-500': item.content_status === WorkStatus.InReview,
-                                'bg-emerald-500': item.content_status === WorkStatus.Approved,
-                                'bg-teal-500': item.content_status === WorkStatus.Completed,
-                                'bg-rose-500': item.content_status === WorkStatus.Rejected,
-                                'bg-sky-500': item.content_status === WorkStatus.Updated,
-                                'bg-zinc-500': item.content_status === WorkStatus.Archived
-                    }"></span> -->
-
+                    }">
                     {{ item.content_status | titlecase }}
                 </span>
+
                 <span class="text-slate-300">•</span>
-
-                <!-- Time to Read -->
-                <span class="text-slate-400 flex items-center gap-1">
-                    5 min read
-                </span>
+                <span class="text-slate-400 flex items-center gap-1">5 min read</span>
             </div>
-            <!--? This is Final design ends -->
 
-            <h2 class="question-text">
-                {{ item.question }}
-            </h2>
+            <!-- Question -->
+            <h2 class="question-text">{{ item.question }}</h2>
 
-
-            <div class="answer-section" [innerHTML]="setHtml(item.answer)">
-            </div>
+            <!-- Answer Sections -->
+            <div class="answer-section" [innerHTML]="setHtml(item.answer)"></div>
 
             @if (item.answer2) {
             <hr class="border-slate-200" />
-            <div class="mt-3"><span class="text-lg font-medium">Additional Explanation:</span></div>
+            <div class="mt-3">
+                <span class="text-lg font-medium">Additional Explanation:</span>
+            </div>
             <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
             }
 
-
-            @if(item.code_block_title){
-            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title)">
-            </div>
+            @if (item.code_block_title) {
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title)"></div>
             }
 
-            <!-- Primary IDE Window Style Container -->
+            <!-- Code Block -->
             @if (item.code_block) {
             <div class="code-editor combineBothDirectives mt-6">
                 <div
@@ -126,15 +99,15 @@
                         <span class="w-3 h-3 rounded-full bg-green-500"></span>
                         <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
                     </div>
-                    <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 rounded">{{item.code_language}}</span>
+                    <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 rounded">{{ item.code_language }}</span>
                 </div>
                 <pre aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="item.code_language"></pre>
             </div>
             }
 
-            @if(item.code_block_title2){
-            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title2)">
-            </div>
+            <!-- Additional Code Blocks -->
+            @if (item.code_block_title2) {
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title2)"></div>
             }
 
             @if (item.code_block2) {
@@ -143,17 +116,18 @@
             </div>
             }
 
-            @if(item.code_block_title3){
-            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title3)">
-            </div>
+            @if (item.code_block_title3) {
+            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title3)"></div>
             }
 
             @if (item.code_block3) {
-            <span>{{item.code_language3}}</span>
+            <span>{{ item.code_language3 }}</span>
             <div class="code-editor combineBothDirectives mt-6">
                 <pre aicCodeSnippetDirective [codeBlock]="item.code_block3" [language]="item.code_language3"></pre>
             </div>
             }
+
+            <!-- Extra Answers -->
             @if (item.answer3) {
             <div class="answer-section" [innerHTML]="setHtml(item.answer3)"></div>
             }
@@ -163,6 +137,4 @@
         </div>
     </div>
     }
-
-
 </div>

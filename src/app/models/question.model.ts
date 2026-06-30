@@ -75,7 +75,7 @@ export const TOPICS: Topics[] = [
   { id: 2, name: 'compilation', value: 'Compilation' },
   { id: 3, name: 'Components', value: 'components' },
   { id: 3, name: 'Web Storage', value: 'Web Storage' },
-  
+
 ];
 
 // export interface Label {

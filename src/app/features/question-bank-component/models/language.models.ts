@@ -1,11 +1,13 @@
-export interface Category {
+// Define the type
+export interface SupportedLanguage {
     id: number;
-    name: string;  // backend value (e.g. "angular")
-    value: string; // human‑friendly label (e.g. "Angular")
+    name: string;   // internal identifier (used in params, routing)
+    value: string;  // display label (user-facing)
 }
 
-export const LANGUAGES: Category[] = [
-    { id: 1, name: 'All', value: 'All' },
+// Define the constant
+export const SUPPORTED_LANGUAGES: SupportedLanguage[] = [
+    { id: 1, name: 'all', value: 'All' },
     { id: 2, name: 'angular', value: 'Angular' },
     { id: 3, name: 'ngrx', value: 'NgRx' },
     { id: 4, name: 'rxjs', value: 'RxJS' },

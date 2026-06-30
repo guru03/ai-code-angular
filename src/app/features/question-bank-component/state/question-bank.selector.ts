@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { QuestionBank, QuestionBankState, TopicCount } from "../models/question-bank.models";
-import { LANGUAGES } from "../models/language.models";
+import { SUPPORTED_LANGUAGES } from "../models/language.models";
 
 const selectQuestionBankState = createFeatureSelector<QuestionBankState>('questionBank');
 
@@ -39,10 +39,10 @@ export const getCategoryCounts = createSelector(
             (counts, question) => ({
                 ...counts,
                 // instead of hardcoding "All", use the first entry from LANGUAGES
-                [LANGUAGES[0].name]: (counts[LANGUAGES[0].name] ?? 0) + 1,
+                [SUPPORTED_LANGUAGES[0].name]: (counts[SUPPORTED_LANGUAGES[0].name] ?? 0) + 1,
                 [question.language]: (counts[question.language] ?? 0) + 1,
             }),
-            { [LANGUAGES[0].name]: 0 } // initialize with dynamic "All"
+            { [SUPPORTED_LANGUAGES[0].name]: 0 } // initialize with dynamic "All"
         );
     }
 );
@@ -51,7 +51,7 @@ export const selectQuestionsByCategory = (category: string) =>
     createSelector(
         selectQuestionBankState,
         (state: QuestionBankState) => {
-            if (category === LANGUAGES[0].name) {
+            if (category === SUPPORTED_LANGUAGES[0].name) {
                 return state.questions;
             } else {
                 return state.questions.filter(q => q.language === category);
@@ -67,7 +67,7 @@ export const selectQuestionBankByFilters = (category: string, topic: string | nu
 
             return state.questions.filter((question: QuestionBank) => {
                 const matchesCategory =
-                    category === LANGUAGES[0].name || question.language === category;
+                    category === SUPPORTED_LANGUAGES[0].name || question.language === category;
                 const matchesTopic =
                     !normalizedTopic || normalizeValue(question.topicLabel) === normalizedTopic;
 

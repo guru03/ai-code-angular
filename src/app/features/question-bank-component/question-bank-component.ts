@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { getCategoryCounts, selectTopicCounts } from './state/question-bank.selector';
 import { loadQuestionBank, loadTopicCounts } from './state/question-bank.action';
 import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
-import { LANGUAGES } from './models/language.models';
+import { SUPPORTED_LANGUAGES } from './models/language.models';
 import { TOPICS } from './models/topics.models';
 
 @Component({
@@ -20,10 +20,10 @@ export class QuestionBankComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private router = inject(Router);
   private store = inject(Store<AppState>);
-  // activeCategory = signal('All');
-  categories = LANGUAGES;
+  // activeLanguage = signal('All');
+  technicalLanguages = SUPPORTED_LANGUAGES;
   topics = TOPICS;
-  activeCategory: string = LANGUAGES[0].name;
+  activeLanguage: string = SUPPORTED_LANGUAGES[0].name;
   activeTopic: string = '';
   categoryCounts$!: Observable<Record<string, number>>;
 
@@ -37,11 +37,11 @@ export class QuestionBankComponent implements OnInit {
     this.store.dispatch(loadTopicCounts());
 
     this.activatedRoute.queryParamMap.subscribe(params => {
-      this.activeCategory = params.get('category') ?? LANGUAGES[0].name;
+      this.activeLanguage = params.get('category') ?? SUPPORTED_LANGUAGES[0].name;
       this.activeTopic = params.get('topic') ?? '';
 
       // Dispatch again when category changes
-      if (this.activeCategory.toLowerCase() === 'javascript') {
+      if (this.activeLanguage.toLowerCase() === 'javascript') {
         this.store.dispatch(loadQuestionBank({ language: 'javascript' }));
       } else {
         this.store.dispatch(loadQuestionBank({ language: 'angular' }));
@@ -49,16 +49,16 @@ export class QuestionBankComponent implements OnInit {
     });
   }
 
-  filterByCategory(category: string): void {
-    this.activeCategory = category;
+  filterByCategory(techLanguage: string): void {
+    this.activeLanguage = techLanguage;
 
     this.router.navigate(['questions'], {
       relativeTo: this.activatedRoute,
-      queryParams: { category: category === LANGUAGES[0].name ? null : category },
+      queryParams: { language: techLanguage === SUPPORTED_LANGUAGES[0].name ? null : techLanguage },
     });
 
     // Dispatch loadQuestions with language
-    const language = category.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
+    const language = techLanguage.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
     this.store.dispatch(loadQuestionBank({ language }));
   }
 
