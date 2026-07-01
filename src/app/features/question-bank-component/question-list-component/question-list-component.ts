@@ -13,6 +13,7 @@ import { Store } from '@ngrx/store';
 import { loadQuestionBank, loadQuestionBankById } from '../state/question-bank.action';
 import { selectLoading, selectQuestionBankByFilters } from '../state/question-bank.selector';
 import { SUPPORTED_LANGUAGES, SupportedLanguage } from '../models/language.models';
+// import { Clipboard } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'aic-question-list-component',

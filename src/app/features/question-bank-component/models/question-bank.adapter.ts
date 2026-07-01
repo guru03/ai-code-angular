@@ -10,9 +10,21 @@ export class QuestionBankAdapter {
 
         return {
             ...dto,
-            //   topicLabel: dto.topic,
             serialNumber: dto.serial_number,
             language: dto.language,
+            
+            codeLanguage: dto.code_language,
+            codeTitle: dto.code_title,
+            codeEditor: dto.code_editor,
+
+            codeLanguage2: dto.code_language2,
+            codeTitle2: dto.code_title2,
+            codeEditor2: dto.code_editor2,
+
+            codeLanguage3: dto.code_language3,
+            codeTitle3: dto.code_title3,
+            codeEditor3: dto.code_editor3,
+            //   topicLabel: dto.topic,
             topicLabel: topic?.value ?? dto.topic
         };
     }

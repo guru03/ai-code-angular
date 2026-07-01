@@ -1,0 +1,27 @@
+$theme-orange: #FA7E0B; // Your signature orange accent
+$text-muted: #8f9cae;
+$btn-border: #3b4261;
+$code-bg-main:     #111625; // Dark navy matching your UI components
+$code-bg-header:   #1a1f33; // Slightly lighter navy for structure
+$code-border:      #252b45;
+$code-text-default:#d4d4d4;
+
+.copy-btn {
+    background: transparent;
+    border: 1px solid $btn-border;
+    color: $text-muted;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: $code-border;
+        color: #ffffff;
+        border-color: $theme-orange;
+    }
+}

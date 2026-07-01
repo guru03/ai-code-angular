@@ -13,19 +13,19 @@ export interface QuestionBank {
   answer: string;
   answer2?: string;
 
-  code_language: string;
-  code_block_title: string;
-  code_block: string;
+  codeLanguage: string;
+  codeTitle: string;
+  codeEditor: string;
 
 
-  code_language2: string;
-  code_block_title2: string;
-  code_block2: string;
+  codeLanguage2: string;
+  codeTitle2: string;
+  codeEditor2: string;
 
 
-  code_language3: string;
-  code_block_title3: string;
-  code_block3: string;
+  codeLanguage3: string;
+  codeTitle3: string;
+  codeEditor3: string;
 
   answer3?: string;
   answer4?: string;
@@ -51,16 +51,16 @@ export interface QuestionBankDto {
   answer4?: string;
 
   code_language: string;
-  code_block_title: string;
-  code_block: string;
+  code_title: string;
+  code_editor: string;
 
   code_language2: string;
-  code_block_title2: string;
-  code_block2: string;
+  code_title2: string;
+  code_editor2: string;
 
   code_language3: string;
-  code_block_title3: string;
-  code_block3: string;
+  code_title3: string;
+  code_editor3: string;
 
   imageUrl?: string;
   image2Url?: string;

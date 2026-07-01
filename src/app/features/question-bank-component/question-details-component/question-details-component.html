@@ -79,39 +79,39 @@
             }
 
 
-            @if(data.code_block_title){
-            <div class="answer-section" [innerHTML]="setHtml(data.code_block_title)">
+            @if(data.codeTitle){
+            <div class="answer-section" [innerHTML]="setHtml(data.codeTitle)">
             </div>
             }
 
-            @if (data.code_block) {
-            <span>{{data.code_language}}</span>
+            @if (data.codeEditor) {
+            <span>{{data.codeLanguage}}</span>
             <div class="code-container combineBothDirectives mt-6">
-                <pre aicCodeSnippetDirective [codeBlock]="data.code_block" [language]="data.code_language"></pre>
+                <pre aicCodeSnippetDirective [codeBlock]="data.codeEditor" [language]="data.codeLanguage"></pre>
             </div>
             }
 
-            @if(data.code_block_title2){
-            <div class="answer-section" [innerHTML]="setHtml(data.code_block_title2)">
+            @if(data.codeTitle2){
+            <div class="answer-section" [innerHTML]="setHtml(data.codeTitle2)">
             </div>
             }
 
-            @if (data.code_block2) {
-            <span>{{data.code_language2}}</span>
+            @if (data.codeEditor2) {
+            <span>{{data.codeLanguage2}}</span>
             <div class="code-container combineBothDirectives mt-6">
-                <pre aicCodeSnippetDirective [codeBlock]="data.code_block2" [language]="data.code_language2"></pre>
+                <pre aicCodeSnippetDirective [codeBlock]="data.codeEditor2" [language]="data.codeLanguage2"></pre>
             </div>
             }
 
-            @if(data.code_block_title3){
-            <div class="answer-section" [innerHTML]="setHtml(data.code_block_title3)">
+            @if(data.codeTitle3){
+            <div class="answer-section" [innerHTML]="setHtml(data.codeTitle3)">
             </div>
             }
 
-            @if (data.code_block3) {
-            <span>{{data.code_language3}}</span>
+            @if (data.codeEditor3) {
+            <span>{{data.codeLanguage3}}</span>
             <div class="code-container combineBothDirectives mt-6">
-                <pre aicCodeSnippetDirective [codeBlock]="data.code_block3" [language]="data.code_language3"></pre>
+                <pre aicCodeSnippetDirective [codeBlock]="data.codeEditor3" [language]="data.codeLanguage3"></pre>
             </div>
             }
             @if (data.answer3) {

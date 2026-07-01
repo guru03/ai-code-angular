@@ -84,12 +84,8 @@
             <div class="answer-section" [innerHTML]="setHtml(item.answer2)"></div>
             }
 
-            @if (item.code_block_title) {
-            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title)"></div>
-            }
-
-            <!-- Code Block -->
-            @if (item.code_block) {
+            <!-- Code Editor -->
+            @if (item.codeEditor) {
             <div class="code-editor combineBothDirectives mt-6">
                 <div
                     class="flex items-center justify-between text-slate-400 rounded-t-md px-4 py-1 bg-slate-900 border-b border-gray-700">
@@ -99,33 +95,97 @@
                         <span class="w-3 h-3 rounded-full bg-green-500"></span>
                         <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
                     </div>
-                    <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 rounded">{{ item.code_language }}</span>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 border border-slate-700 rounded">
+                            {{ item.codeLanguage }}
+                        </span>
+                        <button
+                            class="text-[11px] bg-slate-800 px-2 py-0.5 rounded flex items-center gap-1 border border-slate-700 hover:border-orange-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                    </div>
                 </div>
-                <pre aicCodeSnippetDirective [codeBlock]="item.code_block" [language]="item.code_language"></pre>
+                <pre aicCodeSnippetDirective [codeBlock]="item.codeEditor" [language]="item.codeLanguage"></pre>
             </div>
             }
 
             <!-- Additional Code Blocks -->
-            @if (item.code_block_title2) {
-            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title2)"></div>
+            @if (item.codeTitle2) {
+            <div class="answer-section" [innerHTML]="setHtml(item.codeTitle2)"></div>
             }
 
-            @if (item.code_block2) {
+            @if (item.codeEditor2) {
             <div class="code-editor combineBothDirectives mt-6">
-                <pre aicCodeSnippetDirective [codeBlock]="item.code_block2" [language]="item.code_language2"></pre>
+                <div
+                    class="flex items-center justify-between text-slate-400 rounded-t-md px-4 py-1 bg-slate-900 border-b border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 border border-slate-700 rounded">
+                            {{ item.codeLanguage2 }}
+                        </span>
+                        <button
+                            class="text-[11px] bg-slate-800 px-2 py-0.5 rounded flex items-center gap-1 border border-slate-700 hover:border-orange-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                    </div>
+                </div>
+                <pre aicCodeSnippetDirective [codeBlock]="item.codeEditor2" [language]="item.codeLanguage2"></pre>
             </div>
             }
 
-            @if (item.code_block_title3) {
-            <div class="answer-section" [innerHTML]="setHtml(item.code_block_title3)"></div>
+
+            @if (item.codeTitle3) {
+            <div class="answer-section" [innerHTML]="setHtml(item.codeTitle3)"></div>
             }
 
-            @if (item.code_block3) {
-            <span>{{ item.code_language3 }}</span>
+            <!-- Code Editor3 -->
+            @if (item.codeEditor3) {
             <div class="code-editor combineBothDirectives mt-6">
-                <pre aicCodeSnippetDirective [codeBlock]="item.code_block3" [language]="item.code_language3"></pre>
+                <div
+                    class="flex items-center justify-between text-slate-400 rounded-t-md px-4 py-1 bg-slate-900 border-b border-gray-700">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 border border-slate-700 rounded">
+                            {{ item.codeLanguage3 }}
+                        </span>
+                        <button
+                            class="text-[11px] bg-slate-800 px-2 py-0.5 rounded flex items-center gap-1 border border-slate-700 hover:border-orange-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                    </div>
+                </div>
+                <pre aicCodeSnippetDirective [codeBlock]="item.codeEditor3" [language]="item.codeLanguage3"></pre>
             </div>
             }
+
 
             <!-- Extra Answers -->
             @if (item.answer3) {

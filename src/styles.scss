@@ -5,6 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
+// @import 'prismjs/themes/prism.css'; // Default theme
+// @import 'prismjs/themes/prism-okaidia.css'; // Tomorrow Theme
+// @import 'prismjs/themes/prism-okaidia.css'; // okaidia Theme
+@import 'prismjs/themes/prism-tomorrow.css'; // Tomorrow Theme
+
+
+
 @import url(./app/styles/_common.scss);
 
 
