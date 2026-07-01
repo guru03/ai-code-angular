@@ -1,5 +1,12 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PadZeroPipe } from '../../../pipes/pad-zero-pipe';
 import { CodeSnippetDirective } from '../../../directive/code-snippet-directive';
@@ -20,6 +27,7 @@ import { SUPPORTED_LANGUAGES, SupportedLanguage } from '../models/language.model
   imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader],
   templateUrl: './question-list-component.html',
   styleUrl: './question-list-component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class QuestionListComponent implements OnInit {
@@ -33,9 +41,8 @@ export class QuestionListComponent implements OnInit {
   loading$ = this.store.select(selectLoading);
   selectedQuestion$!: Observable<QuestionBank | null>;
 
-
   ngOnInit() {
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       const techLanguage = (params.get('language') ?? 'all').toLowerCase();
       const topic = params.get('topic');
 
@@ -44,16 +51,14 @@ export class QuestionListComponent implements OnInit {
       // Validate against supported languages
 
       const languageEntry: SupportedLanguage | undefined = SUPPORTED_LANGUAGES.find(
-        lan => lan.name === techLanguage
+        (lan) => lan.name === techLanguage,
       );
 
       const language = languageEntry ? languageEntry.name : 'angular'; // fallback
 
       this.store.dispatch(loadQuestionBank({ language }));
 
-      this.getQuestionList$ = this.store.select(
-        selectQuestionBankByFilters(language, topic)
-      );
+      this.getQuestionList$ = this.store.select(selectQuestionBankByFilters(language, topic));
     });
   }
 
@@ -62,7 +67,7 @@ export class QuestionListComponent implements OnInit {
 
     // Find the matching language entry
     const languageEntry: SupportedLanguage | undefined = SUPPORTED_LANGUAGES.find(
-      lan => lan.name.toLowerCase() === active
+      (lan) => lan.name.toLowerCase() === active,
     );
 
     // Fallback to Angular if not found
@@ -70,7 +75,6 @@ export class QuestionListComponent implements OnInit {
 
     this.store.dispatch(loadQuestionBankById({ id, language }));
   }
-
 
   // onQuestionClick(id: number) {
   //   const category = this.activeLanguage();

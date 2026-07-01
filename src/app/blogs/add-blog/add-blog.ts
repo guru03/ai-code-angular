@@ -1,5 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +18,7 @@ import { CommonModule } from '@angular/common';
   selector: 'aic-add-blog',
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './add-blog.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './add-blog.scss',
 })
 export class AddBlog implements OnInit {
@@ -27,23 +34,25 @@ export class AddBlog implements OnInit {
   });
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(params => {
+    this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
       this.blogId = id ? Number(id) : null;
 
       if (this.blogId) {
-        this.store.select(selectBlogById(this.blogId)).pipe(take(1)).subscribe(blog => {
-          if (blog) {
-            this.addBlogForm.patchValue({
-              title: blog.title,
-              content: blog.content
-            });
-          }
-        });
+        this.store
+          .select(selectBlogById(this.blogId))
+          .pipe(take(1))
+          .subscribe((blog) => {
+            if (blog) {
+              this.addBlogForm.patchValue({
+                title: blog.title,
+                content: blog.content,
+              });
+            }
+          });
       }
     });
   }
-
 
   onSubmit(): void {
     if (this.addBlogForm.invalid) {
@@ -52,30 +61,33 @@ export class AddBlog implements OnInit {
     }
 
     if (this.blogId) {
-      this.store.dispatch(updateBlog({
-        blog: {
-          id: this.blogId,
-          title: this.addBlogForm.value.title,
-          content: this.addBlogForm.value.content
-        }
-      }));
+      this.store.dispatch(
+        updateBlog({
+          blog: {
+            id: this.blogId,
+            title: this.addBlogForm.value.title,
+            content: this.addBlogForm.value.content,
+          },
+        }),
+      );
 
       this.router.navigate(['/blogs']);
       return;
     }
 
-    this.store.select(selectAllBlogs).pipe(take(1)).subscribe(blogs => {
-      const blogData = {
-        id: Math.max(...blogs.map(blog => blog.id), 0) + 1,
-        title: this.addBlogForm.value.title,
-        content: this.addBlogForm.value.content
-      };
+    this.store
+      .select(selectAllBlogs)
+      .pipe(take(1))
+      .subscribe((blogs) => {
+        const blogData = {
+          id: Math.max(...blogs.map((blog) => blog.id), 0) + 1,
+          title: this.addBlogForm.value.title,
+          content: this.addBlogForm.value.content,
+        };
 
-      this.store.dispatch(createBlog({ blog: blogData }));
-      this.addBlogForm.reset();
-      this.router.navigate(['/blogs']);
-    });
+        this.store.dispatch(createBlog({ blog: blogData }));
+        this.addBlogForm.reset();
+        this.router.navigate(['/blogs']);
+      });
   }
-
-
 }

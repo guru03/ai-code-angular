@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { CodeSnippetDirective } from '../../../directive/code-snippet-directive';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { AppState } from '../../../store/app.state';
@@ -8,22 +8,16 @@ import { selectCodings, selectLoading } from '../state/coding.selectors';
 import { Observable } from 'rxjs';
 import { Coding } from '../models.ts/coding.models';
 import { loadCoding } from '../state/coding.action';
-import { Loader } from "../../../loader/loader";
+import { Loader } from '../../../loader/loader';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { PadZeroPipe } from '../../../pipes/pad-zero-pipe';
 
 @Component({
   selector: 'aic-coding-list-component',
-  imports: [
-    AsyncPipe,
-    RouterLink,
-    CommonModule,
-    PadZeroPipe,
-    CodeSnippetDirective,
-    Loader
-  ],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader],
   templateUrl: './coding-list-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './coding-list-component.scss',
 })
 export class CodingListComponent implements OnInit {

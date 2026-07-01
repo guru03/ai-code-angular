@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'aic-blogs',
   imports: [],
   templateUrl: './blogs.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './blogs.scss',
 })
 export class Blogs {
@@ -30,5 +31,5 @@ export class UserCardComponent {
       this.displayValue = this.internalCounter; // triggers CD
     });
   }
-}`
+}`;
 }

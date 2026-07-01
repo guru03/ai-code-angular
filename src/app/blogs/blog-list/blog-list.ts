@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectAllBlogs, selectError, selectLoading } from '../state/blog.selector';
 import { RouterLink, RouterOutlet } from '@angular/router';
@@ -11,10 +11,10 @@ import { deleteBlog } from '../state/blog.action';
   selector: 'aic-blog-list',
   imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './blog-list.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './blog-list.scss',
 })
 export class BlogList {
-
   private store = inject(Store<AppState>);
   private sanitizer = inject(DomSanitizer);
 
@@ -31,5 +31,4 @@ export class BlogList {
   setHtml(content: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(content);
   }
-
 }

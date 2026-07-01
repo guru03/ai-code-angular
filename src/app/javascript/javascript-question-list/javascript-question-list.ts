@@ -1,5 +1,12 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AppState } from '../../store/app.state';
@@ -14,9 +21,10 @@ import { CodeSnippetDirective } from '../../directive/code-snippet-directive';
 
 @Component({
   selector: 'aic-javascript-question-list',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe,  CodeSnippetDirective],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective],
   templateUrl: './javascript-question-list.html',
   styleUrl: './javascript-question-list.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class JavascriptQuestionList implements OnInit {
@@ -32,7 +40,7 @@ export class JavascriptQuestionList implements OnInit {
   ngOnInit() {
     this.store.dispatch(loadQuestions());
 
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       const category = params.get('category') ?? 'All';
       this.activeCategory.set(category);
       this.getQuestionList$ =

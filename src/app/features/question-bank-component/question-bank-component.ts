@@ -1,4 +1,10 @@
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AppState } from '../../store/app.state';
 import { Store } from '@ngrx/store';
@@ -14,6 +20,7 @@ import { TOPICS } from './models/topics.models';
   imports: [AsyncPipe, NgClass, RouterOutlet, CommonModule],
   templateUrl: './question-bank-component.html',
   styleUrl: './question-bank-component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class QuestionBankComponent implements OnInit {
@@ -42,7 +49,7 @@ export class QuestionBankComponent implements OnInit {
     this.store.dispatch(loadTopicCounts({ language: 'angular' }));
 
     // React to query params (category/topic changes)
-    this.activatedRoute.queryParamMap.subscribe(params => {
+    this.activatedRoute.queryParamMap.subscribe((params) => {
       this.activeLanguage = params.get('language') ?? SUPPORTED_LANGUAGES[0].name;
       this.activeTopic = params.get('topic') ?? '';
 

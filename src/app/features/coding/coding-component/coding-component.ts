@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   selector: 'aic-coding-component',
   imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './coding-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './coding-component.scss',
 })
-export class CodingComponent { }
+export class CodingComponent {}

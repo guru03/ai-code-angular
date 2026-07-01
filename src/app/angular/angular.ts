@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { AsyncPipe, CommonModule, NgClass } from '@angular/common';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -12,6 +12,7 @@ import { LANGUAGES, TOPICS } from '../models/question.model';
   selector: 'aic-angular',
   imports: [AsyncPipe, NgClass, RouterOutlet, CommonModule],
   templateUrl: './angular.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './angular.scss',
 })
 export class Angular implements OnInit {
@@ -30,7 +31,7 @@ export class Angular implements OnInit {
     this.categoryCounts$ = this.store.select(getCategoryCounts);
     this.store.dispatch(loadQuestions());
 
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       this.activeCategory = params.get('category') ?? LANGUAGES[0].name;
       this.activeTopic = params.get('topic') ?? '';
     });
@@ -39,9 +40,7 @@ export class Angular implements OnInit {
   }
 
   sortingCategory() {
-    this.testing.sort((a, b) =>
-      a.localeCompare(b) ? 1 : -1
-    );
+    this.testing.sort((a, b) => (a.localeCompare(b) ? 1 : -1));
     console.log(this.testing);
   }
 
@@ -68,5 +67,4 @@ export class Angular implements OnInit {
   scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-
 }

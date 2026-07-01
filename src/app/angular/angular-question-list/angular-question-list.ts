@@ -1,5 +1,12 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit, signal, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AppState } from '../../store/app.state';
@@ -15,9 +22,10 @@ import { Loader } from '../../loader/loader';
 
 @Component({
   selector: 'aic-angular-question-list',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe,  CodeSnippetDirective, Loader],
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader],
   templateUrl: './angular-question-list.html',
   styleUrl: './angular-question-list.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None,
 })
 export class AngularQuestionList implements OnInit {
@@ -41,7 +49,6 @@ export class AngularQuestionList implements OnInit {
   inviteEmployee1("Hello", "How are you?"); // Hello John Rodson, How are you?
   inviteEmployee2("Hello", "How are you?"); // Hello Jimmy Baily, How are you?`;
 
-
   activeCategory = signal('All');
   readonly WorkStatus = WorkStatus;
   readonly label = Labels;
@@ -55,7 +62,7 @@ export class AngularQuestionList implements OnInit {
   ngOnInit() {
     this.store.dispatch(loadQuestions());
 
-    this.route.queryParamMap.subscribe(params => {
+    this.route.queryParamMap.subscribe((params) => {
       const category = params.get('category') ?? 'All';
       const topic = params.get('topic');
       this.activeCategory.set(category);

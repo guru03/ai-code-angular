@@ -1,5 +1,5 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AppState } from '../../../store/app.state';
 import { Store } from '@ngrx/store';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -15,6 +15,7 @@ import { Labels, WorkStatus } from '../../../enum/enum';
   selector: 'aic-question-details-component',
   imports: [AsyncPipe, CommonModule, PadZeroPipe, CodeSnippetDirective],
   templateUrl: './question-details-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './question-details-component.scss',
 })
 export class QuestionDetailsComponent implements OnInit {
@@ -26,7 +27,7 @@ export class QuestionDetailsComponent implements OnInit {
   selectedQuestion$ = this.store.select(getSelectedQuestion);
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(params => {
+    this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
       const category = this.activatedRoute.snapshot.queryParamMap.get('category') ?? 'angular';
 
