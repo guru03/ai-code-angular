@@ -1,12 +1,5 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import {
-  Component,
-  inject,
-  OnInit,
-  signal,
-  ViewEncapsulation,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, inject, OnInit, signal, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { PadZeroPipe } from '../../../pipes/pad-zero-pipe';
 import { CodeSnippetDirective } from '../../../directive/code-snippet-directive';
@@ -20,11 +13,12 @@ import { Store } from '@ngrx/store';
 import { loadQuestionBank, loadQuestionBankById } from '../state/question-bank.action';
 import { selectLoading, selectQuestionBankByFilters } from '../state/question-bank.selector';
 import { SUPPORTED_LANGUAGES, SupportedLanguage } from '../models/language.models';
-// import { Clipboard } from '@angular/cdk/clipboard';
+import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 
 @Component({
   selector: 'aic-question-list-component',
-  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader],
+  standalone: true,
+  imports: [AsyncPipe, RouterLink, CommonModule, PadZeroPipe, CodeSnippetDirective, Loader, ClipboardModule],
   templateUrl: './question-list-component.html',
   styleUrl: './question-list-component.scss',
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -36,10 +30,16 @@ export class QuestionListComponent implements OnInit {
   readonly label = Labels;
   private store = inject(Store<AppState>);
   private sanitizer = inject(DomSanitizer);
+  private clipboard = inject(Clipboard);
   private route = inject(ActivatedRoute);
   getQuestionList$!: Observable<QuestionBank[]>;
   loading$ = this.store.select(selectLoading);
   selectedQuestion$!: Observable<QuestionBank | null>;
+
+
+  copyText(text: string) {
+    this.clipboard.copy(text);
+  }
 
   ngOnInit() {
     this.route.queryParamMap.subscribe((params) => {

@@ -99,7 +99,7 @@
                         <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 border border-slate-700 rounded">
                             {{ item.codeLanguage }}
                         </span>
-                        <button
+                        <button [cdkCopyToClipboard]="item.codeEditor"
                             class="text-[11px] bg-slate-800 px-2 py-0.5 rounded flex items-center gap-1 border border-slate-700 hover:border-orange-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

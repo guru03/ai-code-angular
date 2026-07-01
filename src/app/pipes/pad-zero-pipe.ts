@@ -2,6 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'padZero',
+  standalone: true
 })
 
 export class PadZeroPipe implements PipeTransform {
