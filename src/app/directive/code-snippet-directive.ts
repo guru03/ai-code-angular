@@ -67,7 +67,7 @@ export class CodeSnippetDirective implements OnChanges, AfterViewInit {
         plugins: this.getPlugins(language),
       });
     } catch (err) {
-      console.warn('Prettier formatting failed, using raw code:', err);
+      // console.warn('Prettier formatting failed, using raw code:', err);
     }
 
     this.setLanguageClass(codeElement, language);
