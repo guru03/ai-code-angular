@@ -87,30 +87,7 @@
             <!-- Code Editor -->
             @if (item.codeEditor) {
             <div class="code-editor combineBothDirectives mt-6">
-                <div
-                    class="flex items-center justify-between text-slate-400 rounded-t-md px-4 py-1 bg-slate-900 border-b border-gray-700">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                        <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 border border-slate-700 rounded">
-                            {{ item.codeLanguage }}
-                        </span>
-                        <button [cdkCopyToClipboard]="item.codeEditor"
-                            class="text-[11px] bg-slate-800 px-2 py-0.5 rounded flex items-center gap-1 border border-slate-700 hover:border-orange-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                            Copy
-                        </button>
-                    </div>
-                </div>
+                <aic-code-editor-header-component [codeText]="item.codeEditor" [codeLanguage]="item.codeLanguage"></aic-code-editor-header-component>
                 <pre aicCodeSnippetDirective [codeBlock]="item.codeEditor" [language]="item.codeLanguage"></pre>
             </div>
             }
@@ -122,30 +99,7 @@
 
             @if (item.codeEditor2) {
             <div class="code-editor combineBothDirectives mt-6">
-                <div
-                    class="flex items-center justify-between text-slate-400 rounded-t-md px-4 py-1 bg-slate-900 border-b border-gray-700">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                        <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 border border-slate-700 rounded">
-                            {{ item.codeLanguage2 }}
-                        </span>
-                        <button
-                            class="text-[11px] bg-slate-800 px-2 py-0.5 rounded flex items-center gap-1 border border-slate-700 hover:border-orange-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                            Copy
-                        </button>
-                    </div>
-                </div>
+                <aic-code-editor-header-component [codeText]="item.codeEditor2" [codeLanguage]="item.codeLanguage2"></aic-code-editor-header-component>
                 <pre aicCodeSnippetDirective [codeBlock]="item.codeEditor2" [language]="item.codeLanguage2"></pre>
             </div>
             }
@@ -158,30 +112,7 @@
             <!-- Code Editor3 -->
             @if (item.codeEditor3) {
             <div class="code-editor combineBothDirectives mt-6">
-                <div
-                    class="flex items-center justify-between text-slate-400 rounded-t-md px-4 py-1 bg-slate-900 border-b border-gray-700">
-                    <div class="flex items-center space-x-2">
-                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
-                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
-                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                        <span class="ml-2 text-[11px] font-sans tracking-wide">solution.ts</span>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <span class="text-[11px] uppercase bg-slate-800 px-2 py-0.5 border border-slate-700 rounded">
-                            {{ item.codeLanguage3 }}
-                        </span>
-                        <button
-                            class="text-[11px] bg-slate-800 px-2 py-0.5 rounded flex items-center gap-1 border border-slate-700 hover:border-orange-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                            Copy
-                        </button>
-                    </div>
-                </div>
+                <aic-code-editor-header-component [codeText]="item.codeEditor3" [codeLanguage]="item.codeLanguage3"></aic-code-editor-header-component>
                 <pre aicCodeSnippetDirective [codeBlock]="item.codeEditor3" [language]="item.codeLanguage3"></pre>
             </div>
             }
