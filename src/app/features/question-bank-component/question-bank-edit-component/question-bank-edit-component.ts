@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -9,12 +9,15 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrl: './question-bank-edit-component.scss',
 })
 export class QuestionBankEditComponent implements OnInit {
+
+  @Input() isOpen: boolean = false;              // controlled by parent
+  @Output() closed = new EventEmitter<void>();   // notify parent when closed
+
   questionForm!: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
     this.questionForm = this.fb.group({
       serialNumber: ['', Validators.required],
       language: ['Angular'],
@@ -48,18 +51,8 @@ export class QuestionBankEditComponent implements OnInit {
     }
   }
 
-
-
-  // Controls the drawer visibility state
-  isOpen: boolean = true;
-
-  // Call this method to open the drawer from outside
-  openDrawer() {
-    this.isOpen = true;
-  }
-
-  // Call this method to close it
   closeDrawer() {
     this.isOpen = false;
+    this.closed.emit();   // tell parent to hide
   }
 }

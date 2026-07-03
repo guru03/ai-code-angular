@@ -59,9 +59,12 @@
                 <span class="text-slate-300">•</span>
 
                 <!-- Time to Read -->
-                <span class="text-slate-400 flex items-center gap-1">
+                <!-- <span class="text-slate-400 flex items-center gap-1">
                     5 min read
-                </span>
+                </span> -->
+
+
+                <span (click)="openEditMode.set(true)" class="cursor-pointer">Update</span>
             </div>
             <!--? This is Final design ends -->
 
@@ -124,3 +127,10 @@
     </div>
     }
 </div>
+
+
+<!-- Show edit component only when openEditMode is true -->
+@if(openEditMode()) {
+<aic-question-bank-edit-component [isOpen]="openEditMode()" (closed)="openEditMode.set(false)">
+</aic-question-bank-edit-component>
+}

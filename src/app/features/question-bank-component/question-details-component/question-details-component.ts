@@ -1,5 +1,5 @@
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { Component, inject, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectionStrategy, signal } from '@angular/core';
 import { AppState } from '../../../store/app.state';
 import { Store } from '@ngrx/store';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -10,31 +10,35 @@ import { PadZeroPipe } from '../../../pipes/pad-zero-pipe';
 import { CodeSnippetDirective } from '../../../directive/code-snippet-directive';
 import { Loader } from '../../../loader/loader';
 import { Labels, WorkStatus } from '../../../enum/enum';
+import { QuestionBankEditComponent } from '../question-bank-edit-component/question-bank-edit-component';
 
 @Component({
   selector: 'aic-question-details-component',
-  imports: [AsyncPipe, CommonModule, PadZeroPipe, CodeSnippetDirective],
+  imports: [AsyncPipe, CommonModule, PadZeroPipe, CodeSnippetDirective, QuestionBankEditComponent],
   templateUrl: './question-details-component.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './question-details-component.scss',
 })
 export class QuestionDetailsComponent implements OnInit {
+  readonly label = Labels;
+  readonly WorkStatus = WorkStatus;
+
   private activatedRoute = inject(ActivatedRoute);
   private store = inject(Store<AppState>);
   private sanitizer = inject(DomSanitizer);
-  readonly label = Labels;
-  readonly WorkStatus = WorkStatus;
+
+  openEditMode = signal(false);
   selectedQuestion$ = this.store.select(getSelectedQuestion);
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
-      const category = this.activatedRoute.snapshot.queryParamMap.get('category') ?? 'angular';
+      if (!id) return;
 
-      if (id) {
-        const language = category.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
-        this.store.dispatch(loadQuestionBankById({ id: +id, language }));
-      }
+      const languageParam = this.activatedRoute.snapshot.queryParamMap.get('language');
+      const language = languageParam?.toLowerCase() === 'javascript' ? 'javascript' : 'angular';
+
+      this.store.dispatch(loadQuestionBankById({ id: Number(id), language }));
     });
   }
 
