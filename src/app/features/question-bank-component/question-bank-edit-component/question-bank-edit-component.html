@@ -1,0 +1,399 @@
+<!-- <div class="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+
+        <div class="bg-slate-900 px-6 py-5 sm:px-8">
+            <h2 class="text-xl font-bold text-white">Create Question Entry</h2>
+            <p class="text-xs text-slate-400 mt-1">Fill out the question details, answers, and accompanying code
+                snippets.</p>
+        </div>
+
+        <form [formGroup]="questionForm" (ngSubmit)="onSubmit()" class="p-6 sm:p-8 space-y-8">
+
+            <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400 mb-4">1. Metadata &
+                    Configuration</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Serial Number</label>
+                        <input type="text" formControlName="serialNumber"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm"
+                            placeholder="e.g., SIG-18">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Language</label>
+                        <select formControlName="language"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm">
+                            <option value="Angular">Angular</option>
+                            <option value="Javascript">Javascript</option>
+                            <option value="RxJS">RxJS</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Label</label>
+                        <select formControlName="label"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm">
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Topic</label>
+                        <select formControlName="topic"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm">
+                            <option value="angular_fundamentals">Angular Fundamentals</option>
+                            <option value="signals">Signals</option>
+                            <option value="ngrx">NgRx</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Content Status</label>
+                        <select formControlName="contentStatus"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all text-sm">
+                            <option value="Pending">Pending</option>
+                            <option value="Published">Published</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center pt-6">
+                        <label class="relative flex items-center cursor-pointer select-none">
+                            <input type="checkbox" formControlName="visible"
+                                class="w-4 h-4 text-orange-600 border-slate-300 rounded focus:ring-orange-500">
+                            <span class="ml-2 text-sm font-medium text-slate-700">Make field visible on site</span>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+
+            <hr class="border-slate-200">
+
+            <div class="space-y-5">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400">2. Core Question & Answers
+                </h3>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Question</label>
+                    <textarea formControlName="question" rows="3"
+                        class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"
+                        placeholder="What are the benefits of using..."></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Answer 1 (Primary)</label>
+                        <textarea formControlName="answer1" rows="3"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Answer 2</label>
+                        <textarea formControlName="answer2" rows="3"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Answer 3</label>
+                        <textarea formControlName="answer3" rows="3"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Answer 4</label>
+                        <textarea formControlName="answer4" rows="3"
+                            class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-sm"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-slate-200">
+
+            <div class="space-y-6">
+                <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-400">3. Code Blocks</h3>
+
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Snippet Block #1</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Language</label>
+                            <select formControlName="codeLanguage1"
+                                class="w-full px-3 py-1.5 border border-slate-300 rounded-lg bg-white text-xs">
+                                <option value="Typescript">TypeScript</option>
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Title / Caption</label>
+                            <input type="text" formControlName="codeTitle1"
+                                class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Code Editor Content</label>
+                        <textarea formControlName="codeEditor1" rows="4"
+                            class="w-full px-3 py-2 font-mono text-xs bg-slate-900 text-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Snippet Block #2</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Language</label>
+                            <select formControlName="codeLanguage2"
+                                class="w-full px-3 py-1.5 border border-slate-300 rounded-lg bg-white text-xs">
+                                <option value="Typescript">TypeScript</option>
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Title / Caption</label>
+                            <input type="text" formControlName="codeTitle2"
+                                class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Code Editor Content</label>
+                        <textarea formControlName="codeEditor2" rows="4"
+                            class="w-full px-3 py-2 font-mono text-xs bg-slate-900 text-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Snippet Block #3</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Language</label>
+                            <select formControlName="codeLanguage3"
+                                class="w-full px-3 py-1.5 border border-slate-300 rounded-lg bg-white text-xs">
+                                <option value="Typescript">TypeScript</option>
+                                <option value="HTML">HTML</option>
+                                <option value="CSS">CSS</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-medium text-slate-600 mb-1">Title / Caption</label>
+                            <input type="text" formControlName="codeTitle3"
+                                class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-600 mb-1">Code Editor Content</label>
+                        <textarea formControlName="codeEditor3" rows="4"
+                            class="w-full px-3 py-2 font-mono text-xs bg-slate-900 text-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-slate-200">
+
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Angular Questions Related Linked Data (JSON
+                    or reference IDs)</label>
+                <textarea formControlName="angularQuestions" rows="2"
+                    class="w-full px-3 py-2 border border-slate-300 rounded-lg shadow-sm font-mono text-xs text-slate-600"></textarea>
+            </div>
+
+            <div class="flex justify-end pt-4">
+                <button type="submit"
+                    class="px-6 py-2.5 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-medium text-sm rounded-lg shadow-sm shadow-orange-500/20 transition-all cursor-pointer">
+                    Post Question Entry
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div> -->
+
+
+
+
+
+
+
+<!-- <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity" aria-hidden="true"></div> -->
+<div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity duration-300"
+    [ngClass]="isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'" (click)="closeDrawer()">
+</div>
+
+
+
+<!-- <div class="fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-white shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out"> -->
+
+
+<div class="fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-white shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out"
+    [ngClass]="isOpen ? 'translate-x-0' : 'translate-x-full'">
+
+    <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <span
+                    class="px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-orange-100 text-orange-700">ANGULAR</span>
+                <span class="text-xs text-slate-400">#01</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Edit Question Details</h3>
+        </div>
+
+        <button type="button" (click)="closeDrawer()"
+            class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+    </div>
+
+    <form class="flex-1 overflow-y-auto p-6 space-y-6">
+
+        <div class="space-y-1.5">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">Question Title</label>
+            <input type="text" value="What are lifecycle hooks in Angular?"
+                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium text-slate-800 focus:outline-none focus:border-orange-500 focus:bg-white transition-colors" />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">Difficulty</label>
+                <select
+                    class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition-colors">
+                    <option selected>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+            </div>
+
+            <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">Read Time (mins)</label>
+                <input type="number" value="5"
+                    class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition-colors" />
+            </div>
+
+            <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">Status</label>
+                <select
+                    class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition-colors">
+                    <option>Draft</option>
+                    <option selected>Completed</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="space-y-1.5">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">Summary Intro</label>
+            <textarea rows="3"
+                class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:border-orange-500 focus:bg-white transition-colors resize-none">Every component in Angular has a lifecycle, and different phases it goes through from the time of creation to the time it's destroyed...</textarea>
+        </div>
+
+        <div class="space-y-3">
+            <div class="flex items-center justify-between">
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wide">Detailed Bullet Points
+                    (Hooks)</label>
+                <button type="button"
+                    class="text-xs font-semibold text-orange-600 hover:text-orange-700 transition-colors">+ Add
+                    Hook</button>
+            </div>
+
+            <div class="space-y-2 p-4 bg-slate-50 border border-slate-100 rounded-xl relative group">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <input type="text" value="ngOnChanges" placeholder="Hook Name"
+                        class="md:col-span-1 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold text-orange-600 focus:outline-none focus:border-orange-500" />
+                    <input type="text"
+                        value="Called before ngOnInit and whenever one or more data bound input properties change."
+                        placeholder="Description"
+                        class="md:col-span-3 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:border-orange-500" />
+                </div>
+                <button type="button"
+                    class="absolute -top-2 -right-2 hidden group-hover:flex items-center justify-center w-5 h-5 bg-red-100 hover:bg-red-200 text-red-600 rounded-full text-xs transition-colors shadow-sm">
+                    &times;
+                </button>
+            </div>
+
+            <div class="space-y-2 p-4 bg-slate-50 border border-slate-100 rounded-xl relative group">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <input type="text" value="ngOnInit"
+                        class="md:col-span-1 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm font-semibold text-orange-600 focus:outline-none focus:border-orange-500" />
+                    <input type="text"
+                        value="Called once, after the first ngOnChanges. This is where you can perform component initialization."
+                        class="md:col-span-3 px-3 py-2 bg-white border border-slate-200 rounded-lg text-sm text-slate-600 focus:outline-none focus:border-orange-500" />
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <!-- <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-3">
+        <button type="button"
+            class="px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+            Cancel
+        </button>
+        <button type="submit"
+            class="px-5 py-2.5 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 rounded-lg shadow-sm transition-colors">
+            Save Changes
+        </button>
+    </div> -->
+
+    <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-3">
+        <button type="button" (click)="closeDrawer()"
+            class="px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+            Cancel
+        </button>
+        <button type="submit"
+            class="px-5 py-2.5 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-lg shadow-sm transition-colors">
+            Save Changes
+        </button>
+    </div>
+
+
+</div>
+
+
+
+
+<!-- <div class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 transition-opacity duration-300"
+    [ngClass]="isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'" (click)="closeDrawer()">
+</div>
+
+<div class="fixed inset-y-0 right-0 z-50 w-full max-w-2xl bg-white shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out"
+    [ngClass]="isOpen ? 'translate-x-0' : 'translate-x-full'">
+
+    <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+        <div>
+            <div class="flex items-center gap-2 mb-1">
+                <span
+                    class="px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider rounded-full bg-orange-100 text-orange-700">ANGULAR</span>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800">Edit Question Details</h3>
+        </div>
+
+        <button type="button" (click)="closeDrawer()"
+            class="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+
+    <form class="flex-1 overflow-y-auto p-6 space-y-6">
+    </form>
+
+    <div class="px-6 py-4 border-t border-slate-100 bg-slate-50 flex items-center justify-end gap-3">
+        <button type="button" (click)="closeDrawer()"
+            class="px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
+            Cancel
+        </button>
+        <button type="submit"
+            class="px-5 py-2.5 text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 rounded-lg shadow-sm transition-colors">
+            Save Changes
+        </button>
+    </div>
+</div> -->

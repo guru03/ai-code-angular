@@ -18,7 +18,7 @@
 
         <!-- Serial Number with Category Routing -->
         <div [routerLink]="['/question-bank/questions', item.id]"
-            [queryParams]="{ category: activeLanguage() === 'All' ? null : activeLanguage() }" class="serial-number">
+            [queryParams]="{ language: activeLanguage() === 'All' ? null : activeLanguage() }" class="serial-number">
             <span>{{ $index + 1 | padZero:2 }}</span>
         </div>
 

@@ -58,7 +58,7 @@ $codeColor: #ebebeb;
     }
 
     .serial-number {
-        @apply absolute -left-3 top-7 w-7 h-7 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md;
+        @apply cursor-pointer absolute -left-3 top-7 w-7 h-7 bg-slate-900 text-white rounded-full flex items-center justify-center text-xs font-bold shadow-md;
     }
 
     .question-section {

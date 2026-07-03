@@ -34,6 +34,7 @@ export const loadQuestionBankFailure = createAction(
 export const loadQuestionBankById = createAction(
   '[Question Bank] Load By Id',
   props<{ id: number; language: SupportedLanguage['name'] }>()
+  // props<{ id: number; language: SupportedLanguage['name'] }>()
 );
 
 // Load Question Bank Details Success
