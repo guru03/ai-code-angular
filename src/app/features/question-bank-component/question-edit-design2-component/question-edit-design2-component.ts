@@ -3,12 +3,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'aic-question-bank-edit-component',
+  selector: 'aic-question-edit-design2-component',
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './question-bank-edit-component.html',
-  styleUrl: './question-bank-edit-component.scss',
+  templateUrl: './question-edit-design2-component.html',
+  styleUrl: './question-edit-design2-component.scss',
 })
-export class QuestionBankEditComponent implements OnInit {
+export class QuestionEditDesign2Component {
 
   @Input() isOpen: boolean = false;              // controlled by parent
   @Output() closed = new EventEmitter<void>();   // notify parent when closed
@@ -42,18 +42,17 @@ export class QuestionBankEditComponent implements OnInit {
       angularQuestions: ['null']
     });
   }
+    onSubmit() {
+      if (this.questionForm.valid) {
+        console.log('Form Submitted Data:', this.questionForm.value);
+      } else {
+        console.error('Form contains validation errors.');
+      }
 
-  onSubmit() {
-    if (this.questionForm.valid) {
-      console.log('Form Submitted Data:', this.questionForm.value);
-    } else {
-      console.error('Form contains validation errors.');
+      // if (this.questionForm.valid) {
+      //   console.log('Form Submitted Data:', this.questionForm.value);
+      // }
     }
-
-    // if (this.questionForm.valid) {
-    //   console.log('Form Submitted Data:', this.questionForm.value);
-    // }
-  }
 
   closeDrawer() {
     this.isOpen = false;

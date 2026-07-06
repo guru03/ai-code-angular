@@ -63,7 +63,6 @@
                     5 min read
                 </span> -->
 
-
                 <span (click)="openEditMode.set(true)" class="cursor-pointer">Update</span>
             </div>
             <!--? This is Final design ends -->
@@ -130,7 +129,11 @@
 
 
 <!-- Show edit component only when openEditMode is true -->
-@if(openEditMode()) {
+<!-- @if(openEditMode()) {
 <aic-question-bank-edit-component [isOpen]="openEditMode()" (closed)="openEditMode.set(false)">
 </aic-question-bank-edit-component>
-}
+} -->
+
+<!-- Drawer always mounted, just slides in/out -->
+<aic-question-bank-edit-component [isOpen]="openEditMode()" (closed)="openEditMode.set(false)">
+</aic-question-bank-edit-component>
